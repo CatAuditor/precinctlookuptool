@@ -212,9 +212,10 @@ Newsletter | Status | DateContacted | SourceURL`
 > `https://precinctlookuptool-cradcli4-7333s-projects.vercel.app`. GitHub repo
 > `CatAuditor/precinctlookuptool` is connected for auto-deploys on push to `main`.
 > All required env vars are set (prod/preview/dev); Deployment Protection is off.
-> Candidate sheet `1X5eHi4K…KWEs8`, volunteer sheet `1Wmi-xpg…Pu2U`, both shared
-> to the SA. The steps below are the generic recipe for standing up a **new**
-> client from scratch.
+> Candidate sheet = file titled **"Candidates/incumbent"** (`1Wmi-xpg…Pu2U`,
+> `Candidates` tab); volunteer sheet = file titled **"Volunteer"**
+> (`1X5eHi4K…KWEs8`, `Config` + `Submissions` tabs). Both shared to the SA. The
+> steps below are the generic recipe for standing up a **new** client from scratch.
 
 1. **Rotate the service-account key** (the earlier one was pasted into a chat).
    Google Cloud → Credentials → the service account → Keys → delete old →
