@@ -60,19 +60,21 @@ runtime dependencies** (the Sheets OAuth JWT is signed with Node's built-in
 | Area | State |
 |---|---|
 | Precinct + district lookup + map | ✅ Working (inherited, unchanged) |
-| Candidate cards from Google Sheet | ✅ Built — **not yet tested against a live sheet** |
-| Dynamic issue/capacity options (`/api/config`) | ✅ Built — **not yet tested live** |
-| 3-step Get Involved funnel + submit | ✅ Built — **not yet tested live** |
-| Volunteer append to Submissions tab | ✅ Built (with retry) — **not yet tested live** |
+| Candidate cards from Google Sheet | ✅ Built + **verified live** (read + district match) |
+| Dynamic issue/capacity options (`/api/config`) | ✅ Built + **verified live** |
+| 3-step Get Involved funnel + submit | ✅ Built + **`/api/volunteer` verified live** (append + read-back) |
+| Volunteer append to Submissions tab | ✅ Built (with retry) + **verified live** |
 | iframe / Squarespace embed (`?embed=1`) | ✅ Built |
 | Per-client env-var config | ✅ Built |
-| Google service account | ⚠️ Created (`precinct-lookup@…`), **key exposed in chat — must rotate** |
-| Google Sheets created & shared | ⛔ Not done yet (templates provided) |
-| Deployed to its own Vercel project | ⛔ Not done yet |
+| Google service account | ⚠️ Created (`precinct-lookup@…`), **key exposed in chat — still must rotate** |
+| Google Sheets created & shared | ✅ Done — both created, shared to the SA, populated with headers + sample rows |
+| Deployed to its own Vercel project | ✅ Deployed — `precinctlookuptool` (Vercel), all env vars set, protection off |
 
-**Bottom line:** all code is written, syntax-checked, and the build injection is
-verified. The full Google Sheets round-trip (auth → read → append) has **never
-run against a real sheet**. That is the #1 thing to smoke-test on first deploy.
+**Bottom line:** live and working end-to-end as of 2026-07-01. The full Google
+Sheets round-trip (auth → read Config/Candidates → append to Submissions →
+read-back) was smoke-tested against the real sheets **and** over HTTP — all
+green. Remaining real risk items: rotate the exposed key, and the sheets
+currently hold **placeholder** candidates/issues (swap for real data).
 
 ---
 
@@ -205,6 +207,15 @@ Newsletter | Status | DateContacted | SourceURL`
 
 ## 9. Setup / deploy checklist (fresh)
 
+> **Current deployment (2026-07-01):** live on Vercel project `precinctlookuptool`
+> (owner `cradcli4-7333`). Prod alias:
+> `https://precinctlookuptool-cradcli4-7333s-projects.vercel.app`. GitHub repo
+> `CatAuditor/precinctlookuptool` is connected for auto-deploys on push to `main`.
+> All required env vars are set (prod/preview/dev); Deployment Protection is off.
+> Candidate sheet `1X5eHi4K…KWEs8`, volunteer sheet `1Wmi-xpg…Pu2U`, both shared
+> to the SA. The steps below are the generic recipe for standing up a **new**
+> client from scratch.
+
 1. **Rotate the service-account key** (the earlier one was pasted into a chat).
    Google Cloud → Credentials → the service account → Keys → delete old →
    create new JSON. See §12.
@@ -241,22 +252,33 @@ No code changes required. Keep it that way — resist hardcoding client specific
 - `build.js` token injection produces zero leftover `%%…%%`.
 - Every `onclick` handler in `index.html` maps to a defined function.
 - No secrets in tracked files.
+- **Live (2026-07-01):** service-account auth returns a token; `readRange` reads
+  the real `Config` and `Candidates` tabs; `appendRow` writes to `Submissions`
+  and the row is confirmed on read-back (test rows cleaned up afterward).
+- **Live over HTTP** on the deployed site: `GET /api/config`, `GET
+  /api/candidates?houseDistrict=10&senateDistrict=5` (district match returns the
+  right candidates), and `POST /api/volunteer` all return 200.
 
-**NOT yet tested (do this first on deploy):**
-- Google service-account auth actually returns a token.
-- `readRange` against a real Candidate/Config sheet.
-- `appendRow` actually writes to Submissions.
-- The candidate district-matching against real GIS district values (e.g. does
-  the sheet's `District` string exactly equal what ArcGIS returns?).
-- The funnel end-to-end in a real browser.
+**Still NOT tested:**
+- The funnel end-to-end in a real browser (address → precinct → candidates →
+  modal → submit). APIs are proven; the UI wiring is only code-verified.
+- District matching against **real** GIS values — verified only with the
+  placeholder sample (`house/10`, `senate/5`). Confirm real candidate `District`
+  strings equal exactly what ArcGIS returns when real data is loaded.
 
 ---
 
 ## 12. Known gaps / TODO / next steps
 
 **Immediate**
-- [ ] **Rotate the exposed service-account key** (private key was shared in chat).
-- [ ] Create + share the two sheets; wire env vars; first deploy + smoke test.
+- [ ] **Rotate the exposed service-account key** (private key was shared in chat,
+      and again in the 2026-07-01 setup session). Update `GOOGLE_SERVICE_ACCOUNT_KEY`
+      on Vercel after rotating.
+- [x] ~~Create + share the two sheets; wire env vars; first deploy + smoke test.~~
+      Done 2026-07-01 — see the sheet IDs in Vercel env vars; both smoke-tested live.
+- [ ] Replace the **placeholder** candidate rows (Jane Smith / Bob Lee) and the
+      sample issue/capacity lists with real organizer data.
+- [ ] Do the browser-level end-to-end pass (only the APIs were smoke-tested).
 - [ ] Consider adding a **`/api/health`** endpoint that verifies the service
       account can read both sheets and reports misconfig — makes first-deploy
       debugging one click. (Discussed, not yet built.)
