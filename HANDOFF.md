@@ -1,0 +1,292 @@
+# Precinct Tool — Project Handoff & Status
+
+_Last updated: 2026-07-01. This is the single source of truth for where the
+project stands, how it works, and what's left. Read this first._
+
+---
+
+## 1. What this is
+
+A geo-personalized civic-engagement funnel built on top of a precinct-lookup
+map. A voter enters their address and gets:
+
+1. Their **precinct + legislative districts** (house, senate, congress, school
+   board, school district) on an interactive map.
+2. **Their candidates** — pulled live from a Google Sheet the organizers
+   maintain, with photo, bio, contact, social links, and campaign priorities.
+3. A **"Get Involved" funnel** — a 3-step modal that captures issue priorities,
+   volunteer capacity, and contact info, then writes the lead to a Google Sheet.
+
+The design goal is **maximum flexibility for organizers with minimum moving
+parts**: they run everything from two Google Sheets. No database, no admin app,
+no custom CMS. Deploy = a static page + a handful of serverless functions on
+Vercel.
+
+**One-liner:** address in → precinct + candidates out → volunteer captured to a
+spreadsheet organizers already know how to use.
+
+---
+
+## 2. Origin & how we got here
+
+- Forked from the **`UtahDemPrecinctMap`** repo (GitHub: `CatAuditor/UtahDemPrecinctMap`),
+  from the `volunteer-funnel` branch at commit `e9e86f6`.
+- This folder (`~/Desktop/precinct tool`) is a **clean copy** intended to become
+  its **own fresh git repo and its own Vercel project**, so its deployment and
+  errors never mix with the live Utah Dem site (which stays on that repo's
+  `main`).
+- The original map (precinct lookup + district layers) was already built and
+  deployed. This project **adds** the candidate + volunteer funnel on top and
+  makes everything **per-client configurable** via environment variables.
+
+### Key architecture decision: Google Sheets, not a database
+An earlier draft used Neon Postgres + a custom admin UI for candidates. We
+**removed it** because:
+- Organizers want to live in spreadsheets, not a custom UI.
+- The volunteer follow-up "queue" lives in the sheet itself (timestamp +
+  Status + DateContacted columns), so a DB wasn't needed for that.
+- Fast reads are handled by CDN + in-memory caching; write reliability by retry.
+- A separate database was more operational surface (another login, connection
+  strings, migrations) than it was worth at this volume.
+
+Result: **one external system (Google Sheets), one service account, zero npm
+runtime dependencies** (the Sheets OAuth JWT is signed with Node's built-in
+`crypto`).
+
+---
+
+## 3. Current status at a glance
+
+| Area | State |
+|---|---|
+| Precinct + district lookup + map | ✅ Working (inherited, unchanged) |
+| Candidate cards from Google Sheet | ✅ Built — **not yet tested against a live sheet** |
+| Dynamic issue/capacity options (`/api/config`) | ✅ Built — **not yet tested live** |
+| 3-step Get Involved funnel + submit | ✅ Built — **not yet tested live** |
+| Volunteer append to Submissions tab | ✅ Built (with retry) — **not yet tested live** |
+| iframe / Squarespace embed (`?embed=1`) | ✅ Built |
+| Per-client env-var config | ✅ Built |
+| Google service account | ⚠️ Created (`precinct-lookup@…`), **key exposed in chat — must rotate** |
+| Google Sheets created & shared | ⛔ Not done yet (templates provided) |
+| Deployed to its own Vercel project | ⛔ Not done yet |
+
+**Bottom line:** all code is written, syntax-checked, and the build injection is
+verified. The full Google Sheets round-trip (auth → read → append) has **never
+run against a real sheet**. That is the #1 thing to smoke-test on first deploy.
+
+---
+
+## 4. Architecture
+
+```
+Browser (static index.html, built by build.js)
+  │
+  ├── Address → UGRC geocoder → lat/lng
+  ├── lat/lng → ArcGIS FeatureServers → precinct + districts (client-side fetch)
+  │
+  ├── GET /api/candidates?houseDistrict=..&senateDistrict=..   ─┐
+  ├── GET /api/config                                           │  Vercel
+  └── POST /api/volunteer                                       │  serverless
+                                                                │  functions
+      /api/*  →  lib/sheets.js  →  Google Sheets API (service acct)
+                 lib/config.js  →  all env-var config
+```
+
+- **Frontend:** a single static `index.html` (Leaflet map + vanilla JS). No
+  framework, no build step beyond `build.js` string-injecting env values into
+  `%%PLACEHOLDER%%` tokens.
+- **Backend:** Vercel serverless functions in `/api`. Node, CommonJS, `fetch`.
+- **Data layer:** Google Sheets via `lib/sheets.js` (service-account auth).
+- **Config:** everything client-specific is an env var, read through
+  `lib/config.js`. New client = new Vercel project + new env vars, no code change.
+
+---
+
+## 5. End-to-end user flow
+
+1. User loads the page (optionally embedded via iframe with `?embed=1`).
+2. Types address → autocomplete (OpenStreetMap Nominatim) → picks one.
+3. `findPrecinct()` geocodes via UGRC, then queries ArcGIS for precinct + house
+   + senate; draws them on the map; opens the sidebar.
+4. Sidebar shows precinct info, districts, and **"Your Candidates"** (fetched
+   from `/api/candidates` by district).
+5. User clicks **"Get Involved →"** → modal funnel opens:
+   - **Step 1** "What issues are your top priority?" — chips from `/api/config`.
+   - **Step 2** "How can you help?" — capacity chips from `/api/config`.
+   - **Step 3** contact form: first/last/email/phone + two checkboxes
+     ("help elect Democratic candidates", "subscribe to newsletter").
+6. Submit → `POST /api/volunteer` → row appended to the **Submissions** tab with
+   a timestamp and `Status = New`. Success screen shown.
+
+---
+
+## 6. File-by-file
+
+| File | Purpose |
+|---|---|
+| `index.html` | The whole frontend: map, sidebar, candidate cards, funnel modal. Contains `%%PLACEHOLDER%%` tokens replaced at build time. |
+| `build.js` | Replaces `%%…%%` tokens in `index.html` with env values. **Fails the build if `UGRC_API_KEY` is missing.** |
+| `api/precinct.js` | (Inherited) Server-side precinct lookup API + HTML embed generator. Uses `lib/config`. |
+| `api/candidates.js` | Reads candidate sheet, filters by district, returns shaped JSON. CDN + 60s in-memory cache. |
+| `api/config.js` | Returns `{ issues[], capacity[] }` from the volunteer sheet's Config tab. Cached. |
+| `api/volunteer.js` | Validates + appends a signup row to Submissions (retry x3); optional webhook forward. |
+| `lib/config.js` | Central env-var config: geocoding, ArcGIS URLs, branding/geo, Google account, sheet IDs/tabs, timezone, optional webhook. |
+| `lib/sheets.js` | Minimal Google Sheets client: service-account JWT (signed w/ `crypto`), token cache, `readRange` / `appendRow` / `rowsToObjects`. |
+| `vercel.json` | Build command + output dir. |
+| `.env.example` | Every env var with notes. Copy to `.env` locally / set in Vercel. |
+| `EMBED.md` | How to embed via iframe on Squarespace etc. |
+| `sheet-templates/` | Importable CSVs (Candidates/Config/Submissions) + import README. |
+| `docs.html` | (Inherited) API reference page for `/api/precinct`. |
+| `pitch/` | Business pitch/brief (gitignored). Background + roadmap rationale. |
+
+---
+
+## 7. Data model (the two spreadsheets)
+
+### Candidate spreadsheet — tab `Candidates`
+Header row (order-independent; code reads by header name):
+
+`Name | Office | DistrictType | District | PhotoURL | Bio | Website | Email |
+Phone | Facebook | Instagram | X | VolunteerURL | DonateURL | TopIssues |
+Active | Order`
+
+- `DistrictType` ∈ `house | senate | congress | school_board` (matches the
+  district the user's lookup returns).
+- `District` = the number/value as GIS returns it (e.g. `10`).
+- `TopIssues` = comma-separated in one cell (e.g. `Education, Housing`).
+- `Active` = `TRUE`/`FALSE` (also accepts no/0/n as false).
+- `Order` = sort order within a district.
+- Share with the service account as **Viewer**.
+
+### Volunteer spreadsheet — tab `Config`
+Two independent columns; blank cells ignored:
+
+`Issues | Capacity`
+
+These drive the funnel's Step 1 and Step 2 options. Organizers edit them
+anytime; changes appear within ~60s (cache TTL).
+
+### Volunteer spreadsheet — tab `Submissions`
+The app appends one row per signup, in this exact column order:
+
+`Created | FirstName | LastName | Email | Phone | TopIssues | Capacity |
+Precinct | County | House | Senate | Congress | Address | HelpElect |
+Newsletter | Status | DateContacted | SourceURL`
+
+- `Created` = timestamp in `CLIENT_TIMEZONE`.
+- `Status` = `New` on insert; organizers work the queue from here.
+- `DateContacted` = blank; organizers fill it during follow-up.
+- Share the volunteer spreadsheet with the service account as **Editor**.
+
+---
+
+## 8. Environment variables
+
+| Var | Required | Notes |
+|---|---|---|
+| `UGRC_API_KEY` | ✅ | UGRC geocoder key. Build fails without it. |
+| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | ✅ | e.g. `precinct-lookup@precinct-lookup-501120.iam.gserviceaccount.com` |
+| `GOOGLE_SERVICE_ACCOUNT_KEY` | ✅ | The `private_key` from the JSON. Paste with literal `\n`, no quotes in Vercel. Code normalizes `\n`→newlines. |
+| `CANDIDATE_SHEET_ID` | ✅ | From the candidate sheet URL between `/d/` and `/edit`. |
+| `VOLUNTEER_SHEET_ID` | ✅ | From the volunteer sheet URL. |
+| `CANDIDATE_TAB` | – | Default `Candidates`. |
+| `VOLUNTEER_CONFIG_TAB` | – | Default `Config`. |
+| `VOLUNTEER_SUBMISSIONS_TAB` | – | Default `Submissions`. |
+| `CLIENT_NAME` | – | Default `Utah Democratic Party`. Shown in header + newsletter checkbox. |
+| `CLIENT_STATE` / `CLIENT_STATE_ABBR` | – | Default `Utah` / `UT`. |
+| `CLIENT_GEO_VIEWBOX` | – | Nominatim bounding box `w,s,e,n`. |
+| `CLIENT_MAP_CENTER_LAT/LNG/ZOOM` | – | Initial map view. |
+| `CLIENT_TIMEZONE` | – | Default `America/Denver`. Used for the `Created` timestamp. |
+| `ARCGIS_BASE` + `*_SVC_PATH` | – | Override ArcGIS services for a different state. |
+| `VOLUNTEER_WEBHOOK_URL` | – | Optional: also POST each signup here (Zapier/Make/custom). |
+| `VOLUNTEER_WEBHOOK_SECRET` | – | Optional HMAC-SHA256 signing secret for the webhook. |
+
+---
+
+## 9. Setup / deploy checklist (fresh)
+
+1. **Rotate the service-account key** (the earlier one was pasted into a chat).
+   Google Cloud → Credentials → the service account → Keys → delete old →
+   create new JSON. See §12.
+2. **Create the two Google Sheets** by importing `sheet-templates/*.csv`
+   (see `sheet-templates/README.md`).
+3. **Share** them with the service-account email (candidate = Viewer,
+   volunteer = Editor).
+4. **New Vercel project** from this repo. Set all required env vars (§8).
+5. **Deploy.** Then smoke-test:
+   - `GET /api/config` → returns your issue/capacity lists.
+   - Do a real address lookup → candidates show → submit funnel → row lands in
+     the Submissions tab.
+6. Optional: embed on the site via iframe (`?embed=1`, see `EMBED.md`).
+
+---
+
+## 10. Per-client / multi-tenant model
+
+The only client-specific things are **env vars** and **the two sheets**. To add
+another state party or client:
+- New Vercel project (or new deployment) from the same codebase.
+- New service account + two sheets, or reuse a service account shared into new
+  sheets.
+- Set `CLIENT_*` branding/geo vars and `ARCGIS_*` service paths for that state.
+
+No code changes required. Keep it that way — resist hardcoding client specifics.
+
+---
+
+## 11. What's tested vs. NOT
+
+**Verified:**
+- All JS syntax (`node --check`) on every API + lib file.
+- `build.js` token injection produces zero leftover `%%…%%`.
+- Every `onclick` handler in `index.html` maps to a defined function.
+- No secrets in tracked files.
+
+**NOT yet tested (do this first on deploy):**
+- Google service-account auth actually returns a token.
+- `readRange` against a real Candidate/Config sheet.
+- `appendRow` actually writes to Submissions.
+- The candidate district-matching against real GIS district values (e.g. does
+  the sheet's `District` string exactly equal what ArcGIS returns?).
+- The funnel end-to-end in a real browser.
+
+---
+
+## 12. Known gaps / TODO / next steps
+
+**Immediate**
+- [ ] **Rotate the exposed service-account key** (private key was shared in chat).
+- [ ] Create + share the two sheets; wire env vars; first deploy + smoke test.
+- [ ] Consider adding a **`/api/health`** endpoint that verifies the service
+      account can read both sheets and reports misconfig — makes first-deploy
+      debugging one click. (Discussed, not yet built.)
+
+**Small polish**
+- [ ] `index.html` footer still has **Utah-specific data-source attribution**
+      links — parameterize if going multi-state (hidden in `?embed=1` mode).
+- [ ] On the **address-search capture path**, `congressDistrict` is left empty
+      (congress is only resolved on precinct *click*, not on the initial search).
+      Minor; enrich if congress capture matters for signups.
+- [ ] Candidate `District` matching is an exact string compare — document/verify
+      the format organizers should enter (e.g. `10` vs `HD-10`).
+
+**Future phases (from the pitch, not yet built)**
+- Phase 3 issue matching is partially here (issue capture exists; matching
+  captured issues back to candidates/campaigns is future).
+- Phase 4 campaign engine (organizer-created campaigns, deep links, QR codes).
+- Phase 5 letter writing; Phase 6 phone banking; Phase 7 admin dashboard;
+  Phase 8 volunteer impact dashboard. See `pitch/PITCH.md`.
+
+---
+
+## 13. Security notes
+
+- **The service-account private key was pasted into a chat and must be rotated.**
+  Until then, treat it as compromised. Its blast radius is limited to sheets
+  shared with it, but rotate before going live.
+- `.env` is gitignored; never commit real keys. Only `.env.example` (dummy
+  placeholder) is tracked.
+- The public app exposes only public precinct data. Volunteer submissions are
+  write-only into the client's own sheet. The app is intentionally iframe-able;
+  there is no admin surface to protect (organizers use Google's own auth on the
+  sheets).

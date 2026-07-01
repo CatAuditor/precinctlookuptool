@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>%%CLIENT_NAME%% – Find Your Precinct</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f0f4f8;
+      color: #1a2744;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Embed mode (for iframe on Squarespace / external sites) ──
+       ?embed=1 hides header + footer; ?header=0 / ?footer=0 hide individually.
+       Fills the iframe's height exactly so the map drives the layout. */
+    html.embed, html.embed body { height: 100%; }
+    html.embed body { min-height: 0; }
+    html.embed header,  html.no-header header { display: none; }
+    html.embed footer,  html.no-footer footer { display: none; }
+    html.embed .search-panel { padding: 14px 18px; }
+
+    /* ── Header ── */
+    header {
+      background: #003594;
+      color: #fff;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+      z-index: 10;
+    }
+    header .star { font-size: 2rem; line-height: 1; }
+    header h1 { font-size: 1.25rem; font-weight: 700; line-height: 1.2; }
+    header p  { font-size: .82rem; opacity: .85; margin-top: 2px; }
+
+    /* ── Search panel ── */
+    .search-panel {
+      background: #fff;
+      border-bottom: 3px solid #003594;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 10;
+    }
+    .search-panel label {
+      font-size: .85rem;
+      font-weight: 600;
+      color: #003594;
+      letter-spacing: .02em;
+    }
+    .input-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Autocomplete ── */
+    .autocomplete-wrap {
+      flex: 1 1 260px;
+      position: relative;
+    }
+    .autocomplete-wrap input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 2px solid #c5d0e0;
+      border-radius: 6px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .autocomplete-wrap input:focus { border-color: #003594; }
+
+    #suggestions {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0; right: 0;
+      background: #fff;
+      border: 2px solid #003594;
+      border-radius: 6px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.15);
+      z-index: 9999;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+    #suggestions.open { display: block; }
+    .suggestion-item {
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: .92rem;
+      border-bottom: 1px solid #eef0f5;
+      line-height: 1.3;
+    }
+    .suggestion-item:last-child { border-bottom: none; }
+    .suggestion-item:hover, .suggestion-item.active { background: #e8f0fe; color: #003594; }
+    .suggestion-item .sub { font-size: .78rem; color: #607090; margin-top: 2px; }
+    .suggestion-loading, .suggestion-empty { padding: 10px 14px; font-size: .88rem; color: #607090; }
+
+    .input-row button {
+      padding: 11px 22px;
+      background: #003594;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background .2s;
+      align-self: flex-start;
+    }
+    .input-row button:hover  { background: #0048c8; }
+    .input-row button:active { background: #002a70; }
+
+    .hint { font-size: .78rem; color: #607090; }
+
+    /* ── Result banner ── */
+    #result-banner {
+      display: none;
+      background: #e8f0fe;
+      border-left: 5px solid #003594;
+      padding: 14px 20px;
+      font-size: 1rem;
+    }
+    #result-banner.error { background: #fde8e8; border-left-color: #b00020; color: #b00020; }
+    #result-banner strong { color: #003594; }
+    #result-banner.error strong { color: #b00020; }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 10px;
+      font-size: .75rem;
+      font-weight: 700;
+      color: #fff;
+      vertical-align: middle;
+      margin-right: 3px;
+    }
+    .badge-precinct       { background: #003594; }
+    .badge-house          { background: #7c3aed; }
+    .badge-senate         { background: #0891b2; }
+    .badge-school-board   { background: #059669; }
+    .badge-school-district{ background: #be185d; }
+
+    /* ── Candidates section ── */
+    .candidate-card {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f4f8;
+    }
+    .candidate-card:last-child { border-bottom: none; }
+    .candidate-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #e0e8f5;
+    }
+    .candidate-initials {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: #003594;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .candidate-body { flex: 1; min-width: 0; }
+    .candidate-name { font-weight: 700; font-size: .875rem; color: #1a2744; }
+    .candidate-office { font-size: .75rem; color: #607090; margin-top: 1px; }
+    .candidate-bio { font-size: .78rem; color: #455a80; margin-top: 4px; line-height: 1.4; }
+    .candidate-links { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+    .candidate-link {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 10px;
+      font-size: .72rem; font-weight: 600;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .candidate-link:hover { opacity: .8; }
+    .clink-site { background: #e8f0fe; color: #003594; }
+    .clink-vol  { background: #d1fae5; color: #065f46; }
+    .clink-don  { background: #fef3c7; color: #92400e; }
+
+    /* Candidate issue tags + social */
+    .candidate-issues { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+    .issue-tag { background: #eef2f8; color: #455a80; font-size: .68rem; font-weight: 600; padding: 2px 7px; border-radius: 8px; }
+    .candidate-social { display: flex; gap: 6px; margin-top: 6px; }
+    .social-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 22px; height: 22px; padding: 0 6px;
+      border-radius: 6px; background: #f0f4f8; color: #003594;
+      font-size: .7rem; font-weight: 700; text-decoration: none;
+    }
+    .social-link:hover { background: #e0e8f5; }
+
+    /* ── Get Involved funnel modal ── */
+    .funnel-backdrop {
+      display: none; position: fixed; inset: 0;
+      background: rgba(10,20,40,.5); z-index: 3000;
+      align-items: center; justify-content: center; padding: 16px;
+    }
+    .funnel-backdrop.open { display: flex; }
+    .funnel-modal {
+      background: #fff; border-radius: 14px; width: 100%; max-width: 440px;
+      max-height: 92vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    }
+    .funnel-inner { padding: 26px 24px; }
+    .funnel-progress { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #8899aa; }
+    .funnel-title { font-size: 1.2rem; color: #003594; margin: 6px 0 4px; }
+    .funnel-sub { font-size: .85rem; color: #607090; margin-bottom: 16px; line-height: 1.4; }
+    .funnel-empty { color: #90a0b0; font-size: .85rem; }
+    .chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .chip {
+      border: 2px solid #c5d0e0; background: #fff; color: #1a2744;
+      padding: 8px 14px; border-radius: 20px; font-size: .85rem; font-weight: 600;
+      cursor: pointer; transition: all .12s;
+    }
+    .chip:hover { border-color: #7a9fd4; }
+    .chip.selected { background: #003594; border-color: #003594; color: #fff; }
+    .funnel-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 8px; }
+    .funnel-btn { padding: 10px 20px; border: none; border-radius: 8px; font-size: .9rem; font-weight: 700; cursor: pointer; }
+    .funnel-btn.primary { background: #003594; color: #fff; }
+    .funnel-btn.primary:hover { background: #0048c8; }
+    .funnel-btn.primary:disabled { background: #7a9fd4; cursor: not-allowed; }
+    .funnel-btn.ghost { background: #f0f4f8; color: #455a80; }
+    .funnel-row { display: flex; gap: 10px; }
+    .funnel-row .funnel-field { flex: 1; }
+    .funnel-field { margin-bottom: 12px; }
+    .funnel-field label { display: block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: #455a80; margin-bottom: 4px; }
+    .funnel-field input {
+      width: 100%; padding: 10px 12px; border: 2px solid #c5d0e0;
+      border-radius: 8px; font-size: .92rem; outline: none; transition: border-color .15s;
+    }
+    .funnel-field input:focus { border-color: #003594; }
+    .funnel-check { display: flex; align-items: flex-start; gap: 9px; margin: 10px 0; font-size: .85rem; color: #1a2744; cursor: pointer; line-height: 1.35; }
+    .funnel-check input { margin-top: 2px; width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; }
+    .funnel-msg { font-size: .83rem; margin-top: 10px; text-align: center; }
+    .funnel-msg.error { color: #b00020; }
+    .funnel-success { text-align: center; padding: 20px 0; }
+    .funnel-success .check {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #d1fae5; color: #065f46; font-size: 1.8rem;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
+    }
+
+    /* Get Involved button */
+    .get-involved-btn {
+      width: 100%;
+      padding: 10px;
+      background: #003594;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: .9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .15s;
+      margin-top: 8px;
+    }
+    .get-involved-btn:hover { background: #0048c8; }
+    .get-involved-btn.open  { background: #455a80; }
+
+    /* ── Map area wrapper ── */
+    #map-area {
+      display: flex;
+      flex: 1;
+      min-height: 420px;
+      position: relative;
+    }
+
+    #map {
+      flex: 1;
+      min-height: 0; /* override the existing min-height:420px since parent handles it */
+    }
+
+    /* ── Info Sidebar ── */
+    #info-sidebar {
+      width: 0;
+      overflow: hidden;
+      background: #fff;
+      border-left: 3px solid #003594;
+      display: flex;
+      flex-direction: column;
+      transition: width 0.25s ease;
+      flex-shrink: 0;
+    }
+    #info-sidebar.open {
+      width: 300px;
+    }
+    #sidebar-header {
+      background: #003594;
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    #sidebar-title {
+      font-weight: 700;
+      font-size: .95rem;
+      white-space: nowrap;
+    }
+    #sidebar-close {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 0 4px;
+      opacity: .8;
+      line-height: 1;
+    }
+    #sidebar-close:hover { opacity: 1; }
+    #sidebar-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      font-size: .875rem;
+    }
+
+    /* Sidebar info rows */
+    .info-section {
+      margin-bottom: 16px;
+    }
+    .info-section-title {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #8899aa;
+      margin-bottom: 6px;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 5px 0;
+      border-bottom: 1px solid #f0f4f8;
+      gap: 8px;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-label { color: #607090; font-size: .8rem; flex-shrink: 0; }
+    .info-value { font-weight: 600; color: #1a2744; text-align: right; }
+    .info-link {
+      display: block;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: #e8f0fe;
+      color: #003594;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .82rem;
+      text-align: center;
+      transition: background .15s;
+    }
+    .info-link:hover { background: #d0e0fc; }
+    .info-loading {
+      color: #90a0b0;
+      font-size: .82rem;
+      font-style: italic;
+    }
+    .info-type-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: .75rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .badge-precinct-bg        { background: #003594; }
+    .badge-house-bg           { background: #7c3aed; }
+    .badge-senate-bg          { background: #0891b2; }
+    .badge-school-board-bg    { background: #059669; }
+    .badge-school-district-bg { background: #be185d; }
+
+    /* Mobile: sidebar goes below map */
+    @media (max-width: 640px) {
+      #map-area { flex-direction: column; }
+      #info-sidebar { width: 100% !important; max-height: 0; border-left: none; border-top: 3px solid #003594; transition: max-height 0.25s ease; }
+      #info-sidebar.open { max-height: 340px; }
+    }
+
+    /* ── Layer panel (custom Leaflet control) ── */
+    .layer-panel {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.18);
+      padding: 10px 12px;
+      font-size: .82rem;
+      min-width: 170px;
+    }
+    .layer-panel-title {
+      font-weight: 700;
+      color: #1a2744;
+      margin-bottom: 8px;
+      font-size: .8rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .layer-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+      cursor: pointer;
+      user-select: none;
+    }
+    .layer-toggle input[type=checkbox] { cursor: pointer; width: 14px; height: 14px; }
+    .swatch {
+      width: 14px; height: 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      border: 2px solid transparent;
+    }
+    .layer-note { font-size: .7rem; color: #90a0b0; margin-top: 2px; margin-left: 22px; }
+
+    /* ── Leaflet label tooltips ── */
+    .district-label {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      font-weight: 700;
+      font-size: .72rem;
+      color: #1a2744;
+      white-space: nowrap;
+      text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+      pointer-events: none;
+    }
+    .district-label::before { display: none; }
+
+    /* ── Footer ── */
+    footer {
+      background: #003594;
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      font-size: .75rem;
+      padding: 10px 16px;
+    }
+    footer a { color: rgba(255,255,255,.85); }
+
+    /* ── Spinner ── */
+    .spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 3px solid rgba(255,255,255,.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 520px) {
+      header h1 { font-size: 1.05rem; }
+      .autocomplete-wrap { flex-basis: 100%; }
+      .input-row button { width: 100%; }
+    }
+  </style>
+  <script>
+    // Embed mode: ?embed=1 hides chrome for a clean iframe widget (Squarespace etc.).
+    // ?header=0 / ?footer=0 hide those individually. Runs before paint to avoid flash.
+    (function () {
+      var p  = new URLSearchParams(location.search);
+      var el = document.documentElement;
+      if (p.get('embed')  === '1') el.classList.add('embed');
+      if (p.get('header') === '0') el.classList.add('no-header');
+      if (p.get('footer') === '0') el.classList.add('no-footer');
+    })();
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="star">★</div>
+  <div>
+    <h1>%%CLIENT_NAME%%</h1>
+    <p>Find Your Precinct</p>
+  </div>
+</header>
+
+<div class="search-panel">
+  <label for="address-input">ENTER YOUR ADDRESS</label>
+  <div class="input-row">
+    <div class="autocomplete-wrap">
+      <input
+        id="address-input"
+        type="text"
+        placeholder="e.g. 350 N State St, Salt Lake City"
+        autocomplete="off"
+        spellcheck="false"
+        aria-autocomplete="list"
+        aria-controls="suggestions"
+      />
+      <div id="suggestions" role="listbox"></div>
+    </div>
+    <button id="search-btn" onclick="findPrecinct()">Find My Precinct</button>
+  </div>
+  <div class="hint">Start typing your %%CLIENT_STATE%% address — suggestions will appear. Abbreviations and partial addresses are fine.</div>
+</div>
+
+<div id="result-banner"></div>
+<div id="map-area">
+  <div id="map"></div>
+  <div id="info-sidebar">
+    <div id="sidebar-header">
+      <span id="sidebar-title">Area Info</span>
+      <button id="sidebar-close" onclick="closeSidebar()">✕</button>
+    </div>
+    <div id="sidebar-content"></div>
+  </div>
+</div>
+
+<footer>
+  Precinct boundaries provided by the <a href="https://gis.utah.gov" target="_blank">Utah AGRC / SGID</a>.
+  Address lookup powered by the <a href="https://api.mapserv.utah.gov" target="_blank">UGRC Web API</a>.
+  Autocomplete by <a href="https://nominatim.openstreetmap.org" target="_blank">OpenStreetMap Nominatim</a>.
+  &nbsp;·&nbsp; <a href="/docs.html">API Reference</a>
+</footer>
+
+<!-- Get Involved funnel modal -->
+<div class="funnel-backdrop" id="funnel-modal">
+  <div class="funnel-modal">
+    <div class="funnel-inner" id="funnel-body"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ── Config (injected at build time from environment variables) ────────────────
+const UGRC_API_KEY = '%%UGRC_API_KEY%%';
+const CLIENT_NAME  = '%%CLIENT_NAME%%';
+
+const ARCGIS           = '%%ARCGIS_BASE%%';
+const PRECINCT_SVC     = `${ARCGIS}/%%PRECINCT_SVC_PATH%%`;
+const HOUSE_SVC        = `${ARCGIS}/%%HOUSE_SVC_PATH%%`;
+const SENATE_SVC       = `${ARCGIS}/%%SENATE_SVC_PATH%%`;
+const CONGRESS_SVC     = `${ARCGIS}/%%CONGRESS_SVC_PATH%%`;
+const SCHOOL_BOARD_SVC    = `${ARCGIS}/%%SCHOOL_BOARD_SVC_PATH%%`;
+const SCHOOL_DISTRICT_SVC = `${ARCGIS}/%%SCHOOL_DISTRICT_SVC_PATH%%`;
+const STATE_VIEWBOX = '%%CLIENT_GEO_VIEWBOX%%';
+
+// Zoom level at which the all-precincts layer loads
+const PRECINCT_ZOOM_THRESHOLD = 11;
+
+// ── Map init ─────────────────────────────────────────────────────────────────
+const map = L.map('map').setView([%%CLIENT_MAP_CENTER_LAT%%, %%CLIENT_MAP_CENTER_LNG%%], %%CLIENT_MAP_ZOOM%%);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 19
+}).addTo(map);
+
+// ── Layer state ──────────────────────────────────────────────────────────────
+let resultPrecinctLayer = null;
+let resultMarker        = null;
+
+// Overlay layers (toggleable)
+let houseLayer       = null;
+let senateLayer      = null;
+let congressLayer    = null;
+let schoolBoardLayer    = null;
+let schoolDistrictLayer = null;
+let allPrecincts        = null;
+let houseLoaded         = false;
+let senateLoaded        = false;
+let congressLoaded      = false;
+let schoolBoardLoaded   = false;
+let schoolDistrictLoaded = false;
+let precinctsLoaded     = false;
+
+// Layer visibility state (mirrors checkboxes)
+const layerVisible = { house: false, senate: false, congress: false, schoolBoard: false, schoolDistrict: false, precincts: false };
+
+// ── Layer styles ─────────────────────────────────────────────────────────────
+const STYLES = {
+  precinct:    { color: '#003594', weight: 3,   fillColor: '#4a90e2', fillOpacity: 0.25 },
+  house:       { color: '#7c3aed', weight: 2,   fillColor: '#c4b5fd', fillOpacity: 0.15, dashArray: '6 3' },
+  senate:      { color: '#0891b2', weight: 2.5, fillColor: '#67e8f9', fillOpacity: 0.15, dashArray: '8 4' },
+  congress:    { color: '#d97706', weight: 3,   fillColor: '#fde68a', fillOpacity: 0.12, dashArray: '12 5' },
+  schoolBoard:    { color: '#059669', weight: 2,   fillColor: '#6ee7b7', fillOpacity: 0.15, dashArray: '5 4' },
+  schoolDistrict: { color: '#be185d', weight: 2,   fillColor: '#fbcfe8', fillOpacity: 0.15, dashArray: '4 5' },
+  result:      { color: '#003594', weight: 3,   fillColor: '#4a90e2', fillOpacity: 0.3  }
+};
+
+// ── Custom layer panel control ────────────────────────────────────────────────
+const LayerControl = L.Control.extend({
+  options: { position: 'topright' },
+  onAdd() {
+    const div = L.DomUtil.create('div', 'layer-panel');
+    // stopPropagation only — disableClickPropagation also calls preventDefault
+    // which suppresses checkbox toggle behavior inside the control
+    L.DomEvent.on(div, 'click dblclick mousedown touchstart pointerdown contextmenu',
+      L.DomEvent.stopPropagation);
+    div.innerHTML = `
+      <div class="layer-panel-title">Map Layers</div>
+
+      <label class="layer-toggle">
+        <input type="checkbox" id="chk-congress" />
+        <div class="swatch" style="background:#fde68a;border-color:#d97706"></div>
+        Congressional (2026)
+      </label>
+
+      <label class="layer-toggle">
+        <input type="checkbox" id="chk-senate" />
+        <div class="swatch" style="background:#67e8f9;border-color:#0891b2"></div>
+        Senate Districts
+      </label>
+
+      <label class="layer-toggle">
+        <input type="checkbox" id="chk-house" />
+        <div class="swatch" style="background:#c4b5fd;border-color:#7c3aed"></div>
+        House Districts
+      </label>
+
+      <label class="layer-toggle">
+        <input type="checkbox" id="chk-school-board" />
+        <div class="swatch" style="background:#6ee7b7;border-color:#059669"></div>
+        School Board Districts
+      </label>
+
+      <label class="layer-toggle">
+        <input type="checkbox" id="chk-school-district" />
+        <div class="swatch" style="background:#fbcfe8;border-color:#be185d"></div>
+        School Districts
+      </label>
+
+      <label class="layer-toggle">
+        <input type="checkbox" id="chk-precincts" />
+        <div class="swatch" style="background:#4a90e2;border-color:#003594"></div>
+        All Precincts
+      </label>
+      <div class="layer-note" id="precinct-note">Loads at zoom ≥ ${PRECINCT_ZOOM_THRESHOLD}</div>
+    `;
+    return div;
+  }
+});
+new LayerControl().addTo(map);
+
+// Wire up checkboxes after DOM settles
+setTimeout(() => {
+  document.getElementById('chk-congress').addEventListener('change', e => {
+    layerVisible.congress = e.target.checked;
+    toggleCongress(e.target.checked);
+  });
+  document.getElementById('chk-senate').addEventListener('change', e => {
+    layerVisible.senate = e.target.checked;
+    toggleSenate(e.target.checked);
+  });
+  document.getElementById('chk-house').addEventListener('change', e => {
+    layerVisible.house = e.target.checked;
+    toggleHouse(e.target.checked);
+  });
+  document.getElementById('chk-school-board').addEventListener('change', e => {
+    layerVisible.schoolBoard = e.target.checked;
+    toggleSchoolBoard(e.target.checked);
+  });
+  document.getElementById('chk-school-district').addEventListener('change', e => {
+    layerVisible.schoolDistrict = e.target.checked;
+    toggleSchoolDistrict(e.target.checked);
+  });
+  document.getElementById('chk-precincts').addEventListener('change', e => {
+    layerVisible.precincts = e.target.checked;
+    togglePrecincts(e.target.checked);
+  });
+}, 100);
+
+// ── ArcGIS loader helpers ─────────────────────────────────────────────────────
+async function loadAllFeatures(serviceUrl, outFields) {
+  const params = new URLSearchParams({
+    where: '1=1', outFields, returnGeometry: 'true', outSR: '4326', f: 'geojson'
+  });
+  const res  = await fetch(`${serviceUrl}?${params}`);
+  const json = await res.json();
+  return json.features || [];
+}
+
+async function loadPrecinctsByBbox(bbox) {
+  // bbox = [west, south, east, north]
+  const params = new URLSearchParams({
+    geometry:     bbox.join(','),
+    geometryType: 'esriGeometryEnvelope',
+    inSR:         '4326',
+    spatialRel:   'esriSpatialRelIntersects',
+    outFields:    'PrecinctID,AliasName,CountyID',
+    returnGeometry: 'true',
+    outSR:        '4326',
+    f:            'geojson'
+  });
+  const res  = await fetch(`${PRECINCT_SVC}?${params}`);
+  const json = await res.json();
+  return json.features || [];
+}
+
+// ── Label helper ──────────────────────────────────────────────────────────────
+function addLabels(layer, getText, zoom = 0) {
+  layer.eachLayer(l => {
+    const text = getText(l.feature?.properties);
+    if (!text) return;
+    l.bindTooltip(String(text), {
+      permanent:  true,
+      direction:  'center',
+      className:  'district-label',
+      opacity:    0.9
+    });
+  });
+}
+
+// ── Toggle functions ──────────────────────────────────────────────────────────
+async function toggleCongress(show) {
+  if (!show) {
+    if (congressLayer) map.removeLayer(congressLayer);
+    return;
+  }
+  if (!congressLoaded) {
+    document.getElementById('chk-congress').disabled = true;
+    const features = await loadAllFeatures(CONGRESS_SVC, 'DISTRICT');
+    congressLayer = L.geoJSON({ type: 'FeatureCollection', features }, {
+      style: STYLES.congress,
+      onEachFeature(feature, layer) {
+        const dist = feature.properties?.DISTRICT;
+        if (dist != null) {
+          layer.bindTooltip(`CD ${dist}`, {
+            permanent: true, direction: 'center',
+            className: 'district-label', opacity: 0.9
+          });
+        }
+        attachCongressClick(layer);
+      }
+    });
+    congressLoaded = true;
+    document.getElementById('chk-congress').disabled = false;
+  }
+  congressLayer.addTo(map);
+  if (resultPrecinctLayer) resultPrecinctLayer.bringToFront();
+}
+
+async function toggleSenate(show) {
+  if (!show) {
+    if (senateLayer) map.removeLayer(senateLayer);
+    return;
+  }
+  if (!senateLoaded) {
+    document.getElementById('chk-senate').disabled = true;
+    const features = await loadAllFeatures(SENATE_SVC, 'DIST');
+    senateLayer = L.geoJSON({ type: 'FeatureCollection', features }, {
+      style: STYLES.senate,
+      onEachFeature(feature, layer) {
+        const dist = feature.properties?.DIST;
+        if (dist != null) {
+          layer.bindTooltip(`Senate ${dist}`, {
+            permanent: true, direction: 'center',
+            className: 'district-label', opacity: 0.9
+          });
+        }
+        attachSenateClick(layer);
+      }
+    });
+    senateLoaded = true;
+    document.getElementById('chk-senate').disabled = false;
+  }
+  senateLayer.addTo(map);
+  if (resultPrecinctLayer) resultPrecinctLayer.bringToFront();
+}
+
+async function toggleHouse(show) {
+  if (!show) {
+    if (houseLayer) map.removeLayer(houseLayer);
+    return;
+  }
+  if (!houseLoaded) {
+    document.getElementById('chk-house').disabled = true;
+    const features = await loadAllFeatures(HOUSE_SVC, 'DIST');
+    houseLayer = L.geoJSON({ type: 'FeatureCollection', features }, {
+      style: STYLES.house,
+      onEachFeature(feature, layer) {
+        const dist = feature.properties?.DIST;
+        if (dist != null) {
+          layer.bindTooltip(`House ${dist}`, {
+            permanent: true, direction: 'center',
+            className: 'district-label', opacity: 0.9
+          });
+        }
+        attachHouseClick(layer);
+      }
+    });
+    houseLoaded = true;
+    document.getElementById('chk-house').disabled = false;
+  }
+  houseLayer.addTo(map);
+  if (congressLayer && map.hasLayer(congressLayer)) congressLayer.bringToFront();
+  if (senateLayer && map.hasLayer(senateLayer)) senateLayer.bringToFront();
+  if (resultPrecinctLayer) resultPrecinctLayer.bringToFront();
+}
+
+async function toggleSchoolBoard(show) {
+  if (!show) {
+    if (schoolBoardLayer) map.removeLayer(schoolBoardLayer);
+    return;
+  }
+  if (!schoolBoardLoaded) {
+    document.getElementById('chk-school-board').disabled = true;
+    const features = await loadAllFeatures(SCHOOL_BOARD_SVC, 'DIST');
+    schoolBoardLayer = L.geoJSON({ type: 'FeatureCollection', features }, {
+      style: STYLES.schoolBoard,
+      onEachFeature(feature, layer) {
+        const dist = feature.properties?.DIST;
+        if (dist != null) {
+          layer.bindTooltip(`SB ${dist}`, {
+            permanent: true, direction: 'center',
+            className: 'district-label', opacity: 0.9
+          });
+        }
+        attachSchoolBoardClick(layer);
+      }
+    });
+    schoolBoardLoaded = true;
+    document.getElementById('chk-school-board').disabled = false;
+  }
+  schoolBoardLayer.addTo(map);
+  if (resultPrecinctLayer) resultPrecinctLayer.bringToFront();
+}
+
+async function toggleSchoolDistrict(show) {
+  if (!show) {
+    if (schoolDistrictLayer) map.removeLayer(schoolDistrictLayer);
+    return;
+  }
+  if (!schoolDistrictLoaded) {
+    document.getElementById('chk-school-district').disabled = true;
+    const features = await loadAllFeatures(SCHOOL_DISTRICT_SVC, 'NAME,TOTENROLL');
+    schoolDistrictLayer = L.geoJSON({ type: 'FeatureCollection', features }, {
+      style: STYLES.schoolDistrict,
+      onEachFeature(feature, layer) {
+        const name = feature.properties?.NAME;
+        if (name) {
+          layer.bindTooltip(toTitleCase(name), {
+            permanent: true, direction: 'center',
+            className: 'district-label', opacity: 0.9
+          });
+        }
+        attachSchoolDistrictClick(layer);
+      }
+    });
+    schoolDistrictLoaded = true;
+    document.getElementById('chk-school-district').disabled = false;
+  }
+  schoolDistrictLayer.addTo(map);
+  if (resultPrecinctLayer) resultPrecinctLayer.bringToFront();
+}
+
+async function togglePrecincts(show) {
+  if (!show) {
+    if (allPrecincts) map.removeLayer(allPrecincts);
+    document.getElementById('precinct-note').textContent =
+      `Loads at zoom ≥ ${PRECINCT_ZOOM_THRESHOLD}`;
+    return;
+  }
+  const zoom = map.getZoom();
+  if (zoom < PRECINCT_ZOOM_THRESHOLD) {
+    // Stay checked — precincts will auto-load once user zooms in
+    document.getElementById('precinct-note').textContent =
+      `✓ Enabled — zoom in to load (need zoom ${PRECINCT_ZOOM_THRESHOLD}+, current: ${zoom})`;
+    return;
+  }
+  await loadVisiblePrecincts();
+}
+
+async function loadVisiblePrecincts() {
+  if (!layerVisible.precincts) return;
+  if (map.getZoom() < PRECINCT_ZOOM_THRESHOLD) return;
+
+  const b = map.getBounds();
+  const bbox = [
+    b.getWest().toFixed(5), b.getSouth().toFixed(5),
+    b.getEast().toFixed(5), b.getNorth().toFixed(5)
+  ];
+
+  document.getElementById('chk-precincts').disabled = true;
+  document.getElementById('precinct-note').textContent = 'Loading…';
+
+  const features = await loadPrecinctsByBbox(bbox);
+
+  if (allPrecincts) map.removeLayer(allPrecincts);
+  allPrecincts = L.geoJSON({ type: 'FeatureCollection', features }, {
+    style: STYLES.precinct,
+    onEachFeature(feature, layer) {
+      const name = feature.properties?.AliasName || feature.properties?.PrecinctID;
+      if (name) {
+        layer.bindTooltip(name, {
+          permanent: map.getZoom() >= 13,
+          direction: 'center',
+          className: 'district-label',
+          opacity:   0.9
+        });
+      }
+      attachPrecinctClick(layer);
+    }
+  }).addTo(map);
+
+  document.getElementById('chk-precincts').disabled = false;
+  document.getElementById('precinct-note').textContent =
+    `${features.length} precincts loaded`;
+
+  if (resultPrecinctLayer) resultPrecinctLayer.bringToFront();
+}
+
+// Reload precincts on map move/zoom when enabled
+map.on('moveend', () => {
+  const zoom = map.getZoom();
+  const note = document.getElementById('precinct-note');
+  if (!layerVisible.precincts) return;
+  if (zoom < PRECINCT_ZOOM_THRESHOLD) {
+    if (note) note.textContent =
+      `✓ Enabled — zoom in to load (need zoom ${PRECINCT_ZOOM_THRESHOLD}+, current: ${zoom})`;
+  } else {
+    loadVisiblePrecincts();
+  }
+});
+
+// ── Autocomplete ──────────────────────────────────────────────────────────────
+const input      = document.getElementById('address-input');
+const suggestBox = document.getElementById('suggestions');
+let debounceTimer = null;
+let activeIndex   = -1;
+let currentItems  = [];
+
+function closeSuggestions() {
+  suggestBox.classList.remove('open');
+  suggestBox.innerHTML = '';
+  activeIndex  = -1;
+  currentItems = [];
+}
+
+function renderSuggestions(items) {
+  suggestBox.innerHTML = '';
+  activeIndex = -1;
+  if (!items.length) {
+    suggestBox.innerHTML = '<div class="suggestion-empty">No Utah addresses found</div>';
+    suggestBox.classList.add('open');
+    return;
+  }
+  currentItems = items;
+  items.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'suggestion-item';
+    div.setAttribute('role', 'option');
+    const a = item.address || {};
+    const primary   = [a.house_number, a.road].filter(Boolean).join(' ') || item.display_name.split(',')[0];
+    const secondary = [a.city || a.town || a.village || a.county, a.postcode].filter(Boolean).join(', ');
+    div.innerHTML = `<div>${primary}</div>${secondary ? `<div class="sub">${secondary}</div>` : ''}`;
+    div.addEventListener('mousedown', e => { e.preventDefault(); selectSuggestion(i); });
+    suggestBox.appendChild(div);
+  });
+  suggestBox.classList.add('open');
+}
+
+function selectSuggestion(i) {
+  const item = currentItems[i];
+  if (!item) return;
+  const a = item.address || {};
+  const primary   = [a.house_number, a.road].filter(Boolean).join(' ') || item.display_name.split(',')[0];
+  const secondary = a.city || a.town || a.village || a.postcode || '';
+  input.value = secondary ? `${primary}, ${secondary}` : primary;
+  closeSuggestions();
+  findPrecinct();
+}
+
+function setActive(i) {
+  const items = suggestBox.querySelectorAll('.suggestion-item');
+  items.forEach(el => el.classList.remove('active'));
+  if (i >= 0 && i < items.length) { items[i].classList.add('active'); items[i].scrollIntoView({ block: 'nearest' }); }
+  activeIndex = i;
+}
+
+async function fetchSuggestions(query) {
+  suggestBox.innerHTML = '<div class="suggestion-loading">Searching…</div>';
+  suggestBox.classList.add('open');
+  try {
+    const url = `https://nominatim.openstreetmap.org/search?` + new URLSearchParams({
+      q: query + ', %%CLIENT_STATE%%', format: 'json', addressdetails: '1',
+      countrycodes: 'us', viewbox: STATE_VIEWBOX, bounded: '1', limit: '6'
+    });
+    const res  = await fetch(url, { headers: { 'Accept-Language': 'en-US,en' } });
+    const data = await res.json();
+    const filtered = data.filter(d => d.address && d.address.road);
+    renderSuggestions(filtered.length ? filtered : data.slice(0, 6));
+  } catch { closeSuggestions(); }
+}
+
+input.addEventListener('input', () => {
+  const val = input.value.trim();
+  clearTimeout(debounceTimer);
+  if (val.length < 4) { closeSuggestions(); return; }
+  debounceTimer = setTimeout(() => fetchSuggestions(val), 300);
+});
+
+input.addEventListener('keydown', e => {
+  const items = suggestBox.querySelectorAll('.suggestion-item');
+  if      (e.key === 'ArrowDown')  { e.preventDefault(); setActive(Math.min(activeIndex + 1, items.length - 1)); }
+  else if (e.key === 'ArrowUp')    { e.preventDefault(); setActive(Math.max(activeIndex - 1, -1)); }
+  else if (e.key === 'Enter')      { if (activeIndex >= 0 && items.length) { e.preventDefault(); selectSuggestion(activeIndex); } else { closeSuggestions(); findPrecinct(); } }
+  else if (e.key === 'Escape')     { closeSuggestions(); }
+});
+
+document.addEventListener('click', e => { if (!e.target.closest('.autocomplete-wrap')) closeSuggestions(); });
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function showBanner(html, isError = false) {
+  const el = document.getElementById('result-banner');
+  el.innerHTML = html;
+  el.className = isError ? 'error' : '';
+  el.style.display = 'block';
+}
+
+function setBtnLoading(loading) {
+  const btn = document.getElementById('search-btn');
+  if (loading) {
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>Searching…';
+  } else {
+    btn.disabled = false;
+    btn.innerHTML = 'Find My Precinct';
+  }
+}
+
+function parseAddress(raw) {
+  raw = raw.trim();
+  const zipMatch = raw.match(/\b(\d{5})\b/);
+  if (zipMatch) {
+    const zip = zipMatch[1];
+    const street = raw.replace(/,?\s*[A-Z]{2}\s+\d{5}/, '').replace(/,?\s*\d{5}/, '').trim();
+    return { street, zone: zip };
+  }
+  const parts = raw.split(',').map(s => s.trim()).filter(Boolean);
+  if (parts.length >= 2) return { street: parts[0], zone: parts[1].replace(/\s+[A-Z]{2}$/, '').trim() };
+  const words = raw.split(/\s+/);
+  if (words.length >= 3) return { street: words.slice(0, -1).join(' '), zone: words[words.length - 1] };
+  return { street: raw, zone: '%%CLIENT_STATE%%' };
+}
+
+// ── Main search ───────────────────────────────────────────────────────────────
+async function findPrecinct() {
+  const raw = input.value.trim();
+  if (!raw) { showBanner('Please enter an address.', true); return; }
+
+  closeSuggestions();
+  setBtnLoading(true);
+  showBanner('<span class="spinner" style="border-top-color:#003594;border-color:rgba(0,53,148,.3)"></span> Looking up address…');
+
+  try {
+    // 1. Geocode
+    const { street, zone } = parseAddress(raw);
+    const geocodeUrl =
+      `https://api.mapserv.utah.gov/api/v1/geocode/` +
+      `${encodeURIComponent(street)}/${encodeURIComponent(zone)}` +
+      `?apiKey=${UGRC_API_KEY}&spatialReference=4326`;
+
+    const geoRes  = await fetch(geocodeUrl);
+    const geoJson = await geoRes.json();
+    if (geoJson.status !== 200 || !geoJson.result) {
+      throw new Error(geoJson.message || 'Address not found. Try adding your city or ZIP code.');
+    }
+
+    const { x: lng, y: lat } = geoJson.result.location;
+    const matchedAddress      = geoJson.result.inputAddress || raw;
+
+    // 2. Query precinct + house + senate in parallel
+    const pointParams = (outFields) => new URLSearchParams({
+      geometry: `${lng},${lat}`, geometryType: 'esriGeometryPoint',
+      inSR: '4326', spatialRel: 'esriSpatialRelIntersects',
+      outFields, returnGeometry: 'true', outSR: '4326', f: 'geojson'
+    });
+
+    const [precRes, houseRes, senateRes] = await Promise.all([
+      fetch(`${PRECINCT_SVC}?${pointParams('PrecinctID,AliasName,CountyID,VistaID')}`),
+      fetch(`${HOUSE_SVC}?${pointParams('DIST')}`),
+      fetch(`${SENATE_SVC}?${pointParams('DIST')}`)
+    ]);
+
+    const [precJson, houseJson, senateJson] = await Promise.all([
+      precRes.json(), houseRes.json(), senateRes.json()
+    ]);
+
+    if (!precJson.features?.length) {
+      throw new Error('No precinct found at that location. Make sure the address is in %%CLIENT_STATE%%.');
+    }
+
+    const precFeature    = precJson.features[0];
+    const props          = precFeature.properties;
+    const precinctName   = props.AliasName || props.PrecinctID || 'Unknown Precinct';
+    const countyID       = props.CountyID || '';
+    const houseDistrict  = houseJson.features?.[0]?.properties?.DIST ?? null;
+    const senateDistrict = senateJson.features?.[0]?.properties?.DIST ?? null;
+
+    // 3. Clear previous result layers
+    if (resultPrecinctLayer) map.removeLayer(resultPrecinctLayer);
+    if (resultMarker)        map.removeLayer(resultMarker);
+
+    // Senate result outline (behind everything)
+    if (senateJson.features?.[0]) {
+      const sLayer = L.geoJSON(senateJson.features[0], {
+        style: { color: '#0891b2', weight: 2.5, fillColor: '#67e8f9', fillOpacity: 0.12, dashArray: '8 4' }
+      }).addTo(map);
+      attachSenateClick(sLayer);
+      resultPrecinctLayer = sLayer; // store to clear next time
+    }
+
+    // House result outline
+    if (houseJson.features?.[0]) {
+      const hLayer = L.geoJSON(houseJson.features[0], {
+        style: { color: '#7c3aed', weight: 2, fillColor: '#c4b5fd', fillOpacity: 0.12, dashArray: '6 3' }
+      }).addTo(map);
+      attachHouseClick(hLayer);
+      if (!resultPrecinctLayer) resultPrecinctLayer = hLayer;
+    }
+
+    // Precinct (on top)
+    const pLayer = L.geoJSON(precFeature, { style: STYLES.result }).addTo(map);
+    attachPrecinctClick(pLayer);
+    resultPrecinctLayer = pLayer;
+
+    // Pin
+    resultMarker = L.circleMarker([lat, lng], {
+      radius: 8, fillColor: '#003594', color: '#fff', weight: 2, fillOpacity: 1
+    }).addTo(map);
+
+    // Fit to precinct bounds
+    map.fitBounds(pLayer.getBounds(), { padding: [40, 40] });
+
+    // Banner
+    const houseTag  = houseDistrict  != null ? `<span class="badge badge-house">House ${houseDistrict}</span>` : '';
+    const senateTag = senateDistrict != null ? `<span class="badge badge-senate">Senate ${senateDistrict}</span>` : '';
+    showBanner(
+      `📍 <strong>${precinctName}</strong>` +
+      (countyID ? `&nbsp;·&nbsp;${countyID} County&nbsp;&nbsp;` : '&nbsp;&nbsp;') +
+      houseTag + '&nbsp;' + senateTag +
+      `<br><span style="font-size:.85rem;color:#455a80">Matched: ${matchedAddress}</span>`
+    );
+
+    // 4. Show sidebar with precinct info + load candidates async
+    const districtInfo = {
+      house:    houseDistrict,
+      senate:   senateDistrict,
+      congress: null,   // loaded lazily on click; omit from post-search view
+      schoolBoard:    null,
+      schoolDistrict: null,
+    };
+    showSidebar(precinctName, buildPrecinctSidebar(props, { lat, lng }, districtInfo, undefined));
+    const candHtml = await loadCandidatesForDistricts(districtInfo, props.PrecinctID);
+    showSidebar(precinctName, buildPrecinctSidebar(props, { lat, lng }, districtInfo, candHtml));
+
+  } catch (err) {
+    showBanner(`⚠️ <strong>Error:</strong> ${err.message}`, true);
+  } finally {
+    setBtnLoading(false);
+  }
+}
+
+// ── County lookup ─────────────────────────────────────────────────────────────
+const COUNTIES = {
+  1:'Beaver',2:'Box Elder',3:'Cache',4:'Carbon',5:'Daggett',6:'Davis',
+  7:'Duchesne',8:'Emery',9:'Garfield',10:'Grand',11:'Iron',12:'Juab',
+  13:'Kane',14:'Millard',15:'Morgan',16:'Piute',17:'Rich',18:'Salt Lake',
+  19:'San Juan',20:'Sanpete',21:'Sevier',22:'Summit',23:'Tooele',
+  24:'Uintah',25:'Utah',26:'Wasatch',27:'Washington',28:'Wayne',29:'Weber'
+};
+
+// ── Sidebar helpers ───────────────────────────────────────────────────────────
+function showSidebar(title, html) {
+  document.getElementById('sidebar-title').textContent = title;
+  document.getElementById('sidebar-content').innerHTML = html;
+  document.getElementById('info-sidebar').classList.add('open');
+}
+
+function closeSidebar() {
+  document.getElementById('info-sidebar').classList.remove('open');
+}
+
+function infoRow(label, value) {
+  return `<div class="info-row"><span class="info-label">${label}</span><span class="info-value">${value}</span></div>`;
+}
+
+function toTitleCase(str) {
+  return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function ordinal(n) {
+  const s = ['th','st','nd','rd'], v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+function leLink(type, dist) {
+  const urls = {
+    house:    `https://ballotpedia.org/Utah_House_of_Representatives_District_${dist}`,
+    senate:   `https://ballotpedia.org/Utah_State_Senate_District_${dist}`,
+    congress: `https://ballotpedia.org/Utah%27s_${ordinal(dist)}_Congressional_District`
+  };
+  const labels = {
+    house:    `View House District ${dist} on Ballotpedia`,
+    senate:   `View Senate District ${dist} on Ballotpedia`,
+    congress: `View ${ordinal(dist)} Congressional District on Ballotpedia`
+  };
+  return `<a class="info-link" href="${urls[type]}" target="_blank" rel="noopener">${labels[type]} →</a>`;
+}
+
+function buildCongressSidebar(dist) {
+  return `
+    <span class="info-type-badge" style="background:#d97706">Congressional District</span>
+    <div class="info-section">
+      <div class="info-section-title">District Info</div>
+      ${infoRow('District', `${ordinal(dist)} Congressional District`)}
+      ${infoRow('Chamber', 'U.S. House of Representatives')}
+      ${infoRow('Term', '2-year terms')}
+      ${infoRow('Redistricted', '2026–2032')}
+    </div>
+    ${leLink('congress', dist)}
+    <div style="margin-top:8px">
+      <a class="info-link" href="https://ballotpedia.org/Utah_congressional_delegation" target="_blank" rel="noopener">Utah Congressional Delegation on Ballotpedia →</a>
+    </div>
+  `;
+}
+
+// ── Query district info for a lat/lng ─────────────────────────────────────────
+async function queryDistrictInfo(lng, lat) {
+  const params = (outFields) => new URLSearchParams({
+    geometry: `${lng},${lat}`, geometryType: 'esriGeometryPoint',
+    inSR: '4326', spatialRel: 'esriSpatialRelIntersects',
+    outFields, returnGeometry: 'false', outSR: '4326', f: 'geojson'
+  });
+  try {
+    const [hR, sR, cR, sbR, sdR] = await Promise.all([
+      fetch(`${HOUSE_SVC}?${params('DIST')}`),
+      fetch(`${SENATE_SVC}?${params('DIST')}`),
+      fetch(`${CONGRESS_SVC}?${params('DISTRICT')}`),
+      fetch(`${SCHOOL_BOARD_SVC}?${params('DIST')}`),
+      fetch(`${SCHOOL_DISTRICT_SVC}?${params('NAME')}`)
+    ]);
+    const [hJ, sJ, cJ, sbJ, sdJ] = await Promise.all([hR.json(), sR.json(), cR.json(), sbR.json(), sdR.json()]);
+    const sdName = sdJ.features?.[0]?.properties?.NAME ?? null;
+    return {
+      house:          hJ.features?.[0]?.properties?.DIST     ?? null,
+      senate:         sJ.features?.[0]?.properties?.DIST     ?? null,
+      congress:       cJ.features?.[0]?.properties?.DISTRICT ?? null,
+      schoolBoard:    sbJ.features?.[0]?.properties?.DIST    ?? null,
+      schoolDistrict: sdName ? toTitleCase(sdName)           : null
+    };
+  } catch { return { house: null, senate: null, congress: null, schoolBoard: null, schoolDistrict: null }; }
+}
+
+// ── Sidebar content builders ──────────────────────────────────────────────────
+function buildPrecinctSidebar(props, latlng, districtInfo, candidatesHtml) {
+  const name     = props.AliasName || props.PrecinctID || 'Unknown';
+  const county   = COUNTIES[props.CountyID] || (props.CountyID ? `County ${props.CountyID}` : '—');
+  const house           = districtInfo?.house           ?? null;
+  const senate          = districtInfo?.senate          ?? null;
+  const congress        = districtInfo?.congress        ?? null;
+  const schoolBoard     = districtInfo?.schoolBoard     ?? null;
+  const schoolDistrict  = districtInfo?.schoolDistrict  ?? null;
+  const loading  = '<span class="info-loading">Loading…</span>';
+
+  const candSection = candidatesHtml !== undefined
+    ? `<div class="info-section">
+        <div class="info-section-title">Your Candidates</div>
+        ${candidatesHtml || '<span class="info-loading">Loading…</span>'}
+       </div>`
+    : '';
+
+  const volSection = districtInfo
+    ? buildVolunteerSection(props, districtInfo)
+    : '';
+
+  return `
+    <span class="info-type-badge badge-precinct-bg">Precinct</span>
+    <div class="info-section">
+      <div class="info-section-title">Precinct Info</div>
+      ${infoRow('Name', name)}
+      ${infoRow('Precinct ID', props.PrecinctID || '—')}
+      ${props.VistaID ? infoRow('Vista ID', props.VistaID) : ''}
+      ${infoRow('County', county)}
+    </div>
+    <div class="info-section">
+      <div class="info-section-title">Legislative Districts</div>
+      ${congress    != null ? infoRow('Congressional', `District ${congress}`) : infoRow('Congressional', loading)}
+      ${house       != null ? infoRow('State House',   house)                  : infoRow('State House',   loading)}
+      ${senate      != null ? infoRow('State Senate',  senate)                 : infoRow('State Senate',  loading)}
+      ${schoolBoard    != null ? infoRow('School Board',    schoolBoard)    : infoRow('School Board',    loading)}
+      ${schoolDistrict != null ? infoRow('School District', schoolDistrict) : infoRow('School District', loading)}
+    </div>
+    ${candSection}
+    ${volSection}
+    ${congress != null ? leLink('congress', congress) : ''}
+    ${house    != null ? leLink('house',    house)    : ''}
+    ${senate   != null ? leLink('senate',   senate)   : ''}
+  `;
+}
+
+// ── Candidate rendering ───────────────────────────────────────────────────────
+function normalizeUrl(url) {
+  let href = String(url || '').trim();
+  if (!href) return '';
+  if (href.startsWith('@')) return 'https://x.com/' + href.slice(1);
+  if (!/^https?:\/\//i.test(href)) href = 'https://' + href;
+  return href;
+}
+
+function socialLink(url, label) {
+  const href = normalizeUrl(url);
+  if (!href) return '';
+  return `<a class="social-link" href="${escHtml(href)}" target="_blank" rel="noopener" title="${label}">${label}</a>`;
+}
+
+function renderCandidateCard(c) {
+  const name     = c.name || 'Candidate';
+  const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const avatar   = c.photoUrl
+    ? `<img class="candidate-avatar" src="${escHtml(normalizeUrl(c.photoUrl))}" alt="" />`
+    : `<div class="candidate-initials">${escHtml(initials)}</div>`;
+  const bio    = c.bio ? `<div class="candidate-bio">${escHtml(c.bio)}</div>` : '';
+  const issues = (c.issues && c.issues.length)
+    ? `<div class="candidate-issues">${c.issues.map(i => `<span class="issue-tag">${escHtml(i)}</span>`).join('')}</div>`
+    : '';
+
+  const social = [
+    socialLink(c.social?.facebook,  'FB'),
+    socialLink(c.social?.instagram, 'IG'),
+    socialLink(c.social?.x,         'X'),
+    c.email ? `<a class="social-link" href="mailto:${escHtml(c.email)}" title="Email">✉</a>` : '',
+    c.phone ? `<a class="social-link" href="tel:${escHtml(c.phone)}" title="Call">☎</a>` : '',
+  ].filter(Boolean).join('');
+  const socialRow = social ? `<div class="candidate-social">${social}</div>` : '';
+
+  const links = [
+    c.website     ? `<a class="candidate-link clink-site" href="${escHtml(normalizeUrl(c.website))}"     target="_blank" rel="noopener">Website</a>`   : '',
+    c.volunteerUrl? `<a class="candidate-link clink-vol"  href="${escHtml(normalizeUrl(c.volunteerUrl))}" target="_blank" rel="noopener">Volunteer</a>` : '',
+    c.donateUrl   ? `<a class="candidate-link clink-don"  href="${escHtml(normalizeUrl(c.donateUrl))}"   target="_blank" rel="noopener">Donate</a>`    : '',
+  ].filter(Boolean).join('');
+
+  return `
+    <div class="candidate-card">
+      ${avatar}
+      <div class="candidate-body">
+        <div class="candidate-name">${escHtml(name)}</div>
+        ${c.office ? `<div class="candidate-office">${escHtml(c.office)}</div>` : ''}
+        ${bio}
+        ${issues}
+        ${socialRow}
+        ${links ? `<div class="candidate-links">${links}</div>` : ''}
+      </div>
+    </div>`;
+}
+
+async function loadCandidatesForDistricts(districtInfo, precinctId) {
+  const params = new URLSearchParams();
+  if (districtInfo?.house)    params.set('houseDistrict',    districtInfo.house);
+  if (districtInfo?.senate)   params.set('senateDistrict',   districtInfo.senate);
+  if (districtInfo?.congress) params.set('congressDistrict', districtInfo.congress);
+  if (precinctId)             params.set('precinctId',       precinctId);
+
+  if (!params.toString()) return '';
+
+  try {
+    const res  = await fetch(`/api/candidates?${params}`);
+    const data = await res.json();
+    if (!data.candidates?.length) return '<span style="color:#90a0b0;font-size:.8rem">No candidates on file yet.</span>';
+    return data.candidates.map(renderCandidateCard).join('');
+  } catch {
+    return '<span style="color:#90a0b0;font-size:.8rem">Could not load candidates.</span>';
+  }
+}
+
+// ── Get Involved funnel ───────────────────────────────────────────────────────
+// Context captured when the sidebar renders; used when the funnel submits.
+let _volProps = null;
+let _volDistricts = null;
+
+// Dynamic options from /api/config (organizer-controlled), loaded once.
+let _funnelConfig = null;
+let _funnelConfigPromise = null;
+
+// Funnel step state
+let _funnelStep = 1;
+const _funnelSelection = { issues: [], capacity: [] };
+
+function escHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function buildVolunteerSection(props, districtInfo) {
+  _volProps     = props;
+  _volDistricts = districtInfo;
+  return `
+    <div class="info-section">
+      <button class="get-involved-btn" onclick="openFunnel()">Get Involved →</button>
+    </div>`;
+}
+
+function loadFunnelConfig() {
+  if (_funnelConfig) return Promise.resolve(_funnelConfig);
+  if (!_funnelConfigPromise) {
+    _funnelConfigPromise = fetch('/api/config')
+      .then(r => r.json())
+      .then(d => (_funnelConfig = { issues: d.issues || [], capacity: d.capacity || [] }))
+      .catch(() => (_funnelConfig = { issues: [], capacity: [] }));
+  }
+  return _funnelConfigPromise;
+}
+
+function openFunnel() {
+  _funnelStep = 1;
+  _funnelSelection.issues = [];
+  _funnelSelection.capacity = [];
+  document.getElementById('funnel-modal').classList.add('open');
+  renderFunnelStep();
+  // Re-render the chip steps once options arrive (but never the form step 3)
+  loadFunnelConfig().then(() => { if (_funnelStep <= 2) renderFunnelStep(); });
+}
+
+function closeFunnel() {
+  document.getElementById('funnel-modal').classList.remove('open');
+}
+
+function toggleChipEl(el) {
+  const arr = _funnelSelection[el.dataset.kind];
+  const i = arr.indexOf(el.dataset.value);
+  if (i >= 0) { arr.splice(i, 1); el.classList.remove('selected'); }
+  else        { arr.push(el.dataset.value); el.classList.add('selected'); }
+}
+
+function funnelNext() { if (_funnelStep < 3) { _funnelStep++; renderFunnelStep(); } }
+function funnelBack() { if (_funnelStep > 1) { _funnelStep--; renderFunnelStep(); } }
+
+function chipList(kind, options) {
+  if (options === undefined) return '<span class="info-loading">Loading…</span>';
+  if (!options.length)       return '<span class="funnel-empty">No options available yet.</span>';
+  return options.map(o => {
+    const sel = _funnelSelection[kind].includes(o) ? ' selected' : '';
+    return `<button type="button" class="chip${sel}" data-kind="${kind}" data-value="${escHtml(o)}" onclick="toggleChipEl(this)">${escHtml(o)}</button>`;
+  }).join('');
+}
+
+function renderFunnelStep() {
+  const body = document.getElementById('funnel-body');
+
+  if (_funnelStep === 1) {
+    body.innerHTML = `
+      <div class="funnel-progress">Step 1 of 3</div>
+      <h2 class="funnel-title">What issues are your top priority?</h2>
+      <p class="funnel-sub">Select all that matter to you.</p>
+      <div class="chip-grid">${chipList('issues', _funnelConfig?.issues)}</div>
+      <div class="funnel-actions">
+        <button class="funnel-btn ghost" onclick="closeFunnel()">Cancel</button>
+        <button class="funnel-btn primary" onclick="funnelNext()">Next →</button>
+      </div>`;
+  } else if (_funnelStep === 2) {
+    body.innerHTML = `
+      <div class="funnel-progress">Step 2 of 3</div>
+      <h2 class="funnel-title">How can you help?</h2>
+      <p class="funnel-sub">Pick whatever you're up for.</p>
+      <div class="chip-grid">${chipList('capacity', _funnelConfig?.capacity)}</div>
+      <div class="funnel-actions">
+        <button class="funnel-btn ghost" onclick="funnelBack()">← Back</button>
+        <button class="funnel-btn primary" onclick="funnelNext()">Next →</button>
+      </div>`;
+  } else if (_funnelStep === 3) {
+    body.innerHTML = `
+      <div class="funnel-progress">Step 3 of 3</div>
+      <h2 class="funnel-title">Almost there</h2>
+      <p class="funnel-sub">Add your contact info and an organizer will follow up.</p>
+      <div class="funnel-row">
+        <div class="funnel-field"><label>First Name *</label><input type="text" id="fn-first" autocomplete="given-name" /></div>
+        <div class="funnel-field"><label>Last Name</label><input type="text" id="fn-last" autocomplete="family-name" /></div>
+      </div>
+      <div class="funnel-field"><label>Email *</label><input type="email" id="fn-email" autocomplete="email" /></div>
+      <div class="funnel-field"><label>Phone</label><input type="tel" id="fn-phone" autocomplete="tel" /></div>
+      <label class="funnel-check"><input type="checkbox" id="fn-help" checked /> <span>I would like to help elect Democratic candidates</span></label>
+      <label class="funnel-check"><input type="checkbox" id="fn-news" /> <span>Subscribe to the ${escHtml(CLIENT_NAME)} newsletter</span></label>
+      <div class="funnel-actions">
+        <button class="funnel-btn ghost" onclick="funnelBack()">← Back</button>
+        <button class="funnel-btn primary" id="fn-submit" onclick="submitFunnel()">Submit →</button>
+      </div>
+      <div class="funnel-msg" id="fn-msg"></div>`;
+  }
+}
+
+async function submitFunnel() {
+  const first = document.getElementById('fn-first')?.value.trim();
+  const last  = document.getElementById('fn-last')?.value.trim();
+  const email = document.getElementById('fn-email')?.value.trim();
+  const phone = document.getElementById('fn-phone')?.value.trim();
+  const help  = document.getElementById('fn-help')?.checked;
+  const news  = document.getElementById('fn-news')?.checked;
+  const msg   = document.getElementById('fn-msg');
+  const btn   = document.getElementById('fn-submit');
+
+  if (!first) { msg.textContent = 'First name is required.'; msg.className = 'funnel-msg error'; return; }
+  if (!email) { msg.textContent = 'Email is required.';      msg.className = 'funnel-msg error'; return; }
+
+  btn.disabled = true; btn.textContent = 'Submitting…'; msg.textContent = '';
+
+  const props = _volProps || {};
+  const d     = _volDistricts || {};
+
+  try {
+    const res = await fetch('/api/volunteer', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({
+        firstName:        first,
+        lastName:         last || null,
+        email,
+        phone:            phone || null,
+        issues:           _funnelSelection.issues,
+        capacity:         _funnelSelection.capacity,
+        helpElect:        !!help,
+        newsletter:       !!news,
+        precinctName:     props.AliasName  || null,
+        precinctId:       props.PrecinctID || null,
+        county:           COUNTIES[props.CountyID] || null,
+        houseDistrict:    d.house    != null ? String(d.house)    : null,
+        senateDistrict:   d.senate   != null ? String(d.senate)   : null,
+        congressDistrict: d.congress != null ? String(d.congress) : null,
+        addressInput:     document.getElementById('address-input')?.value || null,
+        sourceUrl:        window.location.href,
+      }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      renderFunnelSuccess();
+    } else {
+      msg.textContent = data.error || 'Something went wrong. Please try again.';
+      msg.className   = 'funnel-msg error';
+      btn.disabled    = false;
+      btn.textContent = 'Submit →';
+    }
+  } catch {
+    msg.textContent = 'Network error. Please try again.';
+    msg.className   = 'funnel-msg error';
+    btn.disabled    = false;
+    btn.textContent = 'Submit →';
+  }
+}
+
+function renderFunnelSuccess() {
+  document.getElementById('funnel-body').innerHTML = `
+    <div class="funnel-success">
+      <div class="check">✓</div>
+      <h2 class="funnel-title">Thank you!</h2>
+      <p class="funnel-sub">We've got your info and an organizer will be in touch soon.</p>
+      <button class="funnel-btn primary" style="width:100%" onclick="closeFunnel()">Done</button>
+    </div>`;
+}
+
+// Close the funnel when clicking the backdrop
+document.getElementById('funnel-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeFunnel();
+});
+
+function buildHouseSidebar(dist, precinctCount) {
+  const countVal = precinctCount === undefined
+    ? '<span class="info-loading">Loading…</span>'
+    : precinctCount === null
+      ? '—'
+      : precinctCount;
+  return `
+    <span class="info-type-badge badge-house-bg">House District</span>
+    <div class="info-section">
+      <div class="info-section-title">District Info</div>
+      ${infoRow('District', dist)}
+      ${infoRow('Precincts', countVal)}
+      ${infoRow('Chamber', 'Utah House of Representatives')}
+      ${infoRow('Term', '2-year terms')}
+      ${infoRow('Redistricted', '2022–2032')}
+    </div>
+    ${leLink('house', dist)}
+    <div style="margin-top:8px">
+      <a class="info-link" href="https://ballotpedia.org/Utah_House_of_Representatives" target="_blank" rel="noopener">Utah House on Ballotpedia →</a>
+    </div>
+  `;
+}
+
+function buildSenateSidebar(dist) {
+  return `
+    <span class="info-type-badge badge-senate-bg">Senate District</span>
+    <div class="info-section">
+      <div class="info-section-title">District Info</div>
+      ${infoRow('District', dist)}
+      ${infoRow('Chamber', 'Utah State Senate')}
+      ${infoRow('Term', '4-year terms')}
+      ${infoRow('Redistricted', '2022–2032')}
+    </div>
+    ${leLink('senate', dist)}
+    <div style="margin-top:8px">
+      <a class="info-link" href="https://ballotpedia.org/Utah_State_Senate" target="_blank" rel="noopener">Utah Senate on Ballotpedia →</a>
+    </div>
+  `;
+}
+
+function buildSchoolDistrictSidebar(name, enrollment) {
+  const displayName = toTitleCase(name);
+  const enrollStr   = enrollment != null ? enrollment.toLocaleString() : '—';
+  return `
+    <span class="info-type-badge badge-school-district-bg">School District</span>
+    <div class="info-section">
+      <div class="info-section-title">District Info</div>
+      ${infoRow('District', displayName)}
+      ${infoRow('Enrollment', enrollStr)}
+    </div>
+    <a class="info-link" href="https://www.schools.utah.gov" target="_blank" rel="noopener">Utah State Board of Education →</a>
+  `;
+}
+
+function buildSchoolBoardSidebar(dist) {
+  return `
+    <span class="info-type-badge badge-school-board-bg">School Board District</span>
+    <div class="info-section">
+      <div class="info-section-title">District Info</div>
+      ${infoRow('District', dist)}
+      ${infoRow('Body', 'Utah State Board of Education')}
+      ${infoRow('Term', '4-year terms')}
+      ${infoRow('Redistricted', '2022–2032')}
+    </div>
+    <a class="info-link" href="https://schools.utah.gov/board" target="_blank" rel="noopener">Utah State Board of Education →</a>
+    <div style="margin-top:8px">
+      <a class="info-link" href="https://schools.utah.gov/board/utah/districtsmap" target="_blank" rel="noopener">Board Districts Map →</a>
+    </div>
+  `;
+}
+
+// ── Click handler attachment ──────────────────────────────────────────────────
+function attachPrecinctClick(layer) {
+  layer.on('click', async function(e) {
+    L.DomEvent.stopPropagation(e);
+    const props  = e.target.feature?.properties || {};
+    const latlng = e.latlng;
+    const name   = props.AliasName || props.PrecinctID || 'Precinct';
+
+    // Show immediately with loading states for districts + candidates
+    showSidebar(name, buildPrecinctSidebar(props, latlng, null, undefined));
+
+    // Query districts and candidates in parallel
+    const info = await queryDistrictInfo(latlng.lng, latlng.lat);
+    // Re-render with districts filled in but candidates still loading
+    showSidebar(name, buildPrecinctSidebar(props, latlng, info, undefined));
+
+    const candHtml = await loadCandidatesForDistricts(info, props.PrecinctID);
+    showSidebar(name, buildPrecinctSidebar(props, latlng, info, candHtml));
+  });
+}
+
+async function getPrecinctCount(feature) {
+  try {
+    // Use POST — district polygon geometry is too large for a GET URL
+    const esriGeom = JSON.stringify({
+      rings: feature.geometry.coordinates,
+      spatialReference: { wkid: 4326 }
+    });
+    const body = new URLSearchParams({
+      where:           '1=1',
+      geometry:        esriGeom,
+      geometryType:    'esriGeometryPolygon',
+      inSR:            '4326',
+      spatialRel:      'esriSpatialRelIntersects',
+      returnCountOnly: 'true',
+      f:               'json'
+    });
+    const res  = await fetch(PRECINCT_SVC, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body:    body.toString()
+    });
+    const json = await res.json();
+    console.log('[precinctCount] response:', json);
+    return json.count ?? null;
+  } catch (err) {
+    console.error('[precinctCount] error:', err);
+    return null;
+  }
+}
+
+function attachHouseClick(layer) {
+  layer.on('click', async function(e) {
+    L.DomEvent.stopPropagation(e);
+    const dist    = e.target.feature?.properties?.DIST;
+    const feature = e.target.feature;
+    if (dist == null) return;
+    showSidebar(`House District ${dist}`, buildHouseSidebar(dist, undefined)); // undefined = loading
+    const count = await getPrecinctCount(feature);
+    showSidebar(`House District ${dist}`, buildHouseSidebar(dist, count));    // null = failed, number = success
+  });
+}
+
+function attachCongressClick(layer) {
+  layer.on('click', function(e) {
+    L.DomEvent.stopPropagation(e);
+    const dist = e.target.feature?.properties?.DISTRICT;
+    if (dist != null) showSidebar(`${ordinal(dist)} Congressional District`, buildCongressSidebar(dist));
+  });
+}
+
+function attachSenateClick(layer) {
+  layer.on('click', function(e) {
+    L.DomEvent.stopPropagation(e);
+    const dist = e.target.feature?.properties?.DIST;
+    if (dist != null) showSidebar(`Senate District ${dist}`, buildSenateSidebar(dist));
+  });
+}
+
+function attachSchoolBoardClick(layer) {
+  layer.on('click', function(e) {
+    L.DomEvent.stopPropagation(e);
+    const dist = e.target.feature?.properties?.DIST;
+    if (dist != null) showSidebar(`School Board District ${dist}`, buildSchoolBoardSidebar(dist));
+  });
+}
+
+function attachSchoolDistrictClick(layer) {
+  layer.on('click', function(e) {
+    L.DomEvent.stopPropagation(e);
+    const props = e.target.feature?.properties || {};
+    const name  = props.NAME;
+    if (name) showSidebar(toTitleCase(name), buildSchoolDistrictSidebar(name, props.TOTENROLL ?? null));
+  });
+}
+
+// Close sidebar when clicking empty map
+map.on('click', function() { closeSidebar(); });
+</script>
+
+</body>
+</html>
