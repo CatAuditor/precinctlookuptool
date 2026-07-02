@@ -190,6 +190,7 @@
       margin-right: 3px;
     }
     .badge-precinct       { background: var(--navy); }
+    .badge-congress       { background: #d97706; }
     .badge-house          { background: #7c3aed; }
     .badge-senate         { background: #0891b2; }
     .badge-school-board   { background: #059669; }
@@ -1144,14 +1145,15 @@ async function findPrecinct() {
       outFields, returnGeometry: 'true', outSR: '4326', f: 'geojson'
     });
 
-    const [precRes, houseRes, senateRes] = await Promise.all([
+    const [precRes, houseRes, senateRes, congressRes] = await Promise.all([
       fetch(`${PRECINCT_SVC}?${pointParams('PrecinctID,AliasName,CountyID,VistaID')}`),
       fetch(`${HOUSE_SVC}?${pointParams('DIST')}`),
-      fetch(`${SENATE_SVC}?${pointParams('DIST')}`)
+      fetch(`${SENATE_SVC}?${pointParams('DIST')}`),
+      fetch(`${CONGRESS_SVC}?${pointParams('DISTRICT')}`)   // 2026 congressional map
     ]);
 
-    const [precJson, houseJson, senateJson] = await Promise.all([
-      precRes.json(), houseRes.json(), senateRes.json()
+    const [precJson, houseJson, senateJson, congressJson] = await Promise.all([
+      precRes.json(), houseRes.json(), senateRes.json(), congressRes.json()
     ]);
 
     if (!precJson.features?.length) {
@@ -1162,8 +1164,9 @@ async function findPrecinct() {
     const props          = precFeature.properties;
     const precinctName   = props.AliasName || props.PrecinctID || 'Unknown Precinct';
     const countyID       = props.CountyID || '';
-    const houseDistrict  = houseJson.features?.[0]?.properties?.DIST ?? null;
-    const senateDistrict = senateJson.features?.[0]?.properties?.DIST ?? null;
+    const houseDistrict    = houseJson.features?.[0]?.properties?.DIST ?? null;
+    const senateDistrict   = senateJson.features?.[0]?.properties?.DIST ?? null;
+    const congressDistrict = congressJson.features?.[0]?.properties?.DISTRICT ?? null;
 
     // 3. Clear previous result layers
     if (resultPrecinctLayer) map.removeLayer(resultPrecinctLayer);
@@ -1201,12 +1204,13 @@ async function findPrecinct() {
     map.fitBounds(pLayer.getBounds(), { padding: [40, 40] });
 
     // Banner
-    const houseTag  = houseDistrict  != null ? `<span class="badge badge-house">House ${houseDistrict}</span>` : '';
-    const senateTag = senateDistrict != null ? `<span class="badge badge-senate">Senate ${senateDistrict}</span>` : '';
+    const congressTag = congressDistrict != null ? `<span class="badge badge-congress">Congress ${congressDistrict}</span>` : '';
+    const houseTag    = houseDistrict    != null ? `<span class="badge badge-house">House ${houseDistrict}</span>` : '';
+    const senateTag   = senateDistrict   != null ? `<span class="badge badge-senate">Senate ${senateDistrict}</span>` : '';
     showBanner(
       `📍 <strong>${precinctName}</strong>` +
       (countyID ? `&nbsp;·&nbsp;${countyID} County&nbsp;&nbsp;` : '&nbsp;&nbsp;') +
-      houseTag + '&nbsp;' + senateTag +
+      congressTag + '&nbsp;' + houseTag + '&nbsp;' + senateTag +
       `<br><span style="font-size:.85rem;color:#4B5563">Matched: ${matchedAddress}</span>`
     );
 
@@ -1214,11 +1218,23 @@ async function findPrecinct() {
     const districtInfo = {
       house:    houseDistrict,
       senate:   senateDistrict,
-      congress: null,   // loaded lazily on click; omit from post-search view
-      schoolBoard:    null,
+      congress: congressDistrict,
+      schoolBoard:    null,   // filled in below
       schoolDistrict: null,
     };
+    // Render immediately with congress/house/senate; the school rows show "Loading…"
     showSidebar(precinctName, buildPrecinctSidebar(props, { lat, lng }, districtInfo, undefined));
+
+    // Fetch school board + school district for this point, then re-render
+    const [sbRes, sdRes] = await Promise.all([
+      fetch(`${SCHOOL_BOARD_SVC}?${pointParams('DIST')}`),
+      fetch(`${SCHOOL_DISTRICT_SVC}?${pointParams('NAME')}`)
+    ]);
+    const [sbJson, sdJson] = await Promise.all([sbRes.json(), sdRes.json()]);
+    districtInfo.schoolBoard = sbJson.features?.[0]?.properties?.DIST ?? null;
+    const sdName = sdJson.features?.[0]?.properties?.NAME;
+    districtInfo.schoolDistrict = sdName ? toTitleCase(sdName) : null;
+
     const candHtml = await loadCandidatesForDistricts(districtInfo, props.PrecinctID);
     showSidebar(precinctName, buildPrecinctSidebar(props, { lat, lng }, districtInfo, candHtml));
 
