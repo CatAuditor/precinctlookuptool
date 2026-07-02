@@ -8,7 +8,7 @@
  *   firstName*  lastName  email*  phone
  *   issues[]            — selected top issues
  *   capacity[]          — selected "how can you help" options
- *   helpElect (bool)    — "I would like to help elect Democratic candidates"
+ *   helpElect (bool)    — "I would like to help strengthen civic engagement in my community"
  *   newsletter (bool)   — "Subscribe to the newsletter"
  *   precinctName  precinctId  county
  *   houseDistrict  senateDistrict  congressDistrict

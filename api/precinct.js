@@ -1,6 +1,6 @@
 /**
  * /api/precinct
- * Utah Democratic Party – Precinct Lookup API
+ * Utah Civic Compact – Precinct Lookup API
  *
  * GET /api/precinct?address=<address>
  *   &html=true|false        (default true)  include renderable HTML snippet
@@ -83,7 +83,7 @@ function buildHtml({
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>${precinctName} – Utah Democratic Precinct</title>
+<title>${precinctName} – Utah Civic Compact Precinct</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}

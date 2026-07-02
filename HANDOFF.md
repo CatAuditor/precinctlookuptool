@@ -116,7 +116,7 @@ Browser (static index.html, built by build.js)
    - **Step 1** "What issues are your top priority?" — chips from `/api/config`.
    - **Step 2** "How can you help?" — capacity chips from `/api/config`.
    - **Step 3** contact form: first/last/email/phone + two checkboxes
-     ("help elect Democratic candidates", "subscribe to newsletter").
+     ("help strengthen civic engagement", "subscribe to newsletter").
 6. Submit → `POST /api/volunteer` → row appended to the **Submissions** tab with
    a timestamp and `Status = New`. Success screen shown.
 
@@ -194,7 +194,7 @@ Newsletter | Status | DateContacted | SourceURL`
 | `CANDIDATE_TAB` | – | Default `Candidates`. |
 | `VOLUNTEER_CONFIG_TAB` | – | Default `Config`. |
 | `VOLUNTEER_SUBMISSIONS_TAB` | – | Default `Submissions`. |
-| `CLIENT_NAME` | – | Default `Utah Democratic Party`. Shown in header + newsletter checkbox. |
+| `CLIENT_NAME` | – | Default `Utah Civic Compact`. Shown in header + newsletter checkbox. |
 | `CLIENT_STATE` / `CLIENT_STATE_ABBR` | – | Default `Utah` / `UT`. |
 | `CLIENT_GEO_VIEWBOX` | – | Nominatim bounding box `w,s,e,n`. |
 | `CLIENT_MAP_CENTER_LAT/LNG/ZOOM` | – | Initial map view. |
