@@ -1,0 +1,20 @@
+DistrictType,District,NameKey,Website,Source
+congress,1,owen,https://www.utahriley.com/,verified via search + news corroboration 2026-07-07
+congress,1,mcadams,https://benmcadamsutah.com/,verified via search 2026-07-07
+congress,2,moore,https://www.electmoore.com/,campaign site (house.gov excluded) 2026-07-07
+congress,2,crosby,https://petercrosbyforcongress.org/,verified via search 2026-07-07
+congress,2,bowen,https://bowenforcongress.com/,verified via search 2026-07-07
+congress,3,maloy,https://www.celesteforutah.com/,verified via search 2026-07-07
+congress,3,udell,https://www.kentudell.com/,verified via search 2026-07-07
+congress,3,easley,https://cassieforcongress.com/,verified via search 2026-07-07
+congress,3,hooslyn,https://www.hooslynforhouse.com/,verified via search 2026-07-07
+congress,3,scott,https://www.aydenscott4congress.com/,verified via search 2026-07-07
+congress,3,stoddard,https://2amike4congress.org/,verified via direct fetch 2026-07-07
+congress,4,kennedy,https://mikekennedyforutah.com/,verified via search 2026-07-07
+congress,4,burt,https://stevenburt.com/,verified via search 2026-07-07
+congress,4,larsen,https://jonnyutah4congress.com/,verified via search 2026-07-07
+congress,4,wright,https://wrightforutah.com/,verified via search 2026-07-07
+house,16,stevenson,https://www.electbobstevenson.com/,verified via search 2026-07-07
+house,51,nielsen,https://www.brettforutah.com/,verified via search 2026-07-07
+house,8,james,https://www.kimjamesforutah.org/,verified via search 2026-07-07
+senate,6,smith,https://www.electjoshsmith.com/,verified via direct fetch (Forward, SD6) 2026-07-07

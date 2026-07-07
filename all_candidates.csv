@@ -1,23 +1,23 @@
 Name,Office,DistrictType,District,Party,Incumbent,Status,PhotoURL,Bio,Website,Email,Phone,Facebook,Instagram,X,VolunteerURL,DonateURL,TopIssues,Active,Order
-Riley Owen,U.S. House District 1,congress,1,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Riley Owen,U.S. House District 1,congress,1,Republican,FALSE,GENERAL,,,https://www.utahriley.com/,,,,,,,,,TRUE,1
 Elias Henry Montgomery,U.S. House District 1,congress,1,Unaffiliated,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Jesse West,U.S. House District 1,congress,1,Libertarian,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Ben McAdams,U.S. House District 1,congress,1,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Ben McAdams,U.S. House District 1,congress,1,Democratic,FALSE,GENERAL,,,https://benmcadamsutah.com/,,,,,,,,,TRUE,1
 Daniel Cottam,U.S. House District 2,congress,2,Libertarian,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Carlton E. Bowen,U.S. House District 2,congress,2,Independent American,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Carlton E. Bowen,U.S. House District 2,congress,2,Independent American,FALSE,GENERAL,,,https://bowenforcongress.com/,,,,,,,,,TRUE,1
 Robert M. Moesinger,U.S. House District 2,congress,2,Unaffiliated,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Peter Crosby,U.S. House District 2,congress,2,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Blake Moore,U.S. House District 2,congress,2,Republican,TRUE,GENERAL | district per 2026 filing,,,,,,,,,,,,TRUE,1
-Cassie Easley,U.S. House District 3,congress,3,Constitution,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Kent S. Udell,U.S. House District 3,congress,3,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Adonis Hooslyn,U.S. House District 3,congress,3,Unaffiliated,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Ayden Scott,U.S. House District 3,congress,3,Unaffiliated,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Michael R. Stoddard,U.S. House District 3,congress,3,Libertarian,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Celeste Maloy,U.S. House District 3,congress,3,Republican,TRUE,GENERAL | district per 2026 filing,,,,,,,,,,,,TRUE,1
-Mike Kennedy,U.S. House District 4,congress,4,Republican,TRUE,GENERAL | district per 2026 filing,,,,,,,,,,,,TRUE,1
-Steven Burt,U.S. House District 4,congress,4,Unaffiliated,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Jonny Larsen,U.S. House District 4,congress,4,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Taylor Wright,U.S. House District 4,congress,4,Libertarian,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Peter Crosby,U.S. House District 2,congress,2,Democratic,FALSE,GENERAL,,,https://petercrosbyforcongress.org/,,,,,,,,,TRUE,1
+Blake Moore,U.S. House District 2,congress,2,Republican,TRUE,GENERAL | district per 2026 filing,,,https://www.electmoore.com/,,,,,,,,,TRUE,1
+Cassie Easley,U.S. House District 3,congress,3,Constitution,FALSE,GENERAL,,,https://cassieforcongress.com/,,,,,,,,,TRUE,1
+Kent S. Udell,U.S. House District 3,congress,3,Democratic,FALSE,GENERAL,,,https://www.kentudell.com/,,,,,,,,,TRUE,1
+Adonis Hooslyn,U.S. House District 3,congress,3,Unaffiliated,FALSE,GENERAL,,,https://www.hooslynforhouse.com/,,,,,,,,,TRUE,1
+Ayden Scott,U.S. House District 3,congress,3,Unaffiliated,FALSE,GENERAL,,,https://www.aydenscott4congress.com/,,,,,,,,,TRUE,1
+Michael R. Stoddard,U.S. House District 3,congress,3,Libertarian,FALSE,GENERAL,,,https://2amike4congress.org/,,,,,,,,,TRUE,1
+Celeste Maloy,U.S. House District 3,congress,3,Republican,TRUE,GENERAL | district per 2026 filing,,,https://www.celesteforutah.com/,,,,,,,,,TRUE,1
+Mike Kennedy,U.S. House District 4,congress,4,Republican,TRUE,GENERAL | district per 2026 filing,,,https://mikekennedyforutah.com/,,,,,,,,,TRUE,1
+Steven Burt,U.S. House District 4,congress,4,Unaffiliated,FALSE,GENERAL,,,https://stevenburt.com/,,,,,,,,,TRUE,1
+Jonny Larsen,U.S. House District 4,congress,4,Democratic,FALSE,GENERAL,,,https://jonnyutah4congress.com/,,,,,,,,,TRUE,1
+Taylor Wright,U.S. House District 4,congress,4,Libertarian,FALSE,GENERAL,,,https://wrightforutah.com/,,,,,,,,,TRUE,1
 Claudia Bigler,State Senate District 1,senate,1,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Scott D. Sandall,State Senate District 1,senate,1,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/SANDASD.jpg,True,,ssandall@le.utah.gov,435-279-7551,,,,,,,TRUE,1
 Julie Quinlan,State Senate District 1,senate,1,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
@@ -50,7 +50,7 @@ Richard S Robillard,State Senate District 28,senate,28,Democratic,FALSE,GENERAL,
 Jill F. Koford,State Senate District 5,senate,5,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Dakota Wurth,State Senate District 5,senate,5,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 """Cj"" Christina Hernandez",State Senate District 5,senate,5,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
-Josh Smith,State Senate District 6,senate,6,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Josh Smith,State Senate District 6,senate,6,Forward,FALSE,GENERAL,,,https://www.electjoshsmith.com/,,,,,,,,,TRUE,1
 Jared Neal,State Senate District 6,senate,6,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Tami Tran,State Senate District 6,senate,6,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Robert Wanlass,State Senate District 6,senate,6,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
@@ -80,7 +80,7 @@ Kara Toone,State House District 14,house,14,Republican,FALSE,PRIMARY-PENDING,,,,
 Anne Berbert,State House District 15,house,15,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Ariel Defay,State House District 15,house,15,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/DEFAYA.jpg,"Ariel Defay has been a member of the Utah House of Representatives since 2023. Since then, she has represented Utah House's 15th District, which covers Davis County. She holds a Bachelor's degree in Political Science from Utah State University and a Master's in Public Administration from Ohio University. Ariel's career includes significant experience in state government, having worked as a senior legislative aide in the Ohio House of Representatives and on various political campaigns. Her work h",,adefay@le.utah.gov,801-793-8944,,,,,,,TRUE,1
 Abigail Treasure,State House District 16,house,16,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Bob J Stevenson,State House District 16,house,16,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Bob J Stevenson,State House District 16,house,16,Republican,FALSE,GENERAL,,,https://www.electbobstevenson.com/,,,,,,,,,TRUE,1
 Eric Last,State House District 17,house,17,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Sam Barlow,State House District 17,house,17,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Lili Bitner,State House District 17,house,17,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
@@ -167,7 +167,7 @@ Casey Snider,State House District 5,house,5,Republican,TRUE,GENERAL,https://le.u
 Stephanie Gricius,State House District 50,house,50,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/GRICIS.jpg,"Representative Stephanie Gricius is a dedicated public servant, entrepreneur, and longtime advocate for her community. A longtime resident of Eagle Mountain, Stephanie has been deeply involved in service from a young age through roles in city government, the Republican Party, and nonprofit work. She was elected to the Eagle Mountain City Council in 2015, where she helped lead key initiatives, including attracting major employers like Facebook and Tyson Foods, supporting small businesses, and adv",,sgricius@le.utah.gov,801-901-8251,,,,,,,TRUE,1
 Kristin Meyer,State House District 50,house,50,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Leah Hansen,State House District 51,house,51,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/LHANSEN.jpg,"Representative Leah Hansen was appointed to the Utah House in 2025. Representative Hansen represents District 51, which encompasses Saratoga Springs and portions of Eagle Mountain and Lehi.<br><br> Leah attended Weber State University before prioritizing family to raise her children. She brings a strong desire to learn, listen and collaborate with colleagues, and is eager to grow through mentorship and community engagement. For the past decade, she has been deeply involved in Utah's legislative ",,lhansen@le.utah.gov,385-418-9942,,https://www.instagram.com/Leah.Hansen,,,,,TRUE,1
-Brett Nielsen,State House District 51,house,51,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Brett Nielsen,State House District 51,house,51,Democratic,FALSE,GENERAL,,,https://www.brettforutah.com/,,,,,,,,,TRUE,1
 Nicole Melling,State House District 52,house,52,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 A. Cory Maloy,State House District 52,house,52,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/MALOYC.jpg,"Representative Maloy began his legislative service in 2017. He currently represents the Utah House's 52nd district which consists of Utah County.<br><br> Cory attended Ricks College in Idaho for an associate's degree in business, followed by Brigham Young University for a Bachelor of Arts in Communications with a public relations focus. At BYU, he excelled as a reporter and editor at the Daily Universe, winning the Columbia Scholastic Press Association Gold Circle Award for news writing.<br><br>",,corymaloy@le.utah.gov,801-477-0019,https://www.facebook.com/RepCoryMaloy/,,https://twitter.com/corymaloy1,,,,TRUE,1
 Kay J. Christofferson,State House District 53,house,53,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/CHRISKJ.jpg,"Representative Kay Christofferson has served in the Utah State Legislature since 2013. Representative Christofferson earned his B.S., Civil Engineering, from Brigham Young University. He worked in the heavy Civil Construction Industry as a Vice President and President of several companies. He represents the family values that he grew up with in Lehi. With his wonderful wife Suzanne, they have seven children and sixteen grandchildren.",,kchristofferson@le.utah.gov,801-592-5709,https://www.facebook.com/kaychristofferson.fiftysix/,,,,,,TRUE,1
@@ -225,7 +225,7 @@ R. Neil Walter,State House District 74,house,74,Republican,TRUE,GENERAL,https://
 Jeffrey N Lipe,State House District 74,house,74,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 April Subashe,State House District 75,house,75,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Walt Brooks,State House District 75,house,75,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/BROOKW.jpg,"Representative Brooks began his legislative service in 2016. He represents Utah's House District 75 in Washington County.<br><br> He and his wife Jennifer met while attending Dixie College. They married a few years later while attending SUU then made their home in St. George. They have 5 children.<br><br> He received his B.S. from Dixie State University in Business Administration. He has been an owner and operator of small businesses, the Director of Sales for an electronics manufacturer and cur",,wbrooks@le.utah.gov,801-520-3898,https://www.facebook.com/WaltBrooksStateRep/,https://www.instagram.com/walt.brooks/,https://twitter.com/waltbrooks435,,,,TRUE,1
-Kim James,State House District 8,house,8,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Kim James,State House District 8,house,8,Democratic,FALSE,GENERAL,,,https://www.kimjamesforutah.org/,,,,,,,,,TRUE,1
 Libby Shelton,State House District 8,house,8,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Jason B. Kyle,State House District 8,house,8,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/KYLEJB.jpg,"Beginning his legislative service in 2023, Representative Jason Kyle represents the 8th District in the Utah House of Representatives, which includes Huntsville, Eden, Liberty, Ogden, North Ogden, Pleasant View, and Mountain Green. He is committed to helping his neighbors maintain their freedom and liberty.<br><br> Representative Jason Kyle attended the University of Utah, where he earned a Bachelor of Science degree in Chemical Engineering. He built a career in management within the medical, in",,jkyle@le.utah.gov,385-394-2424,,,,,,,TRUE,1
 Angela Choberka,State House District 9,house,9,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
@@ -314,6 +314,7 @@ Jerry Jaeger,County Attorney,county,Washington,,TRUE,INCUMBENT — county office
 Nate Brooksby,County Sheriff,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
 Tom Durrant,County Assessor,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
 Lorene Miner Kamalu,County Commissioner,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
+Bob J Stevenson,County Commissioner,county,Davis,Republican,TRUE,INCUMBENT — county officeholder (term ends Dec 2026; running for State House 16),,,,,,,,,,,,TRUE,1
 John Crofts,County Commissioner,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
 Brian McKenzie,County Clerk,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
 Troy Rawlings,County Attorney,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
