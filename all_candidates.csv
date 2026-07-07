@@ -30,12 +30,12 @@ Colin Smith,State Senate District 13,senate,13,Forward,FALSE,GENERAL,,,,,,,,,,,,
 Ryan L. Mahoney,State Senate District 13,senate,13,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Evan Done,State Senate District 13,senate,13,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Taylor J Paden,State Senate District 13,senate,13,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
-Silvia Catten,State Senate District 13,senate,13,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
+Silvia Catten,State Senate District 13,senate,13,Democratic,FALSE,PRIMARY-PENDING,,,https://silviacatten.com/,,,,,,,,,TRUE,1
 Tayler Khater,State Senate District 14,senate,14,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
-Stephanie Pitcher,State Senate District 14,senate,14,Democratic,TRUE,PRIMARY-PENDING,https://le.utah.gov/images/legislator/PITCHS.jpg,,,spitcher@le.utah.gov,385-272-8032,,,,,,,TRUE,1
+Stephanie Pitcher,State Senate District 14,senate,14,Democratic,TRUE,PRIMARY-PENDING,https://le.utah.gov/images/legislator/PITCHS.jpg,,https://electstephanie.com/,spitcher@le.utah.gov,385-272-8032,,,,,,,TRUE,1
 A Dane Anderson,State Senate District 18,senate,18,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Doug Fiefia,State Senate District 18,senate,18,Republican,FALSE,GENERAL,,,https://dougfiefia.com/,,,,,,,,,TRUE,1
-Shana Anderson,State Senate District 19,senate,19,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Shana Anderson,State Senate District 19,senate,19,Democratic,FALSE,GENERAL,,,https://andersonforutah.com/,,,,,,,,,TRUE,1
 Kirk A. Cullimore,State Senate District 19,senate,19,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/CULLIKA.jpg,True,,kcullimore@le.utah.gov,385-867-9474,,,,,,,TRUE,1
 Ronald M. Winterton,State Senate District 20,senate,20,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/WINTER.jpg,True,,rwinterton@le.utah.gov,435-299-8531,,,,,,,TRUE,1
 Annette McRae,State Senate District 20,senate,20,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
@@ -49,7 +49,7 @@ Evan J. Vickers,State Senate District 28,senate,28,Republican,TRUE,GENERAL,https
 Richard S Robillard,State Senate District 28,senate,28,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Jill F. Koford,State Senate District 5,senate,5,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Dakota Wurth,State Senate District 5,senate,5,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
-"""Cj"" Christina Hernandez",State Senate District 5,senate,5,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
+"""Cj"" Christina Hernandez",State Senate District 5,senate,5,Democratic,FALSE,PRIMARY-PENDING,,,https://cjforsenate.com/,,,,,,,,,TRUE,1
 Josh Smith,State Senate District 6,senate,6,Forward,FALSE,GENERAL,,,https://www.electjoshsmith.com/,,,,,,,,,TRUE,1
 Jared Neal,State Senate District 6,senate,6,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Tami Tran,State Senate District 6,senate,6,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
@@ -61,29 +61,29 @@ J. Stuart Adams,State Senate District 7,senate,7,Republican,TRUE,PRIMARY-PENDING
 Braden Hess,State Senate District 7,senate,7,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 J. Lowry Snow,State Senate District 9,senate,9,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Thaddeus A Evans,State Senate District 9,senate,9,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Jen Plumb,State Senate District 9,senate,9,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/PLUMBJ.jpg,True,,jplumb@le.utah.gov,801-870-0228,,,,,,,TRUE,1
+Jen Plumb,State Senate District 9,senate,9,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/PLUMBJ.jpg,True,https://jenplumb.com/,jplumb@le.utah.gov,801-870-0228,,,,,,,TRUE,1
 Jason O'Dell,State House District 1,house,1,Constitution,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Chris Reid,State House District 1,house,1,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Thomas W. Peterson,State House District 1,house,1,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/PETERT.jpg,"Thomas Peterson is a member of the Utah House of Representatives, representing the Utah House's District 1, which covers both Box Elder County and Cache County. and he assumed office in 2022.<br><br> Thomas Peterson graduated from Box Elder High School in 1996. He has served as the chairman of the Uniform Building Code Commission and on the board of directors of the International Code Council. Peterson's career experience includes working as a Building Official with the State of Utah, running a ",,tpeterson@le.utah.gov,435-720-3516,,,,,,,TRUE,1
 Jim Alvey,State House District 10,house,10,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Rosemary T Lesser,State House District 10,house,10,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Katy Hall,State House District 11,house,11,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/HALLK.jpg,"Katy began her legislative service in 2023, and has since then represented Utah's House district 11. House District 11 consists of Davis County and Weber County. Before her political career, Katy worked as a registered nurse, bringing her healthcare perspective to her legislative role. She holds a degree in nursing from the University of Wisconsin Milwaukee, which equipped her with the knowledge and skills necessary for her work as a registered nurse. Hall is passionate about outdoor activities ",,khall@le.utah.gov,801-834-3059,,,,,,,TRUE,1
-Dave Calder,State House District 11,house,11,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Dave Calder,State House District 11,house,11,Democratic,FALSE,GENERAL,,,https://votedavecalder.com/,,,,,,,,,TRUE,1
 Mike Schultz,State House District 12,house,12,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/SCHULM.jpg,"Mike Schultz has represented Utah's 12th House District since 2015 and currently serves as Speaker of the House. He has championed policies like increasing funding for Utah students, conserving Utah's water supply, and investing in transportation infrastructure all while balancing the budget and cutting taxes. Speaker Schultz and his wife, Melissa, are the proud parents of six children and three grandchildren. When not busy with work, he can be found in the great outdoors hunting, fishing, snowm",,mikeschultz@le.utah.gov,,,,,,,,TRUE,1
-Anna Graff,State House District 12,house,12,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Anna Graff,State House District 12,house,12,Democratic,FALSE,GENERAL,,,https://electannagraff.com/,,,,,,,,,TRUE,1
 Tony De Mille,State House District 13,house,13,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Jeffrey Anderson,State House District 13,house,13,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Erik R. Craythorne,State House District 13,house,13,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Brandon Young,State House District 14,house,14,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-John Taylor,State House District 14,house,14,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
+John Taylor,State House District 14,house,14,Republican,FALSE,PRIMARY-PENDING,,,https://johntaylor4utah.com/,,,,,,,,,TRUE,1
 Kara Toone,State House District 14,house,14,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
-Anne Berbert,State House District 15,house,15,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Anne Berbert,State House District 15,house,15,Democratic,FALSE,GENERAL,,,https://voteanneberbert.com/,,,,,,,,,TRUE,1
 Ariel Defay,State House District 15,house,15,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/DEFAYA.jpg,"Ariel Defay has been a member of the Utah House of Representatives since 2023. Since then, she has represented Utah House's 15th District, which covers Davis County. She holds a Bachelor's degree in Political Science from Utah State University and a Master's in Public Administration from Ohio University. Ariel's career includes significant experience in state government, having worked as a senior legislative aide in the Ohio House of Representatives and on various political campaigns. Her work h",,adefay@le.utah.gov,801-793-8944,,,,,,,TRUE,1
 Abigail Treasure,State House District 16,house,16,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Bob J Stevenson,State House District 16,house,16,Republican,FALSE,GENERAL,,,https://www.electbobstevenson.com/,,,,,,,,,TRUE,1
 Eric Last,State House District 17,house,17,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Sam Barlow,State House District 17,house,17,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
-Lili Bitner,State House District 17,house,17,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
+Lili Bitner,State House District 17,house,17,Republican,FALSE,PRIMARY-PENDING,,,https://votebitner.com/,,,,,,,,,TRUE,1
 Paul A. Cutler,State House District 18,house,18,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/CUTLEP.jpg,"Paul Cutler began his legislative service in 2023. Since then, he has represented Utah's House District 18, which consists of Davis County.<br><br> He holds a Bachelor of Science in Electrical Engineering from the University of Utah and an MBA from Brigham Young University. Professionally, Cutler has extensive experience in technology consulting and business, and currently works as an Engineering Director for a global technology company.<br><br> In his personal life, Paul Cutler is married to Sh",,pcutler@le.utah.gov,801-923-4618,,,,,,,TRUE,1
 Scott Troxel,State House District 18,house,18,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Raymond P. Ward,State House District 19,house,19,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/WARDR.jpg,"Representative Ward began his legislative service in 2015. He represents Utah's House District 19 which consists of Bountiful and West Bountiful in South Davis County. He earned his Bachelor of Science degree from Brigham Young University and went on to complete a PhD in Pharmacology and a Doctor of Medicine from the University of Washington School of Medicine. Professionally, Ward works as a family physician at Ogden Clinic/Cope Family Medicine in Bountiful, Utah. He enjoys working with Medicar",,rayward@le.utah.gov,,https://www.facebook.com/raymond.ward.121?fref=ts,,,,,,TRUE,1
@@ -102,17 +102,17 @@ Braeden J. Oswald,State House District 24,house,24,Republican,FALSE,GENERAL,,,,,
 Grant Amjad Miller,State House District 24,house,24,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/MILLGR.jpg,,,gmiller@le.utah.gov,801-520-0099,,,grantistheguy_,,,,TRUE,1
 Richard T Nowak,State House District 25,house,25,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Angela Romero,State House District 25,house,25,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/ROMERAY.jpg,,,angelaromero@le.utah.gov,801-538-1408,,,,,,,TRUE,1
-Michael E Finch,State House District 26,house,26,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Michael E Finch,State House District 26,house,26,Democratic,FALSE,GENERAL,,,https://votefinch.com/,,,,,,,,,TRUE,1
 Matt MacPherson,State House District 26,house,26,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/MACPHM.jpg,"Representative Matt MacPherson began his legislative service in 2023, representing Utah House's 26th District in West Valley City in Salt Lake County. He loves meeting with constituents and members of the public in his service as a legislator.<br><br> As an advocate of life-long education, he attended various trade schools and received technology training certifications. Because of his educational experiences, he knows that meaningful education can take many forms. In his West Valley community, ",,mmacpherson@le.utah.gov,,,,,,,,TRUE,1
 Travis Alico,State House District 26,house,26,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Liz Oates,State House District 27,house,27,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Liz Oates,State House District 27,house,27,Democratic,FALSE,GENERAL,,,https://lizforutah.com/,,,,,,,,,TRUE,1
 Anthony E. Loubet,State House District 27,house,27,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/LOUBEA.jpg,"Representative Anthony Loubet began serving in the Utah House of Representatives in 2023 and currently represents District 27, which encompasses the west side of Salt Lake County.<br><br> Anthony's career began in local government, where he held a variety of roles that provided valuable experience in policy analysis, community engagement, and leadership. He was appointed Utah County Property Tax Officer, where he filed and defended tax actions before the Utah County Board of Equalization and the",,aloubet@le.utah.gov,801-657-0466,,,,,,,TRUE,1
 Jeffrey Marshall,State House District 27,house,27,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Anita Dalrymple,State House District 28,house,28,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Wales Nematollahi,State House District 28,house,28,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Nicholeen P. Peck,State House District 28,house,28,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/PECKNI.jpg,"Representative Nicholeen Peck began her legislative service on January 1, 2025. She represents House District 28, which covers Tooele and parts of Stansbury Park, Mills Junction, and Lake Point Junction.<br><br> Nicholeen Peck has dedicated much of her life to education, family advocacy, and public service. Nicholeen was raised by a school teacher and a mother who taught her how to love learning, make something out of nothing, serve others, and work hard. She pursued her education at Snow Colleg",,npeck@le.utah.gov,801-834-5495,,,,,,,TRUE,1
 Jonathan Garrard,State House District 29,house,29,Constitution,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Sara Snow,State House District 29,house,29,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Sara Snow,State House District 29,house,29,Democratic,FALSE,GENERAL,,,https://saraforutah.com/,,,,,,,,,TRUE,1
 Tynley Bean,State House District 29,house,29,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Alexis Wheeler,State House District 29,house,29,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Sheldon Birch,State House District 29,house,29,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
@@ -120,13 +120,13 @@ Patrick Belmont,State House District 3,house,3,Unaffiliated,FALSE,GENERAL,,,,,,,
 Jason E. Thompson,State House District 3,house,3,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/THOMJA.jpg,"Jason and his wife, Dana, are long-time Cache Valley residents. They are proud parents of six children, including 2 sets of twins.<br><br> Jason served as the Mayor of River Heights, Utah for three years. He has a passion for public service and graduated with his bachelor's degree in History and Political Science from Brigham Young University in 2006. Jason went on to receive his Master of Public Administration degree from Brigham Young University in 2010.<br><br> Jason is an entrepreneur and ha",,jthompson@le.utah.gov,801-505-8787,,,,,,,TRUE,1
 Dave Parke,State House District 30,house,30,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Jake Fitisemanu,State House District 30,house,30,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/FITISJ.jpg,,,jfitisemanu@le.utah.gov,801-633-4546,https://facebook.com/JakeForUT,,,,,,TRUE,1
-Verona Mauga,State House District 31,house,31,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/MAUGAV.jpg,,,vmauga@le.utah.gov,801-573-8279,,,,,,,TRUE,1
+Verona Mauga,State House District 31,house,31,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/MAUGAV.jpg,,https://voteverona.com/,vmauga@le.utah.gov,801-573-8279,,,,,,,TRUE,1
 Melody Jones,State House District 31,house,31,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Sahara Hayes,State House District 32,house,32,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/HAYESS.jpg,,,shayes@le.utah.gov,801-657-0395,,,,,,,TRUE,1
 Aileen Hampton,State House District 32,house,32,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Anna Reeves,State House District 33,house,33,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Doug Owens,State House District 33,house,33,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/OWENSDO.jpg,,,dougowens@le.utah.gov,385-499-3761,,,,,,,TRUE,1
-Julie Jackson,State House District 34,house,34,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
+Doug Owens,State House District 33,house,33,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/OWENSDO.jpg,,https://dougowensutah.com/,dougowens@le.utah.gov,385-499-3761,,,,,,,TRUE,1
+Julie Jackson,State House District 34,house,34,Democratic,FALSE,PRIMARY-PENDING,,,https://juliejacksonforutah.com/,,,,,,,,,TRUE,1
 Erin Jemison,State House District 34,house,34,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Monique I. Ketcham,State House District 35,house,35,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Rosalba Dominguez,State House District 35,house,35,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/DOMINR.jpg,,,rdominguez@le.utah.gov,801-419-3283,,,,,,,TRUE,1
@@ -136,16 +136,16 @@ Casey Saxton,State House District 37,house,37,Republican,FALSE,GENERAL,,,,,,,,,,
 Sergio Sotelo,State House District 38,house,38,Unaffiliated,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Gloria Vindas,State House District 38,house,38,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Chris McConnehey,State House District 38,house,38,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
-Drew Howells,State House District 39,house,39,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Drew Howells,State House District 39,house,39,Democratic,FALSE,GENERAL,,,https://howells4utah.com/,,,,,,,,,TRUE,1
 Ken Ivory,State House District 39,house,39,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/IVORYK.jpg,"Representative Ivory has been a member of the House of Representatives since 2011. He represents Utah's House District 39 which covers portions of West Jordan, Sandy, South Jordan, Midvale and Murray.<br><br> Representative Ivory received his Juris Doctor Degree from California Western School of Law and his Bachelor of Arts degree in Japanese from BYU. Ivory serves as a business, estate planning and government communications attorney. Ken is the author of 'Where's the Line? How States Protect th",,kivory@le.utah.gov,801-694-8380,https://www.facebook.com/ken.ivory.3?fref=nf,,https://twitter.com/KenIvoryUT,,,,TRUE,1
 Zane Woolstenhulme,State House District 4,house,4,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Tiara Auxier,State House District 4,house,4,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/AUXIET.jpg,"First and foremost, a mother to 4 wonderful children, she, her husband, and children have been residents of Morgan county for 4 years, and lifelong residents of Utah. They love enjoying our beautiful outdoors and the arts.<br><br> Tiara has served on school and district community councils, the Boy Scouts of America, and in her local church wards. By profession, she is a tax accountant, receiving a Bachelors of Arts in Accounting from the University of Utah.<br><br> Representative Auxier began se",,tauxier@le.utah.gov,(801) 450-3701,,,,,,,TRUE,1
 Wendy Davis,State House District 40,house,40,Democratic,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Andrew Stoddard,State House District 40,house,40,Democratic,TRUE,PRIMARY-PENDING,https://le.utah.gov/images/legislator/STODDA.jpg,,,astoddard@le.utah.gov,385-256-3281,,,,,,,TRUE,1
-John Arthur,State House District 41,house,41,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/ARTHUJ.jpg,,,jarthur@le.utah.gov,801-518-3407,https://www.facebook.com/p/Vote-John-Arthur-61555715998689/,https://www.instagram.com/9thevermore/?hl=en,https://x.com/9thEvermore,,,,TRUE,1
+John Arthur,State House District 41,house,41,Democratic,TRUE,GENERAL,https://le.utah.gov/images/legislator/ARTHUJ.jpg,,https://votejohnarthur.com/,jarthur@le.utah.gov,801-518-3407,https://www.facebook.com/p/Vote-John-Arthur-61555715998689/,https://www.instagram.com/9thevermore/?hl=en,https://x.com/9thEvermore,,,,TRUE,1
 Eryn A Russo,State House District 41,house,41,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Darren Croft,State House District 41,house,41,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
-Iva Williams,State House District 42,house,42,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Iva Williams,State House District 42,house,42,Democratic,FALSE,GENERAL,,,https://electivawilliams.com/,,,,,,,,,TRUE,1
 Clinton Okerlund,State House District 42,house,42,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/OKERLC.jpg,"Representative Clint Okerlund is new to the House of Representatives and began his legislative service on January 1, 2025. He represents House District 42 which covers parts of Sandy, Draper, and Cottonwood Heights in Salt Lake County.<br><br> Clint grew up in rural Richfield, Utah. Clint earned a business degree from Brigham Young University and an MBA from the University of Notre Dame. He has worked at Zions Bank, spent 14 years at Bank of America, and served as the Chief Financial Officer at ",,cokerlund@le.utah.gov,801-999-8605,,,,,,,TRUE,1
 Steve Eliason,State House District 43,house,43,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/ELIASS.jpg,"Representative Eliason began his legislative service in 2011. He currently represents the Utah House's 43rd district which consists of a portion of Salt Lake County. Representative Eliason currently serves as the House Parliamentarian.<br><br> Steve is a licensed CPA and received his Bachelor's degree in Accounting from the University of Utah and he received his Master's degree in Business Administration, also from the University of Utah. Steve works as a Senior Finance Director at University of",,seliason@le.utah.gov,801-673-4748,https://www.facebook.com/VoteSteveEliason/,,https://twitter.com/steveeliason,,,,TRUE,1
 Ofa Matagi,State House District 43,house,43,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
@@ -162,7 +162,7 @@ Jake Hunsaker,State House District 48,house,48,Republican,FALSE,PRIMARY-PENDING,
 Nik Anderson,State House District 48,house,48,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Lillian Bowles,State House District 49,house,49,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Candice B. Pierucci,State House District 49,house,49,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/PIERUC.jpg,,,cpierucci@le.utah.gov,385-414-1488,,,,,,,TRUE,1
-Kendra Penry,State House District 5,house,5,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Kendra Penry,State House District 5,house,5,Democratic,FALSE,GENERAL,,,https://kendraforutah.com/,,,,,,,,,TRUE,1
 Casey Snider,State House District 5,house,5,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/SNIDEC.jpg,"Born and raised in Liberty, Representative Snider now resides on a farm in Paradise with his wife Kelli, and their two children- both places he proudly calls home. In addition to his roles as a husband, father, volunteer firefighter, EMT, and avid sportsman, Representative Snider holds another important title-- House Majority Leader.<br><br> Since being elected in 2018 to represent District 5 of Cache Valley, he views his time in the State Legislature as another opportunity to give back. He has ",,csnider@le.utah.gov,435-770-4081,,,,,,,TRUE,1
 Stephanie Gricius,State House District 50,house,50,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/GRICIS.jpg,"Representative Stephanie Gricius is a dedicated public servant, entrepreneur, and longtime advocate for her community. A longtime resident of Eagle Mountain, Stephanie has been deeply involved in service from a young age through roles in city government, the Republican Party, and nonprofit work. She was elected to the Eagle Mountain City Council in 2015, where she helped lead key initiatives, including attracting major employers like Facebook and Tyson Foods, supporting small businesses, and adv",https://votestephanie.org/,sgricius@le.utah.gov,801-901-8251,,,,,,,TRUE,1
 Kristin Meyer,State House District 50,house,50,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
@@ -173,16 +173,16 @@ A. Cory Maloy,State House District 52,house,52,Republican,TRUE,GENERAL,https://l
 Kay J. Christofferson,State House District 53,house,53,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/CHRISKJ.jpg,"Representative Kay Christofferson has served in the Utah State Legislature since 2013. Representative Christofferson earned his B.S., Civil Engineering, from Brigham Young University. He worked in the heavy Civil Construction Industry as a Vice President and President of several companies. He represents the family values that he grew up with in Lehi. With his wonderful wife Suzanne, they have seven children and sixteen grandchildren.",,kchristofferson@le.utah.gov,801-592-5709,https://www.facebook.com/kaychristofferson.fiftysix/,,,,,,TRUE,1
 Kevin R Slater,State House District 53,house,53,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 John Boyd,State House District 53,house,53,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
-Kristina Robinson,State House District 54,house,54,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Kristina Robinson,State House District 54,house,54,Democratic,FALSE,GENERAL,,,https://campaignkristina.com/,,,,,,,,,TRUE,1
 Kristen Chevrier,State House District 54,house,54,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/CHEVRK.jpg,,,kchevrier@le.utah.gov,801-520-6773,,,,,,,TRUE,1
 Travis Hysell,State House District 55,house,55,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Jon Hawkins,State House District 55,house,55,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/HAWKIJ.jpg,"Beginning legislative service in 2019, Representative Hawkins stands as the voice for the people of Utah House District 55, serving the community of Pleasant Grove and is commitment to improving the lives of his constituents.<br><br> Born and raised in Utah, Representative Hawkins attended Mountain View High School and continued his education at Brigham Young University (BYU), majoring in Public Relations. During this time, he met and married his wife, Mary Hinkley. Following graduation, the cou",,jhawkins@le.utah.gov,801-368-2534,,,,,,,TRUE,1
 Val L. Peterson,State House District 56,house,56,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/PETERVL.jpg,"Beginning legislative Service in 2011, Rep. Val Peterson represents Utah House's 56th District, a part of Utah county extending from American Fork to Orem.<br><br> Born in Idaho, Rep. Peterson soon found Utah to be home shortly after his LDS mission in Colombia while attending Brigham Young University. At BYU, he earned his Bachelor's and Masters in Communication and eventually earned a PhD in Education Leadership while even picking up another Master's in Strategic Studies from the United States",,vpeterson@le.utah.gov,801-224-4473,https://www.facebook.com/Val-Peterson-122130654480343/,,,,,,TRUE,1
-Natassja Grossman,State House District 56,house,56,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Natassja Grossman,State House District 56,house,56,Democratic,FALSE,GENERAL,,,https://natassjagrossman.com/,,,,,,,,,TRUE,1
 Nelson T. Abbott,State House District 57,house,57,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/ABBOTN.jpg,"As an attorney, Nelson has 25+ years successfully representing businesses and individuals in legal issues. As a successful small business owner, Nelson understands the growth and infrastructure challenges facing our community, as well as the importance of conservative fiscal policy. While a BYU adjunct professor of business law (Accounting Program), Nelson taught students about the laws and accounting principles that lead to successful businesses.<br><br> He has a Juris Doctor & Master of Busine",,nabbott@le.utah.gov,385-358-3269,,,,,,,TRUE,1
 Karli Black,State House District 58,house,58,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 David Shallenberger,State House District 58,house,58,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/SHALLD.jpg,"Representative David Shallenberger is a lifelong Utahn, born and raised in Utah County. He lives in Orem with his wife, Lara, and their six kids. After graduating from Orem High, he served a mission in Prague, Czech Republic. He later earned a Mechanical Engineering degree from BYU and a law degree from Willamette University.<br><br> David is a licensed General and HVAC Contractor, as well as a Master Electrician. He's worked with utility companies, municipalities, state utility and energy commi",,dshallenberger@le.utah.gov,801-214-5989,,,,,,,TRUE,1
-Celeste T. Johnson,State House District 59,house,59,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Celeste T. Johnson,State House District 59,house,59,Democratic,FALSE,GENERAL,,,https://celestejohnsonforutah.com/,,,,,,,,,TRUE,1
 Jeffrey Pierce,State House District 59,house,59,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Luke Searle,State House District 59,house,59,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Rob Bishop,State House District 6,house,6,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/BISHORW.jpg,,,rbishop@le.utah.gov,801-538-1029,,,,,,,TRUE,1
@@ -190,7 +190,7 @@ James Rich,State House District 6,house,6,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,
 Grant Pace,State House District 60,house,60,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/PACEG.jpg,,,gpace@le.utah.gov,801-835-8860,,,,,,,TRUE,1
 Jennifer K Doud,State House District 61,house,61,Constitution,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Lisa Shepherd,State House District 61,house,61,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/SHEPHL.jpg,,https://lisa61.com/,lshepherd@le.utah.gov,801-903-8998,,,@lisamshepherd,,,,TRUE,1
-Alan Jimenez,State House District 61,house,61,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Alan Jimenez,State House District 61,house,61,Democratic,FALSE,GENERAL,,,https://alanforutah.com/,,,,,,,,,TRUE,1
 David Chappell,State House District 62,house,62,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Norman K Thurston,State House District 62,house,62,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/THURSNK.jpg,"Representative Norman Thurston became a member of the House of Representatives in 2015. He represents the Utah House's 62nd District which covers a portion of Utah County including parts of Provo and Springville.<br><br> He and his wife Maria have three children and three grandchildren. He has led the effort to reform Utah's health care system, serving as Health Reform Coordinator for much time. In September 2013, he took over as Director of the Office of Health Care Statistics, the agency respo",,normthurston@le.utah.gov,801-477-5348,https://www.facebook.com/norm464/,https://www.instagram.com/normthurston64/,https://twitter.com/NormThurston?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor,,,,TRUE,1
 Mark Youngquist,State House District 63,house,63,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
@@ -206,11 +206,11 @@ Jr Bird,State House District 67,house,67,Republican,FALSE,PRIMARY-PENDING,,,,,,,
 Yvonne H Jensen,State House District 67,house,67,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Sonya Ray,State House District 68,house,68,Constitution,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Scott H. Chew,State House District 68,house,68,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/CHEWSH.jpg,"Representative Chew began his legislative service in 2015. He currently represents Utah's House District 68 which consists of Duchesne, Uintah, and Daggett counties.<br><br> Chew was born in the Uintah Basin area of Utah. He attended Utah State University. He is currently an Owner/Operator of Chew Ranch/Chew Livestock Family Co-op. He was appointed by the Governor to the Agriculture, Natural & Recreational Lands Team-along with the Wildlife Nominating Committee. He was a chairman of the Uintah B",,scottchew@le.utah.gov,435-630-0221,,,,,,,TRUE,1
-Tracie Yellowman Tso,State House District 69,house,69,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Tracie Yellowman Tso,State House District 69,house,69,Democratic,FALSE,GENERAL,,,https://tracieforutah.com/,,,,,,,,,TRUE,1
 Daniel Gardner,State House District 69,house,69,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
 Logan Monson,State House District 69,house,69,Republican,TRUE,PRIMARY-PENDING,https://le.utah.gov/images/legislator/MONSOL.jpg,"Representative Logan Monson started his term in the Utah House of Representatives in 2025. He represents the House's 69th District which includes San Juan, Garfield, Wayne, Grand Kane, and most of Emery County.<br><br> Representative Monson graduated from Utah State University Blanding with a nursing degree and works as Nurse Administrator and Registered Nurse. So, although Logan is an Aggie at heart, he is a big Utes fan as well. Logan is originally from Blanding, Utah where he served on the ci",,lmonson@le.utah.gov,801-834-5270,,,,,,,TRUE,1
 Ryan D. Wilcox,State House District 7,house,7,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/WILCORD.jpg,,,ryanwilcox@le.utah.gov,385-600-3306,,,,,,,TRUE,1
-Bianca Mittendorf,State House District 7,house,7,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Bianca Mittendorf,State House District 7,house,7,Democratic,FALSE,GENERAL,,,https://electbianca.com/,,,,,,,,,TRUE,1
 Carl R. Albrecht,State House District 70,house,70,Republican,TRUE,GENERAL,https://le.utah.gov/images/legislator/ALBRECR.jpg,"Representative Albrecht was elected to legislative office in 2017. He represents the Utah House's 70th District which consists of Sevier County, Piute County, Beaver County, and portions of Iron County.<br><br> Representative Albrecht holds a bachelor's degree in business administration from Southern Utah State College. Albrecht worked for Garkane Energy Cooperative for 40 years, serving as the company's chief operating officer for 22 years.<br><br> Albrecht has served as a Richfield City Counci",,carlalbrecht@le.utah.gov,435-979-6578,,https://www.instagram.com/hooky52/,,,,,TRUE,1
 Zeno B. Parry,State House District 70,house,70,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
 Stacey D. Pendergraft,State House District 70,house,70,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
@@ -284,9 +284,9 @@ Randy Boothe,State School Board District 13,school_board,13,,TRUE,INCUMBENT — 
 Emily Green,State School Board District 14,school_board,14,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,TRUE,1
 Joann Brinton,State School Board District 15,school_board,15,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,TRUE,1
 Jenny Wilson,County Mayor,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Sim Gill,County District Attorney,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Rosie Rivera,County Sheriff,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Lannie Chapman,County Clerk,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
+Sim Gill,County District Attorney,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,https://votesim.com/,,,,,,,,,TRUE,1
+Rosie Rivera,County Sheriff,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,https://rosieforsheriff.com/,,,,,,,,,TRUE,1
+Lannie Chapman,County Clerk,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,https://lannieforclerk.com/,,,,,,,,,TRUE,1
 Chris Stavros,County Assessor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
 Chris Harding,County Auditor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
 Bradley Park,County Surveyor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
