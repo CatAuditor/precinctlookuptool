@@ -76,6 +76,24 @@ read-back) was smoke-tested against the real sheets **and** over HTTP — all
 green. Remaining real risk items: rotate the exposed key, and the sheets
 currently hold **placeholder** candidates/issues (swap for real data).
 
+**Update 2026-07-07 — real 2026 data loaded + county/status support:**
+- The Candidates tab now holds **319 real rows** (all 75 House / 29 Senate /
+  4 US House / 15 State School Board districts + 35 county officeholders in the
+  5 biggest counties), built by `scripts/build_state_candidates.py` (pulls the
+  official `le.utah.gov/data/legislators.json` + the LG's Candidate-Filing xlsx)
+  and `scripts/build_master.py` (merges `county_incumbents.csv` → pushes via
+  `scripts/push_candidates.js`). Rerun the pipeline after **July 20** primary
+  certification to auto-resolve the 21 PRIMARY-PENDING races.
+- Schema grew: `Party`, `Incumbent`, `Status` columns; `county` DistrictType
+  (matched by county name); status badges (Primary pending / Not on 2026 ballot)
+  and party/incumbent badges on candidate cards.
+- The live Submissions tab gained `SchoolBoard | SchoolDistrict` columns after
+  `Congress` (via `scripts/fix_submissions_columns.js`) to match the new
+  volunteer.js row order — done BEFORE deploying that code.
+- Known data gaps: county challengers (all 164 races), 24 small counties'
+  incumbents, local school-board sub-district seats (no GIS layer), website/
+  volunteer/donate links on all rows. See the 2026-07-07 audit in the repo chat.
+
 ---
 
 ## 4. Architecture
@@ -148,13 +166,30 @@ Browser (static index.html, built by build.js)
 ### Candidate spreadsheet — tab `Candidates`
 Header row (order-independent; code reads by header name):
 
-`Name | Office | DistrictType | District | PhotoURL | Bio | Website | Email |
-Phone | Facebook | Instagram | X | VolunteerURL | DonateURL | TopIssues |
-Active | Order`
+`Name | Office | DistrictType | District | Party | Incumbent | PhotoURL | Bio |
+Website | Email | Phone | Facebook | Instagram | X | VolunteerURL | DonateURL |
+TopIssues | Active | Order`
 
-- `DistrictType` ∈ `house | senate | congress | school_board` (matches the
-  district the user's lookup returns).
-- `District` = the number/value as GIS returns it (e.g. `10`).
+- All offices share this one tab; the app filters a voter's races by
+  `DistrictType` + `District`. Group rows by `DistrictType` for readability
+  (congress → senate → house → school_board → school_district → county — the
+  order the API returns them in too). A new office type is just a new
+  `DistrictType` value, no code change.
+- `DistrictType` ∈ `congress | senate | house | school_board | school_district |
+  county` (matches the district the user's lookup returns).
+- `District` = the value exactly as GIS returns it: a **number** for
+  congress/senate/house/school_board (e.g. `10`); the district **name** for
+  `school_district` (e.g. `Granite`); the **county name** for `county` (e.g.
+  `Salt Lake`). Name-typed values (`school_district`, `county`) match
+  case/whitespace-insensitively.
+- `Party` = free text (`Republican`/`Democratic`/`Unaffiliated`/…); rendered as a
+  colored pill (blue = D, red = R). Blank is fine.
+- `Incumbent` = `TRUE` for the current officeholder; renders an "Incumbent"
+  badge. Accepts TRUE/yes/y/1.
+- **County-office caveat:** `county` matches the whole county, so county-wide
+  offices (sheriff, clerk, attorney, assessor) are exact, but sub-county seats
+  (council/commission districts) will over-show to the whole county — same
+  sub-district geo gap as local school board. Acceptable for v1.
 - `TopIssues` = comma-separated in one cell (e.g. `Education, Housing`).
 - `Active` = `TRUE`/`FALSE` (also accepts no/0/n as false).
 - `Order` = sort order within a district.
@@ -172,8 +207,8 @@ anytime; changes appear within ~60s (cache TTL).
 The app appends one row per signup, in this exact column order:
 
 `Created | FirstName | LastName | Email | Phone | TopIssues | Capacity |
-Precinct | County | House | Senate | Congress | Address | HelpElect |
-Newsletter | Status | DateContacted | SourceURL`
+Precinct | County | House | Senate | Congress | SchoolBoard | SchoolDistrict |
+Address | HelpElect | Newsletter | Status | DateContacted | SourceURL`
 
 - `Created` = timestamp in `CLIENT_TIMEZONE`.
 - `Status` = `New` on insert; organizers work the queue from here.
@@ -287,11 +322,13 @@ No code changes required. Keep it that way — resist hardcoding client specific
 **Small polish**
 - [ ] `index.html` footer still has **Utah-specific data-source attribution**
       links — parameterize if going multi-state (hidden in `?embed=1` mode).
-- [ ] On the **address-search capture path**, `congressDistrict` is left empty
-      (congress is only resolved on precinct *click*, not on the initial search).
-      Minor; enrich if congress capture matters for signups.
-- [ ] Candidate `District` matching is an exact string compare — document/verify
-      the format organizers should enter (e.g. `10` vs `HD-10`).
+- [ ] Candidate `District` matching is an exact string compare for the numeric
+      types (house/senate/congress/school_board) — verify the format organizers
+      enter matches GIS exactly (e.g. `10` vs `HD-10`). `school_district` is
+      matched case/whitespace-insensitively. The GIS `NAME` values were verified
+      live (2026-07-01): plain names, **no "School District" suffix** (e.g.
+      `GRANITE` → `Granite`, `SALT LAKE CITY` → `Salt Lake City`). The full list
+      of 41 valid title-cased names is in `sheet-templates/README.md`.
 
 **Future phases (from the pitch, not yet built)**
 - Phase 3 issue matching is partially here (issue capture exists; matching

@@ -5,7 +5,8 @@
  * returns matching active candidates. Organizers manage the sheet directly.
  *
  * Query params (provide at least one):
- *   houseDistrict, senateDistrict, congressDistrict, schoolBoard, precinctId
+ *   houseDistrict, senateDistrict, congressDistrict, schoolBoard,
+ *   schoolDistrict, county, precinctId
  *
  * Expected sheet headers (row 1, order-independent):
  *   Name | Office | DistrictType | District | PhotoURL | Bio | Website |
@@ -34,6 +35,26 @@ function isActive(row) {
   return v !== 'false' && v !== 'no' && v !== '0' && v !== 'n';
 }
 
+// Display order for results that span multiple district types: top-down from
+// federal to local. Unknown types sort last (keeps future/custom types working).
+const TYPE_ORDER = { congress: 0, senate: 1, house: 2, school_board: 3, school_district: 4, county: 5, precinct: 6 };
+const typeRank = t => (t in TYPE_ORDER ? TYPE_ORDER[t] : 99);
+
+// District values match exactly, EXCEPT school_district: it's keyed by a
+// free-text name (title-cased from the GIS `NAME` field), not a number, so a
+// stray case/whitespace difference in the sheet would silently drop a
+// candidate. Normalize both sides for that one type only.
+function districtMatches(type, sheetVal, wantedVal) {
+  // school_district and county are keyed by free-text NAME (not a number), so
+  // normalize case/whitespace on both sides to avoid silent drops. Numeric
+  // types (house/senate/congress/school_board) stay exact compares.
+  if (type === 'school_district' || type === 'county') {
+    const norm = s => String(s).toLowerCase().replace(/\s+/g, ' ').trim();
+    return norm(sheetVal) === norm(wantedVal);
+  }
+  return sheetVal === wantedVal;
+}
+
 function splitIssues(raw) {
   return String(raw || '')
     .split(/[,;]/)
@@ -45,6 +66,11 @@ function shapeCandidate(row) {
   return {
     name:         row.Name || '',
     office:       row.Office || '',
+    party:        row.Party || '',
+    incumbent:    /^(true|yes|y|1)$/i.test(String(row.Incumbent ?? '').trim()),
+    // Optional organizer column, passed through raw. Known values:
+    // GENERAL[ | note]  |  PRIMARY-PENDING  |  INCUMBENT — <annotation>
+    status:       String(row.Status || '').trim(),
     districtType: String(row.DistrictType || '').trim().toLowerCase(),
     district:     String(row.District || '').trim(),
     photoUrl:     row.PhotoURL || '',
@@ -73,15 +99,17 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { houseDistrict, senateDistrict, congressDistrict, schoolBoard, precinctId } = req.query;
+  const { houseDistrict, senateDistrict, congressDistrict, schoolBoard, schoolDistrict, county, precinctId } = req.query;
 
   // Map each district type to the requested value
   const wanted = {};
-  if (houseDistrict)    wanted.house        = String(houseDistrict).trim();
-  if (senateDistrict)   wanted.senate       = String(senateDistrict).trim();
-  if (congressDistrict) wanted.congress     = String(congressDistrict).trim();
-  if (schoolBoard)      wanted.school_board = String(schoolBoard).trim();
-  if (precinctId)       wanted.precinct     = String(precinctId).trim();
+  if (houseDistrict)    wanted.house           = String(houseDistrict).trim();
+  if (senateDistrict)   wanted.senate          = String(senateDistrict).trim();
+  if (congressDistrict) wanted.congress        = String(congressDistrict).trim();
+  if (schoolBoard)      wanted.school_board    = String(schoolBoard).trim();
+  if (schoolDistrict)   wanted.school_district = String(schoolDistrict).trim();
+  if (county)           wanted.county          = String(county).trim();
+  if (precinctId)       wanted.precinct        = String(precinctId).trim();
 
   if (!Object.keys(wanted).length) {
     return res.status(400).json({ error: 'Provide at least one district parameter.' });
@@ -96,8 +124,11 @@ module.exports = async (req, res) => {
     const candidates = rows
       .filter(isActive)
       .map(shapeCandidate)
-      .filter(c => c.districtType in wanted && c.district === wanted[c.districtType])
-      .sort((a, b) => a.order - b.order || a.name.localeCompare(b.name));
+      .filter(c => c.districtType in wanted && districtMatches(c.districtType, c.district, wanted[c.districtType]))
+      .sort((a, b) =>
+        typeRank(a.districtType) - typeRank(b.districtType) ||
+        a.order - b.order ||
+        a.name.localeCompare(b.name));
 
     return res.status(200).json({ success: true, candidates });
   } catch (err) {

@@ -1219,6 +1219,7 @@ async function findPrecinct() {
       house:    houseDistrict,
       senate:   senateDistrict,
       congress: congressDistrict,
+      county:   COUNTIES[countyID] || null,   // county name → matches sheet's county rows
       schoolBoard:    null,   // filled in below
       schoolDistrict: null,
     };
@@ -1405,6 +1406,20 @@ function renderCandidateCard(c) {
     ? `<img class="candidate-avatar" src="${escHtml(normalizeUrl(c.photoUrl))}" alt="" />`
     : `<div class="candidate-initials">${escHtml(initials)}</div>`;
   const bio    = c.bio ? `<div class="candidate-bio">${escHtml(c.bio)}</div>` : '';
+  const partyColor = /^d/i.test(c.party) ? '#1d4ed8' : /^r/i.test(c.party) ? '#b91c1c' : '#6b7280';
+  const partyPill  = c.party ? `<span style="display:inline-block;font-size:.66rem;font-weight:600;color:#fff;background:${partyColor};border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle">${escHtml(c.party)}</span>` : '';
+  const incBadge   = c.incumbent ? `<span style="display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#065f46;background:#d1fae5;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle">Incumbent</span>` : '';
+  // Ballot-status badge from the optional Status column:
+  //   PRIMARY-PENDING            → primary result not yet certified
+  //   INCUMBENT — not on ballot  → officeholder whose seat isn't up in 2026
+  //   GENERAL / blank / other    → no badge (normal ballot candidate)
+  const st = String(c.status || '').toUpperCase();
+  let statusBadge = '';
+  if (st.startsWith('PRIMARY-PENDING')) {
+    statusBadge = `<span style="display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#92400e;background:#fef3c7;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle">Primary pending</span>`;
+  } else if (st.startsWith('INCUMBENT') && st.includes('NOT ON')) {
+    statusBadge = `<span style="display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#374151;background:#e5e7eb;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle">Not on 2026 ballot</span>`;
+  }
   const issues = (c.issues && c.issues.length)
     ? `<div class="candidate-issues">${c.issues.map(i => `<span class="issue-tag">${escHtml(i)}</span>`).join('')}</div>`
     : '';
@@ -1428,8 +1443,8 @@ function renderCandidateCard(c) {
     <div class="candidate-card">
       ${avatar}
       <div class="candidate-body">
-        <div class="candidate-name">${escHtml(name)}</div>
-        ${c.office ? `<div class="candidate-office">${escHtml(c.office)}</div>` : ''}
+        <div class="candidate-name">${escHtml(name)}${incBadge}${statusBadge}</div>
+        ${c.office ? `<div class="candidate-office">${escHtml(c.office)}${partyPill}</div>` : (partyPill ? `<div class="candidate-office">${partyPill}</div>` : '')}
         ${bio}
         ${issues}
         ${socialRow}
@@ -1440,10 +1455,13 @@ function renderCandidateCard(c) {
 
 async function loadCandidatesForDistricts(districtInfo, precinctId) {
   const params = new URLSearchParams();
-  if (districtInfo?.house)    params.set('houseDistrict',    districtInfo.house);
-  if (districtInfo?.senate)   params.set('senateDistrict',   districtInfo.senate);
-  if (districtInfo?.congress) params.set('congressDistrict', districtInfo.congress);
-  if (precinctId)             params.set('precinctId',       precinctId);
+  if (districtInfo?.house)          params.set('houseDistrict',    districtInfo.house);
+  if (districtInfo?.senate)         params.set('senateDistrict',   districtInfo.senate);
+  if (districtInfo?.congress)       params.set('congressDistrict', districtInfo.congress);
+  if (districtInfo?.schoolBoard)    params.set('schoolBoard',      districtInfo.schoolBoard);
+  if (districtInfo?.schoolDistrict) params.set('schoolDistrict',   districtInfo.schoolDistrict);
+  if (districtInfo?.county)         params.set('county',           districtInfo.county);
+  if (precinctId)                   params.set('precinctId',       precinctId);
 
   if (!params.toString()) return '';
 
@@ -1607,9 +1625,11 @@ async function submitFunnel() {
         precinctName:     props.AliasName  || null,
         precinctId:       props.PrecinctID || null,
         county:           COUNTIES[props.CountyID] || null,
-        houseDistrict:    d.house    != null ? String(d.house)    : null,
-        senateDistrict:   d.senate   != null ? String(d.senate)   : null,
-        congressDistrict: d.congress != null ? String(d.congress) : null,
+        houseDistrict:    d.house          != null ? String(d.house)          : null,
+        senateDistrict:   d.senate         != null ? String(d.senate)         : null,
+        congressDistrict: d.congress       != null ? String(d.congress)       : null,
+        schoolBoard:      d.schoolBoard    != null ? String(d.schoolBoard)    : null,
+        schoolDistrict:   d.schoolDistrict != null ? String(d.schoolDistrict) : null,
         addressInput:     document.getElementById('address-input')?.value || null,
         sourceUrl:        window.location.href,
       }),
@@ -1730,6 +1750,7 @@ function attachPrecinctClick(layer) {
 
     // Query districts and candidates in parallel
     const info = await queryDistrictInfo(latlng.lng, latlng.lat);
+    info.county = COUNTIES[props.CountyID] || null;   // county name for candidate match
     // Re-render with districts filled in but candidates still loading
     showSidebar(name, buildPrecinctSidebar(props, latlng, info, undefined));
 

@@ -1,0 +1,413 @@
+Category,DistrictType,District,Office,County,RaceName_original,AppStatus
+house,house,25,State House District 25,Multi-County Race,State House District 25,READY
+house,house,26,State House District 26,Multi-County Race,State House District 26,READY
+house,house,27,State House District 27,Multi-County Race,State House District 27,READY
+house,house,28,State House District 28,Multi-County Race,State House District 28,READY
+house,house,29,State House District 29,Multi-County Race,State House District 29 (Multi-County),READY
+house,house,30,State House District 30,Multi-County Race,State House District 30,READY
+judicial,,,Shall RICK WESTMORELAND be retained in the office of Judge of the Juvenile Court of the Second Judicial District?,Multi-County Race,Shall RICK WESTMORELAND be retained in the office of Judge of the Juvenile Court of the Second Judicial District?,"EXCLUDE — retention Y/N, not a candidate race"
+house,house,72,State House District 72,Multi-County Race,State House District 72,READY
+house,house,73,State House District 73,Multi-County Race,State House District 73,READY
+house,house,74,State House District 74,Multi-County Race,State House District 74,READY
+house,house,75,State House District 75,Multi-County Race,State House District 75,READY
+senate,senate,28,State Senate District 28,Multi-County Race,State Senate District 28 (Multi-County),READY
+judicial,,,Shall CORAL SANCHEZ be retained in the office of Judge of the District Court of the Third Judicial District?,Multi-County Race,Shall CORAL SANCHEZ be retained in the office of Judge of the District Court of the Third Judicial District?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall TODD SHAUGHNESSY be retained in the office of Judge of the District Court of the Third Judicial District?,Multi-County Race,Shall TODD SHAUGHNESSY be retained in the office of Judge of the District Court of the Third Judicial District?,"EXCLUDE — retention Y/N, not a candidate race"
+house,house,48,State House District 48,Multi-County Race,State House District 48,READY
+house,house,47,State House District 47,Multi-County Race,State House District 47,READY
+house,house,49,State House District 49,Multi-County Race,State House District 49,READY
+house,house,31,State House District 31,Multi-County Race,State House District 31,READY
+house,house,32,State House District 32,Multi-County Race,State House District 32,READY
+house,house,33,State House District 33,Multi-County Race,State House District 33,READY
+house,house,34,State House District 34,Multi-County Race,State House District 34,READY
+house,house,35,State House District 35,Multi-County Race,State House District 35,READY
+house,house,36,State House District 36,Multi-County Race,State House District 36,READY
+house,house,37,State House District 37,Multi-County Race,State House District 37,READY
+house,house,38,State House District 38,Multi-County Race,State House District 38,READY
+house,house,39,State House District 39,Multi-County Race,State House District 39,READY
+house,house,40,State House District 40,Multi-County Race,State House District 40,READY
+house,house,41,State House District 41,Multi-County Race,State House District 41,READY
+house,house,42,State House District 42,Multi-County Race,State House District 42,READY
+house,house,43,State House District 43,Multi-County Race,State House District 43,READY
+house,house,44,State House District 44,Multi-County Race,State House District 44,READY
+house,house,45,State House District 45,Multi-County Race,State House District 45,READY
+house,house,46,State House District 46,Multi-County Race,State House District 46,READY
+judicial,,,Shall MATTHEW L. BELL be retained in the office of Judge of the District Court of the Fifth Judicial District?,Multi-County Race,Shall MATTHEW L. BELL be retained in the office of Judge of the District Court of the Fifth Judicial District?,"EXCLUDE — retention Y/N, not a candidate race"
+house,house,1,State House District 1,Multi-County Race,State House District 1 (Multi-County),READY
+house,house,2,State House District 2,Multi-County Race,State House District 2,READY
+house,house,3,State House District 3,Multi-County Race,State House District 3,READY
+house,house,4,State House District 4,Multi-County Race,State House District 4 (Multi-County),READY
+house,house,5,State House District 5,Multi-County Race,State House District 5,READY
+house,house,6,State House District 6,Multi-County Race,State House District 6 (Multi-County),READY
+house,house,7,State House District 7,Multi-County Race,State House District 7,READY
+house,house,8,State House District 8,Multi-County Race,State House District 8 (Multi-County),READY
+house,house,9,State House District 9,Multi-County Race,State House District 9,READY
+house,house,10,State House District 10,Multi-County Race,State House District 10,READY
+senate,senate,5,State Senate District 5,Multi-County Race,State Senate District 5 (Multi-County),READY
+senate,senate,6,State Senate District 6,Multi-County Race,State Senate District 6,READY
+senate,senate,7,State Senate District 7,Multi-County Race,State Senate District 7 (Multi-County),READY
+house,house,11,State House District 11,Multi-County Race,State House District 11 (Multi-County),READY
+house,house,12,State House District 12,Multi-County Race,State House District 12 (Multi-County),READY
+house,house,13,State House District 13,Multi-County Race,State House District 13,READY
+house,house,14,State House District 14,Multi-County Race,State House District 14,READY
+house,house,15,State House District 15,Multi-County Race,State House District 15,READY
+house,house,16,State House District 16,Multi-County Race,State House District 16,READY
+house,house,17,State House District 17,Multi-County Race,State House District 17,READY
+house,house,18,State House District 18,Multi-County Race,State House District 18,READY
+house,house,19,State House District 19,Multi-County Race,State House District 19,READY
+house,house,20,State House District 20,Multi-County Race,State House District 20,READY
+state_school_board,school_board,4,State School Board District 4,Multi-County Race,State School Board District 4 (Multi-County),READY
+house,house,50,State House District 50,Multi-County Race,State House District 50,READY
+house,house,51,State House District 51,Multi-County Race,State House District 51,READY
+house,house,52,State House District 52,Multi-County Race,State House District 52,READY
+house,house,53,State House District 53,Multi-County Race,State House District 53,READY
+house,house,54,State House District 54,Multi-County Race,State House District 54,READY
+house,house,55,State House District 55,Multi-County Race,State House District 55,READY
+house,house,56,State House District 56,Multi-County Race,State House District 56,READY
+house,house,57,State House District 57,Multi-County Race,State House District 57,READY
+house,house,58,State House District 58,Multi-County Race,State House District 58,READY
+house,house,59,State House District 59,Multi-County Race,State House District 59 (Multi-County),READY
+house,house,60,State House District 60,Multi-County Race,State House District 60,READY
+house,house,61,State House District 61,Multi-County Race,State House District 61,READY
+house,house,62,State House District 62,Multi-County Race,State House District 62,READY
+house,house,63,State House District 63,Multi-County Race,State House District 63,READY
+house,house,64,State House District 64,Multi-County Race,State House District 64,READY
+house,house,65,State House District 65,Multi-County Race,State House District 65,READY
+house,house,66,State House District 66,Multi-County Race,State House District 66 (Multi-County),READY
+house,house,67,State House District 67,Multi-County Race,State House District 67 (Multi-County),READY
+house,house,68,State House District 68,Multi-County Race,State House District 68 (Multi-County),READY
+house,house,69,State House District 69,Multi-County Race,State House District 69 (Multi-County),READY
+house,house,70,State House District 70,Multi-County Race,State House District 70 (Multi-County),READY
+house,house,71,State House District 71,Multi-County Race,State House District 71,READY
+congress,congress,1,U.S. House District 1,Multi-County Race,U.S. House District 1,READY
+congress,congress,2,U.S. House District 2,Multi-County Race,U.S. House District 2,READY
+congress,congress,3,U.S. House District 3,Multi-County Race,U.S. House District 3,READY
+congress,congress,4,U.S. House District 4,Multi-County Race,U.S. House District 4,READY
+senate,senate,1,State Senate District 1,Multi-County Race,State Senate District 1 (Multi-County),READY
+senate,senate,9,State Senate District 9,Multi-County Race,State Senate District 9,READY
+senate,senate,11,State Senate District 11,Multi-County Race,State Senate District 11 (Multi-County),READY
+senate,senate,12,State Senate District 12,Multi-County Race,State Senate District 12,READY
+senate,senate,13,State Senate District 13,Multi-County Race,State Senate District 13,READY
+senate,senate,14,State Senate District 14,Multi-County Race,State Senate District 14,READY
+senate,senate,18,State Senate District 18,Multi-County Race,State Senate District 18 (Multi-County),READY
+senate,senate,19,State Senate District 19,Multi-County Race,State Senate District 19 (Multi-County),READY
+senate,senate,20,State Senate District 20,Multi-County Race,State Senate District 20 (Multi-County),READY
+senate,senate,21,State Senate District 21,Multi-County Race,State Senate District 21,READY
+senate,senate,23,State Senate District 23,Multi-County Race,State Senate District 23,READY
+state_school_board,school_board,1,State School Board District 1,Multi-County Race,State School Board District 1 (Multi-County),READY
+state_school_board,school_board,2,State School Board District 2,Multi-County Race,State School Board District 2,READY
+state_school_board,school_board,5,State School Board District 5,Multi-County Race,State School Board District 5,READY
+state_school_board,school_board,7,State School Board District 7,Multi-County Race,State School Board District 7 (2-Year Term),READY
+state_school_board,school_board,8,State School Board District 8,Multi-County Race,State School Board District 8,READY
+local_school_board,school_district,,State School Board Distrct 11 (Multi-County),Multi-County Race,State School Board Distrct 11 (Multi-County),"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+state_school_board,school_board,14,State School Board District 14,Multi-County Race,State School Board District 14 (Multi-County),READY
+judicial,,,Shall MATTHEW DAVID BATES be retained in the office of Judge of the District Court of the Third Judicial District?,Multi-County Race,Shall MATTHEW DAVID BATES be retained in the office of Judge of the District Court of the Third Judicial District?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall STEVEN K. BECK be retained in the office of Judge of the Juvenile Court of the Third Judicial District?,Multi-County Race,Shall STEVEN K. BECK be retained in the office of Judge of the Juvenile Court of the Third Judicial District?,"EXCLUDE — retention Y/N, not a candidate race"
+house,house,21,State House District 21,Multi-County Race,State House District 21,READY
+house,house,22,State House District 22,Multi-County Race,State House District 22,READY
+house,house,23,State House District 23,Multi-County Race,State House District 23 (Multi-County),READY
+house,house,24,State House District 24,Multi-County Race,State House District 24,READY
+county_office,county,1,Clerk/Auditor,Beaver,Clerk/Auditor,NEEDS county DistrictType wired
+local_school_board,school_district,1,Beaver School Board 5,Beaver,Beaver School Board 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,1,Beaver School Board 4,Beaver,Beaver School Board 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,1,Shall Von J. Christiansen be elected to the office of County Attorney?,Beaver,Shall Von J. Christiansen be elected to the office of County Attorney?,NEEDS county DistrictType wired
+county_office,county,1,Sheriff,Beaver,Sheriff,NEEDS county DistrictType wired
+county_office,county,1,Commissioner B,Beaver,Commissioner B,NEEDS county DistrictType wired
+county_office,county,1,Commissioner A,Beaver,Commissioner A,NEEDS county DistrictType wired
+county_office,county,2,Box Elder County Clerk,Box Elder,Box Elder County Clerk,NEEDS county DistrictType wired
+county_office,county,2,Box Elder County Auditor,Box Elder,Box Elder County Auditor,NEEDS county DistrictType wired
+county_office,county,2,Box Elde County Attorney,Box Elder,Box Elde County Attorney,NEEDS county DistrictType wired
+county_office,county,2,Box Elder County Commissioner Seat B,Box Elder,Box Elder County Commissioner Seat B,NEEDS county DistrictType wired
+local_school_board,school_district,2,Box Elder County School Board District 4,Box Elder,Box Elder County School Board District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,2,Box Elder County Sheriff,Box Elder,Box Elder County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,2,Box Elder County School Board District 3,Box Elder,Box Elder County School Board District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,2,Box Elder County School Board District 7,Box Elder,Box Elder County School Board District 7,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,2,Box Elder County Commissioner Seat A,Box Elder,Box Elder County Commissioner Seat A,NEEDS county DistrictType wired
+special_district,,,Cache Water District Board South 6,Cache,Cache Water District Board South 6,EXCLUDE — no address-resolvable geography
+special_district,,,Cache Water District Board Southeast 7,Cache,Cache Water District Board Southeast 7,EXCLUDE — no address-resolvable geography
+county_office,county,3,Cache County Sheriff,Cache,Cache County Sheriff,NEEDS county DistrictType wired
+special_district,,,Cache Water District Board Northeast 5,Cache,Cache Water District Board Northeast 5,EXCLUDE — no address-resolvable geography
+special_district,,,Cache Water District Board Logan 3,Cache,Cache Water District Board Logan 3,EXCLUDE — no address-resolvable geography
+special_district,,,Cache Water District Board At-large,Cache,Cache Water District Board At-large,EXCLUDE — no address-resolvable geography
+county_office,county,3,County Executive/Surveyor,Cache,County Executive/Surveyor,NEEDS county DistrictType wired
+county_office,county,3,Cache County Council Logan Seat 2,Cache,Cache County Council Logan Seat 2,NEEDS county DistrictType wired
+county_office,county,3,Cache County Council Southeast 7,Cache,Cache County Council Southeast 7,NEEDS county DistrictType wired
+county_office,county,3,Cache County Council Northeast 5,Cache,Cache County Council Northeast 5,NEEDS county DistrictType wired
+county_office,county,3,County Clerk,Cache,County Clerk,NEEDS county DistrictType wired
+local_school_board,school_district,3,Logan City School Board District 5,Cache,Logan City School Board District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,3,Cache County Council Logan Seat 3,Cache,Cache County Council Logan Seat 3,NEEDS county DistrictType wired
+county_office,county,3,County Attorney,Cache,County Attorney,NEEDS county DistrictType wired
+county_office,county,3,County Auditor,Cache,County Auditor,NEEDS county DistrictType wired
+local_school_board,school_district,3,Cache County School Board District 2,Cache,Cache County School Board District 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,3,Cache County School Board District 4,Cache,Cache County School Board District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,3,Cache County School Board District 7,Cache,Cache County School Board District 7,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,3,Logan City School Board District 3,Cache,Logan City School Board District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,4,County Attorney,Carbon,County Attorney,NEEDS county DistrictType wired
+county_office,county,4,Commissioner,Carbon,Commissioner,NEEDS county DistrictType wired
+county_office,county,4,Commissioner/Surveyor,Carbon,Commissioner/Surveyor,NEEDS county DistrictType wired
+county_office,county,4,Clerk/Auditor,Carbon,Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,4,Sheriff,Carbon,Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,4,School Board District 5,Carbon,School Board District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,4,School Board District 4,Carbon,School Board District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,5,School Board District 1,Daggett,School Board District 1,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,5,School Board District 2,Daggett,School Board District 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,5,School Board District 3,Daggett,School Board District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+special_district,,,Flaming Gorge Fire and EMS District At Large,Daggett,Flaming Gorge Fire and EMS District At Large,EXCLUDE — no address-resolvable geography
+special_district,,,FLAMING GORGE FIRE AND EMS DISTRICT EAST,Daggett,FLAMING GORGE FIRE AND EMS DISTRICT EAST,EXCLUDE — no address-resolvable geography
+special_district,,,Flaming Gorge Fire & EMS District West,Daggett,Flaming Gorge Fire & EMS District West,EXCLUDE — no address-resolvable geography
+county_office,county,5,Auditor,Daggett,Auditor,NEEDS county DistrictType wired
+county_office,county,5,Commissioner A,Daggett,Commissioner A,NEEDS county DistrictType wired
+county_office,county,5,Commissioner B,Daggett,Commissioner B,NEEDS county DistrictType wired
+county_office,county,5,Sheriff,Daggett,Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,6,Davis School Board District 5,Davis,Davis School Board District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+us_senate,,,US Senate,Davis,US Senate,VERIFY — no regular UT US Senate seat up in 2026
+local_school_board,school_district,6,Davis School Board District 3,Davis,Davis School Board District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,6,County Sheriff,Davis,County Sheriff,NEEDS county DistrictType wired
+county_office,county,6,County Controller,Davis,County Controller,NEEDS county DistrictType wired
+local_school_board,school_district,6,Davis School Board District 6,Davis,Davis School Board District 6,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,6,County Commissioner Seat A,Davis,County Commissioner Seat A,NEEDS county DistrictType wired
+county_office,county,6,County Clerk,Davis,County Clerk,NEEDS county DistrictType wired
+county_office,county,6,County Attorney,Davis,County Attorney,NEEDS county DistrictType wired
+judicial,,,Shall John Carl Ynchausti be retained in the office of Judge of the Davis County Justice Court?,Davis,Shall John Carl Ynchausti be retained in the office of Judge of the Davis County Justice Court?,"EXCLUDE — retention Y/N, not a candidate race"
+local_school_board,school_district,6,Davis School Board District 7,Davis,Davis School Board District 7,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,6,County Commissioner Seat B,Davis,County Commissioner Seat B,NEEDS county DistrictType wired
+county_office,county,7,County Commissioner Seat A,Duchesne,County Commissioner Seat A,NEEDS county DistrictType wired
+county_office,county,7,County Commissioner Seat B,Duchesne,County Commissioner Seat B,NEEDS county DistrictType wired
+county_office,county,7,County Clek/Auditor,Duchesne,County Clek/Auditor,NEEDS county DistrictType wired
+county_office,county,7,County Attorney,Duchesne,County Attorney,NEEDS county DistrictType wired
+county_office,county,7,County Sheriff,Duchesne,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,7,Local School Board # 1,Duchesne,Local School Board # 1,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,7,Local School Board # 2,Duchesne,Local School Board # 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,7,Local School Board # 3,Duchesne,Local School Board # 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,8,Emery County School District #5,Emery,Emery County School District #5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,8,Recorder,Emery,Recorder,NEEDS county DistrictType wired
+county_office,county,8,Treasurer,Emery,Treasurer,NEEDS county DistrictType wired
+county_office,county,8,Attorney,Emery,Attorney,NEEDS county DistrictType wired
+local_school_board,school_district,8,Emery County School District #4,Emery,Emery County School District #4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,8,Clerk/Auditor,Emery,Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,8,Commissioner B,Emery,Commissioner B,NEEDS county DistrictType wired
+county_office,county,8,Commissioner A,Emery,Commissioner A,NEEDS county DistrictType wired
+county_office,county,8,Sheriff,Emery,Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,9,Garfield County School Board #4,Garfield,Garfield County School Board #4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,9,Garfield County School Board #5,Garfield,Garfield County School Board #5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,9,Garfield County Sheriff,Garfield,Garfield County Sheriff,NEEDS county DistrictType wired
+county_office,county,9,Garfield County Commission Seat B,Garfield,Garfield County Commission Seat B,NEEDS county DistrictType wired
+county_office,county,9,Garfield County Commission Seat A,Garfield,Garfield County Commission Seat A,NEEDS county DistrictType wired
+county_office,county,9,Garfield County Clerk/Auditor,Garfield,Garfield County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,9,Garfield County Attorney,Garfield,Garfield County Attorney,NEEDS county DistrictType wired
+county_office,county,10,Grand County Commission District 4,Grand,Grand County Commission District 4,NEEDS county DistrictType wired
+local_school_board,school_district,10,Grand County School Board District 5,Grand,Grand County School Board District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+special_district,,,Moab Valley Fire District,Grand,Moab Valley Fire District,EXCLUDE — no address-resolvable geography
+county_office,county,10,Grand County Commission At-Large,Grand,Grand County Commission At-Large,NEEDS county DistrictType wired
+local_school_board,school_district,10,Grand County School Board District 1,Grand,Grand County School Board District 1,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,10,Grand County Sheriff,Grand,Grand County Sheriff,NEEDS county DistrictType wired
+county_office,county,10,Grand County Clerk/Auditor,Grand,Grand County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,10,Grand County Attorney,Grand,Grand County Attorney,NEEDS county DistrictType wired
+county_office,county,10,Grand County Commission District 5,Grand,Grand County Commission District 5,NEEDS county DistrictType wired
+special_district,,,Spanish Valley Water and Sewer Improvement District,Grand,Spanish Valley Water and Sewer Improvement District,EXCLUDE — no address-resolvable geography
+local_school_board,school_district,11,5th Local School Board District 5,Iron,5th Local School Board District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,11,4th Local School Board District 4,Iron,4th Local School Board District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,11,County Sheriff,Iron,County Sheriff,NEEDS county DistrictType wired
+county_office,county,11,County Commissioner B,Iron,County Commissioner B,NEEDS county DistrictType wired
+local_school_board,school_district,11,7th Local School Board District 7,Iron,7th Local School Board District 7,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,11,County Attorney,Iron,County Attorney,NEEDS county DistrictType wired
+county_office,county,11,County Clerk,Iron,County Clerk,NEEDS county DistrictType wired
+county_office,county,11,County Commissioner A,Iron,County Commissioner A,NEEDS county DistrictType wired
+local_school_board,school_district,11,6th Local School Board District 6,Iron,6th Local School Board District 6,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,11,County Auditor,Iron,County Auditor,NEEDS county DistrictType wired
+county_office,county,12,County Attorney,Juab,County Attorney,NEEDS county DistrictType wired
+county_office,county,12,County Clerk/Auditor,Juab,County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,12,County Commissioner Seat A,Juab,County Commissioner Seat A,NEEDS county DistrictType wired
+county_office,county,12,County Commissioner Seat B,Juab,County Commissioner Seat B,NEEDS county DistrictType wired
+county_office,county,12,County Sheriff,Juab,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,12,Juab School District 4,Juab,Juab School District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,12,Juab School District 5,Juab,Juab School District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,12,Tintic School District 4,Juab,Tintic School District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,12,Tintic School District 5,Juab,Tintic School District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,13,Kane County Commissioner Seat A,Kane,Kane County Commissioner Seat A,NEEDS county DistrictType wired
+county_office,county,13,Kane County Commissioner Seat B,Kane,Kane County Commissioner Seat B,NEEDS county DistrictType wired
+county_office,county,13,Kane County Attorney,Kane,Kane County Attorney,NEEDS county DistrictType wired
+county_office,county,13,Kane County Clerk/Auditor,Kane,Kane County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,13,Kane County Sheriff,Kane,Kane County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,13,Kane County School Board Seat 4,Kane,Kane County School Board Seat 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,13,Kane County School Board Seat 5,Kane,Kane County School Board Seat 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+special_district,,,Vermillion Cliffs SSD,Kane,Vermillion Cliffs SSD,EXCLUDE — no address-resolvable geography
+county_office,county,14,Commission Seat A,Millard,Commission Seat A,NEEDS county DistrictType wired
+county_office,county,14,Commission Seat B,Millard,Commission Seat B,NEEDS county DistrictType wired
+county_office,county,14,County Assessor 2 Year,Millard,County Assessor 2 Year,NEEDS county DistrictType wired
+county_office,county,14,County Attorney,Millard,County Attorney,NEEDS county DistrictType wired
+county_office,county,14,County Auditor,Millard,County Auditor,NEEDS county DistrictType wired
+county_office,county,14,County Clerk,Millard,County Clerk,NEEDS county DistrictType wired
+county_office,county,14,County Sheriff,Millard,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,14,Millard School Board District 4,Millard,Millard School Board District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,14,Millard School Board District 5,Millard,Millard School Board District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,15,Morgan County Commissioin at Large A,Morgan,Morgan County Commissioin at Large A,NEEDS county DistrictType wired
+county_office,county,15,Morgan County Commission at Large B,Morgan,Morgan County Commission at Large B,NEEDS county DistrictType wired
+county_office,county,15,Morgan County Attorney,Morgan,Morgan County Attorney,NEEDS county DistrictType wired
+county_office,county,15,Morgan County Clerk/Auditor,Morgan,Morgan County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,15,Morgan County Sheriff,Morgan,Morgan County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,15,Morga School Board District#2,Morgan,Morga School Board District#2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,15,Morgan School Board District #4,Morgan,Morgan School Board District #4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,16,County Clerk/Auditor,Piute,County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,16,County Attorney,Piute,County Attorney,NEEDS county DistrictType wired
+county_office,county,16,County Commissioner A,Piute,County Commissioner A,NEEDS county DistrictType wired
+county_office,county,16,County Commissioner B,Piute,County Commissioner B,NEEDS county DistrictType wired
+county_office,county,16,County Sheriff,Piute,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,16,Piute County School District 1,Piute,Piute County School District 1,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,16,Piute County School District 2,Piute,Piute County School District 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,16,Piute County School District 3,Piute,Piute County School District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,17,Rich County Commissioner Seat A,Rich,Rich County Commissioner Seat A,NEEDS county DistrictType wired
+county_office,county,17,Rich County Commissioner Seat B,Rich,Rich County Commissioner Seat B,NEEDS county DistrictType wired
+county_office,county,17,Rich County Sheriff,Rich,Rich County Sheriff,NEEDS county DistrictType wired
+county_office,county,17,Rich County Clerk/Auditor,Rich,Rich County Clerk/Auditor,NEEDS county DistrictType wired
+local_school_board,school_district,17,Rich County School Board # 3,Rich,Rich County School Board # 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,17,Rich County School Board # 4,Rich,Rich County School Board # 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+judicial,,,Shall PAUL CURTIS FARR be retained in the office of Justice Court Judge of the Alta Municipal Justice Court?,Salt Lake,Shall PAUL CURTIS FARR be retained in the office of Justice Court Judge of the Alta Municipal Justice Court?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall AUGUSTUS GRIFFITH CHIN be retained in the office of Justice Court Judge of the Holladay Municipal Justice Court?,Salt Lake,Shall AUGUSTUS GRIFFITH CHIN be retained in the office of Justice Court Judge of the Holladay Municipal Justice Court?,"EXCLUDE — retention Y/N, not a candidate race"
+county_office,county,18,County Council At-Large A,Salt Lake,County Council At-Large A,NEEDS county DistrictType wired
+county_office,county,18,County Council District 1,Salt Lake,County Council District 1,NEEDS county DistrictType wired
+county_office,county,18,County Council District 3,Salt Lake,County Council District 3,NEEDS county DistrictType wired
+county_office,county,18,County Council District 5,Salt Lake,County Council District 5,NEEDS county DistrictType wired
+county_office,county,18,County Auditor,Salt Lake,County Auditor,NEEDS county DistrictType wired
+county_office,county,18,County Clerk,Salt Lake,County Clerk,NEEDS county DistrictType wired
+county_office,county,18,County District Attorney,Salt Lake,County District Attorney,NEEDS county DistrictType wired
+county_office,county,18,County Sheriff,Salt Lake,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,18,Canyons School Board District 2,Salt Lake,Canyons School Board District 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Canyons School Board District 4,Salt Lake,Canyons School Board District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Canyons School Board District 5,Salt Lake,Canyons School Board District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Canyons School Board District 6,Salt Lake,Canyons School Board District 6,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Granite School Board District 3,Salt Lake,Granite School Board District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Granite School Board District 5,Salt Lake,Granite School Board District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Granite School Board District 6,Salt Lake,Granite School Board District 6,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Granite School Board District 7,Salt Lake,Granite School Board District 7,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Jordan School Board District 2,Salt Lake,Jordan School Board District 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Jordan School Board District 3,Salt Lake,Jordan School Board District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Jordan School Board District 7,Salt Lake,Jordan School Board District 7,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Murray School Board District 2,Salt Lake,Murray School Board District 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Murray School Board District 3,Salt Lake,Murray School Board District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Murray School Board District 4,Salt Lake,Murray School Board District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Salt Lake School Board District 5 (2 Year Term),Salt Lake,Salt Lake School Board District 5 (2 Year Term),"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Salt Lake School Board District 3,Salt Lake,Salt Lake School Board District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Salt Lake School Board District 4,Salt Lake,Salt Lake School Board District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,18,Salt Lake School Board District 6,Salt Lake,Salt Lake School Board District 6,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+special_district,,,White City Water Improvement District Trustee At-Large,Salt Lake,White City Water Improvement District Trustee At-Large,EXCLUDE — no address-resolvable geography
+special_district,,,Magna Water District Trustee At-Large,Salt Lake,Magna Water District Trustee At-Large,EXCLUDE — no address-resolvable geography
+county_office,county,19,County Commissioner District 2,San Juan,County Commissioner District 2,NEEDS county DistrictType wired
+county_office,county,19,County Commissioner District 3,San Juan,County Commissioner District 3,NEEDS county DistrictType wired
+county_office,county,19,County Attorney,San Juan,County Attorney,NEEDS county DistrictType wired
+county_office,county,19,County ClerkAuditor,San Juan,County ClerkAuditor,NEEDS county DistrictType wired
+county_office,county,19,County Sheriff,San Juan,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,19,Grand School Board District 1,San Juan,Grand School Board District 1,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,19,Grand School Board District 5,San Juan,Grand School Board District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,19,San Juan School Board District 3,San Juan,San Juan School Board District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,19,San Juan School Board District 5,San Juan,San Juan School Board District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,20,County Attorney,Sanpete,County Attorney,NEEDS county DistrictType wired
+county_office,county,20,County Auditor,Sanpete,County Auditor,NEEDS county DistrictType wired
+county_office,county,20,County Clerk,Sanpete,County Clerk,NEEDS county DistrictType wired
+county_office,county,20,County Commissioner Seat A,Sanpete,County Commissioner Seat A,NEEDS county DistrictType wired
+county_office,county,20,County Commissioner Seat B,Sanpete,County Commissioner Seat B,NEEDS county DistrictType wired
+county_office,county,20,County Sheriff,Sanpete,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,20,North Sanpete School District # 4,Sanpete,North Sanpete School District # 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,20,North Sanpete School District # 5,Sanpete,North Sanpete School District # 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,20,South Sanpete School District #1,Sanpete,South Sanpete School District #1,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,20,South Sanpete School District # 4,Sanpete,South Sanpete School District # 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,20,South Sanpete School District # 5,Sanpete,South Sanpete School District # 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,21,Commissioner B,Sevier,Commissioner B,NEEDS county DistrictType wired
+county_office,county,21,County Attorney,Sevier,County Attorney,NEEDS county DistrictType wired
+county_office,county,21,Commissioner A,Sevier,Commissioner A,NEEDS county DistrictType wired
+county_office,county,21,County Clerk/Auditor,Sevier,County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,21,County Sheriff,Sevier,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,21,Local School Board 1,Sevier,Local School Board 1,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,21,Local School Board 2,Sevier,Local School Board 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,21,Local School Board 3,Sevier,Local School Board 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,22,Summit County Council District 4,Summit,Summit County Council District 4,NEEDS county DistrictType wired
+county_office,county,22,Summit County Council District 5,Summit,Summit County Council District 5,NEEDS county DistrictType wired
+county_office,county,22,Summit County Attorney,Summit,Summit County Attorney,NEEDS county DistrictType wired
+county_office,county,22,Summit County Auditor,Summit,Summit County Auditor,NEEDS county DistrictType wired
+county_office,county,22,Summit County Clerk,Summit,Summit County Clerk,NEEDS county DistrictType wired
+county_office,county,22,Summit County Sheriff,Summit,Summit County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,22,Park City School Board Seat 4,Summit,Park City School Board Seat 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,22,Park City School Board Seat 5,Summit,Park City School Board Seat 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,22,North Summit School Board Seat 4,Summit,North Summit School Board Seat 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,22,North Summit School Board Seat 5,Summit,North Summit School Board Seat 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,22,South Summit School Board Seat 4,Summit,South Summit School Board Seat 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,22,South Summit School Board Seat 5,Summit,South Summit School Board Seat 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,23,County Attorney,Tooele,County Attorney,NEEDS county DistrictType wired
+county_office,county,23,County Auditor,Tooele,County Auditor,NEEDS county DistrictType wired
+county_office,county,23,County Clerk,Tooele,County Clerk,NEEDS county DistrictType wired
+county_office,county,23,County Sheriff,Tooele,County Sheriff,NEEDS county DistrictType wired
+county_office,county,23,County Council - District 2,Tooele,County Council - District 2,NEEDS county DistrictType wired
+county_office,county,23,County Council - District 5,Tooele,County Council - District 5,NEEDS county DistrictType wired
+local_school_board,school_district,23,Local School Board - District 5,Tooele,Local School Board - District 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,23,Local School Board - District 6,Tooele,Local School Board - District 6,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,23,Local School Board - District 7,Tooele,Local School Board - District 7,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+judicial,,,Shall RAY R. RICHARDS be retained in the office of Justice Court Judge of the Uintah County Justice Court?,Uintah,Shall RAY R. RICHARDS be retained in the office of Justice Court Judge of the Uintah County Justice Court?,"EXCLUDE — retention Y/N, not a candidate race"
+county_office,county,24,Uintah County Commission Seat B,Uintah,Uintah County Commission Seat B,NEEDS county DistrictType wired
+county_office,county,24,Uintah County Commission Seat A,Uintah,Uintah County Commission Seat A,NEEDS county DistrictType wired
+county_office,county,24,Uintah County Attorney,Uintah,Uintah County Attorney,NEEDS county DistrictType wired
+county_office,county,24,Uintah County Clerk-Auditor,Uintah,Uintah County Clerk-Auditor,NEEDS county DistrictType wired
+county_office,county,24,Uintah County Sheriff,Uintah,Uintah County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,24,Uintah School Board District #1,Uintah,Uintah School Board District #1,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,24,Uintah School Board District #2,Uintah,Uintah School Board District #2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,24,Uintah School Board District #3,Uintah,Uintah School Board District #3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,25,County Auditor,Utah,County Auditor,NEEDS county DistrictType wired
+county_office,county,25,County Attorney,Utah,County Attorney,NEEDS county DistrictType wired
+county_office,county,25,County Clerk,Utah,County Clerk,NEEDS county DistrictType wired
+county_office,county,25,County Commission Seat A,Utah,County Commission Seat A,NEEDS county DistrictType wired
+county_office,county,25,County Commission Seat B,Utah,County Commission Seat B,NEEDS county DistrictType wired
+county_office,county,25,County Sheriff,Utah,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,25,School Board Nebo 2,Utah,School Board Nebo 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,25,School Board Nebo 4,Utah,School Board Nebo 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,25,School Board Nebo 5,Utah,School Board Nebo 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,25,School Board Provo 1,Utah,School Board Provo 1,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,25,School Board Provo 2,Utah,School Board Provo 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,25,School Board Provo 3,Utah,School Board Provo 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,25,School Board Provo 4,Utah,School Board Provo 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,26,School Board Seat C,Wasatch,School Board Seat C,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,26,School Board Seat D,Wasatch,School Board Seat D,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,26,County Council Seat A - At Large,Wasatch,County Council Seat A - At Large,NEEDS county DistrictType wired
+county_office,county,26,County Council Seat C,Wasatch,County Council Seat C,NEEDS county DistrictType wired
+county_office,county,26,County Council Seat F,Wasatch,County Council Seat F,NEEDS county DistrictType wired
+county_office,county,26,County Attorney,Wasatch,County Attorney,NEEDS county DistrictType wired
+county_office,county,26,County Clerk/Auditor,Wasatch,County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,26,County Sheriff,Wasatch,County Sheriff,NEEDS county DistrictType wired
+county_office,county,27,County Commission Seat A,Washington,County Commission Seat A,NEEDS county DistrictType wired
+county_office,county,27,County Commission Seat B,Washington,County Commission Seat B,NEEDS county DistrictType wired
+county_office,county,27,County Attorney,Washington,County Attorney,NEEDS county DistrictType wired
+county_office,county,27,County Clerk/Auditor,Washington,County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,27,County Sheriff,Washington,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,27,Local School Board 4,Washington,Local School Board 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,27,Local School Board 5,Washington,Local School Board 5,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,27,Local School Board 6,Washington,Local School Board 6,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,27,Local School Board 7,Washington,Local School Board 7,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,28,School Board,Wayne,School Board,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,28,County Commissioner Seat B,Wayne,County Commissioner Seat B,NEEDS county DistrictType wired
+county_office,county,28,County Commissioner Seat A,Wayne,County Commissioner Seat A,NEEDS county DistrictType wired
+county_office,county,28,County Attorney,Wayne,County Attorney,NEEDS county DistrictType wired
+county_office,county,28,County Clerk/Auditor,Wayne,County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,28,County Sheriff,Wayne,County Sheriff,NEEDS county DistrictType wired
+county_office,county,28,Justice of the Peace,Wayne,Justice of the Peace,NEEDS county DistrictType wired
+local_school_board,school_district,28,School Board,Wayne,School Board,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+county_office,county,29,County Commissioner A,Weber,County Commissioner A,NEEDS county DistrictType wired
+county_office,county,29,County Commissioner B,Weber,County Commissioner B,NEEDS county DistrictType wired
+county_office,county,29,County Assessor,Weber,County Assessor,NEEDS county DistrictType wired
+county_office,county,29,County Attorney,Weber,County Attorney,NEEDS county DistrictType wired
+county_office,county,29,County Clerk/Auditor,Weber,County Clerk/Auditor,NEEDS county DistrictType wired
+county_office,county,29,County Sheriff,Weber,County Sheriff,NEEDS county DistrictType wired
+local_school_board,school_district,29,Ogden School Board District 2,Weber,Ogden School Board District 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,29,Ogden School Board District 4,Weber,Ogden School Board District 4,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,29,Ogden School Board District 7,Weber,Ogden School Board District 7,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,29,Ogden School Board District 6,Weber,Ogden School Board District 6,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,29,Weber School Board District 1,Weber,Weber School Board District 1,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,29,Weber School Board District 2,Weber,Weber School Board District 2,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,29,Weber School Board District 3,Weber,Weber School Board District 3,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+local_school_board,school_district,29,Weber School Board District 6,Weber,Weber School Board District 6,"NEEDS local-board sub-district geo (app resolves district NAME, not seat)"
+judicial,,,Shall XXX be retained in the office of Justice Court Judge of Farr West City?,Weber,Shall XXX be retained in the office of Justice Court Judge of Farr West City?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall XXX be retained in the office of Justice Court Judge of North Ogden City?,Weber,Shall XXX be retained in the office of Justice Court Judge of North Ogden City?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall XXX be retained in the office of Justice Court Judge of Pleasant Viewt City?,Weber,Shall XXX be retained in the office of Justice Court Judge of Pleasant Viewt City?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall XXX be retained in the office of Justice Court Judge of Washington Terracet City?,Weber,Shall XXX be retained in the office of Justice Court Judge of Washington Terracet City?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall XXX be retained in the office of Justice Court Judge of Uintah-Huntsville City?,Weber,Shall XXX be retained in the office of Justice Court Judge of Uintah-Huntsville City?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall XXX be retained in the office of Justice Court Judge of Ogden City?,Weber,Shall XXX be retained in the office of Justice Court Judge of Ogden City?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall XXX be retained in the office of Justice Court Judge of Ogden City?,Weber,Shall XXX be retained in the office of Justice Court Judge of Ogden City?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall XXX be retained in the office of Justice Court Judge of Plain City?,Weber,Shall XXX be retained in the office of Justice Court Judge of Plain City?,"EXCLUDE — retention Y/N, not a candidate race"
+judicial,,,Shall XXX be retained in the office of Justice Court Judge of Roy City?,Weber,Shall XXX be retained in the office of Justice Court Judge of Roy City?,"EXCLUDE — retention Y/N, not a candidate race"

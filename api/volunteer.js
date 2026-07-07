@@ -11,13 +11,14 @@
  *   helpElect (bool)    — "I would like to help strengthen civic engagement in my community"
  *   newsletter (bool)   — "Subscribe to the newsletter"
  *   precinctName  precinctId  county
- *   houseDistrict  senateDistrict  congressDistrict
+ *   houseDistrict  senateDistrict  congressDistrict  schoolBoard  schoolDistrict
  *   addressInput  sourceUrl
  *
  * Submissions column order (must match the sheet header row):
  *   Created | FirstName | LastName | Email | Phone | TopIssues | Capacity |
- *   Precinct | County | House | Senate | Congress | Address | HelpElect |
- *   Newsletter | Status | DateContacted | SourceURL
+ *   Precinct | County | House | Senate | Congress | SchoolBoard |
+ *   SchoolDistrict | Address | HelpElect | Newsletter | Status |
+ *   DateContacted | SourceURL
  */
 
 const config            = require('../lib/config');
@@ -113,6 +114,8 @@ module.exports = async (req, res) => {
     house:            body.houseDistrict || '',
     senate:           body.senateDistrict || '',
     congress:         body.congressDistrict || '',
+    schoolBoard:      body.schoolBoard || '',
+    schoolDistrict:   body.schoolDistrict || '',
     address:          body.addressInput || '',
     helpElect:        body.helpElect ? 'TRUE' : 'FALSE',
     newsletter:       body.newsletter ? 'TRUE' : 'FALSE',
@@ -125,6 +128,7 @@ module.exports = async (req, res) => {
     payload.firstName, payload.lastName, payload.email, payload.phone,
     payload.issues, payload.capacity,
     payload.precinct, payload.county, payload.house, payload.senate, payload.congress,
+    payload.schoolBoard, payload.schoolDistrict,
     payload.address, payload.helpElect, payload.newsletter,
     'New',   // Status
     '',      // DateContacted (organizers fill this)

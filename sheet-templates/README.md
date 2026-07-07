@@ -10,12 +10,35 @@ expects (`Candidates`, `Config`, `Submissions`).
 2. **File → Import → Upload →** `Candidates.csv`.
 3. Import location: **Replace current sheet**. (Then rename the tab to `Candidates`
    if it isn't already.)
-4. Delete the two sample rows once you've added real candidates.
+4. Delete the sample rows once you've added real candidates.
 5. Copy its Sheet ID (URL between `/d/` and `/edit`) → `CANDIDATE_SHEET_ID`.
 
-`DistrictType` must be one of: `house`, `senate`, `congress`, `school_board`.
-`District` is the number (e.g. `10`). `TopIssues` is comma-separated in one cell.
-`Active` = TRUE/FALSE. Share this sheet with the service account as **Viewer**.
+All candidates live in this one tab regardless of office — the app filters each
+voter's races by the `DistrictType` + `District` columns. Group the rows by
+`DistrictType` (congress → senate → house → school_board → school_district) to
+keep it readable; the template is already laid out that way and ships one sample
+row per type. Adding a brand-new office type later is just a new `DistrictType`
+value — no code change.
+
+`DistrictType` must be one of: `congress`, `senate`, `house`, `school_board`,
+`school_district`. `District` must equal what the map returns for that type: a
+**number** for congress/senate/house/school_board (e.g. `10`), and the **district
+name** for `school_district` (e.g. `Granite`). `TopIssues` is comma-separated in
+one cell. `Active` = TRUE/FALSE. Share this sheet with the service account as
+**Viewer**.
+
+For `school_district`, the name match is case/whitespace-insensitive, so
+capitalization doesn't have to be perfect. The valid Utah district names are
+(verified against the live GIS layer, 2026-07-01):
+
+> Alpine, Beaver County, Box Elder, Cache County, Canyons, Carbon County,
+> Daggett County, Davis County, Duchesne County, Emery County, Garfield County,
+> Grand County, Granite, Iron County, Jordan, Juab County, Kane County,
+> Logan City, Millard County, Morgan County, Murray City, Nebo, North Sanpete,
+> North Summit, Ogden City, Park City, Piute County, Provo City, Rich County,
+> Salt Lake City, San Juan County, Sevier County, South Sanpete, South Summit,
+> Tintic, Tooele County, Uintah County, Wasatch County, Washington County,
+> Wayne County, Weber County
 
 ## 2. Volunteer spreadsheet
 
