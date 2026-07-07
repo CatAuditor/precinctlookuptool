@@ -1,0 +1,26 @@
+Name,Office,DistrictType,District,Party,Incumbent,Status,PhotoURL,Bio,Website,Email,Phone,Facebook,Instagram,X,VolunteerURL,DonateURL,TopIssues,Active,Order
+Zach Robinson,County Council At-Large A,county,Salt Lake,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Maleah Bliss,County Council At-Large A,county,Salt Lake,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Casey Poe,County Council District 1,county,Salt Lake,Libertarian,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Luke Maynes,County Council District 3,county,Salt Lake,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Sara Cimmers,County Council District 5,county,Salt Lake,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Chris Null,County Council District 5,county,Salt Lake,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
+Traci Crockett,County Council District 5,county,Salt Lake,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
+Ali Cloward,County Auditor,county,Salt Lake,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Michelle Kaufusi,County Commission Seat A,county,Utah,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+David Spencer,County Commission Seat B,county,Utah,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Fred J. Allen,County Commission Seat B,county,Utah,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Corey Astill,County Clerk,county,Utah,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Russ Rampton,County Clerk,county,Utah,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Duane D Kearsley,County Commissioner A,county,Weber,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Gary C. New,County Commissioner A,county,Weber,Forward,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Alvin Thurgood,County Commissioner A,county,Weber,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Jon D. Beesley,County Commissioner B,county,Weber,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Gil Almquist,County Commission Seat A,county,Washington,Republican,TRUE,GENERAL,,,,,,,,,,,,TRUE,1
+Sarah Anderson,County Commission Seat B,county,Washington,Democratic,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Victor Iverson,County Commission Seat B,county,Washington,Republican,TRUE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
+Troy Belliston,County Commission Seat B,county,Washington,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,TRUE,1
+Johnny Heppler,County Sheriff,county,Washington,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Jon Atkin,County Sheriff,county,Davis,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Susan Lee,County Commission Seat B,county,Davis,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
+Scott Fletcher,County Commission Seat A,county,Davis,Republican,FALSE,GENERAL,,,,,,,,,,,,TRUE,1
