@@ -46,15 +46,18 @@ RESOLVED = {
 SCHOOL_BOARD = {1:"Jennie Earl",2:"Joseph Kerry",3:"Rod Hall",4:"LeAnn Wood",5:"Sarah Reale",
     6:"Carol Barlow Lear",7:"Erin Longacre",8:"Christina Boggess",9:"Amanda Bollinger",
     10:"Matt Hymas",11:"Cindy Bishop Davis",12:"Cole Kelley",13:"Randy Boothe",14:"Emily Green",15:"Joann Brinton"}
-# US House incumbents. District numbers here are only a fallback for incumbents
-# who DON'T appear in the filing; anyone running gets their district from the
-# filing (Moore→2, Maloy→3, Kennedy→4 under the 2026 court map). Owens is
-# retiring and has no valid new-map seat, so he's intentionally omitted — new
-# District 1 simply shows candidates with no returning incumbent.
-US_HOUSE = {1:("Blake Moore","R"),2:("Celeste Maloy","R"),3:("Mike Kennedy","R")}
+# US House incumbents (name, party, official congressional site). District
+# numbers here are only a fallback for incumbents who DON'T appear in the
+# filing; anyone running gets their district from the filing (Moore→2,
+# Maloy→3, Kennedy→4 under the 2026 court map). Owens is retiring and has no
+# valid new-map seat, so he's intentionally omitted — new District 1 simply
+# shows candidates with no returning incumbent.
+US_HOUSE = {1:("Blake Moore","R","https://blakemoore.house.gov/"),
+            2:("Celeste Maloy","R","https://maloy.house.gov/"),
+            3:("Mike Kennedy","R","https://mikekennedy.house.gov/")}
 
 COLS = ["Name","Office","DistrictType","District","Party","Incumbent","Status","PhotoURL","Bio",
-        "Website","Email","Phone","Facebook","Instagram","X","VolunteerURL","DonateURL","TopIssues","Active","Order"]
+        "Website","OfficialURL","Email","Phone","Facebook","Instagram","X","VolunteerURL","DonateURL","TopIssues","Active","Order"]
 CTX = ssl.create_default_context(); CTX.check_hostname=False; CTX.verify_mode=ssl.CERT_NONE
 
 def fetch(url):
@@ -111,16 +114,22 @@ def build():
     inc=[]
     for r in leg:
         dt="house" if r.get("house")=="H" else "senate"
+        # Senate records carry bio as a literal boolean (True) instead of text —
+        # only keep bios that are actual prose.
+        bio=r.get("bio")
+        bio=clean(bio)[:500] if isinstance(bio,str) and len(clean(bio))>20 else ""
+        lid=clean(r.get("id"))
+        official=(f"https://house.utleg.gov/rep/{lid}/" if dt=="house" else f"https://senate.utah.gov/sen/{lid}/") if lid else ""
         inc.append({"Name":clean(r.get("formatName")),"Office":f"State {'House' if dt=='house' else 'Senate'} District {r.get('district')}",
             "DistrictType":dt,"District":str(r.get("district")).strip(),"Party":full_party(clean(r.get("party"))),"Incumbent":"TRUE",
-            "PhotoURL":clean(r.get("image")),"Bio":clean(r.get("bio"))[:500],"Email":clean(r.get("email")),
+            "PhotoURL":clean(r.get("image")),"Bio":bio,"OfficialURL":official,"Email":clean(r.get("email")),
             "Phone":clean(r.get("cell") or r.get("workPhone") or r.get("homePhone")),
             "Facebook":social_url(r.get("facebook"),"facebook.com"),
             "Instagram":social_url(r.get("instagram"),"instagram.com"),"X":clean(r.get("twitter"))})
     for d,name in SCHOOL_BOARD.items():
         inc.append({"Name":name,"Office":f"State School Board District {d}","DistrictType":"school_board","District":str(d),"Incumbent":"TRUE"})
-    for d,(name,party) in US_HOUSE.items():
-        inc.append({"Name":name,"Office":f"U.S. House District {d}","DistrictType":"congress","District":str(d),"Party":full_party(party),"Incumbent":"TRUE"})
+    for d,(name,party,official) in US_HOUSE.items():
+        inc.append({"Name":name,"Office":f"U.S. House District {d}","DistrictType":"congress","District":str(d),"Party":full_party(party),"Incumbent":"TRUE","OfficialURL":official})
 
     # ---- overlay (2026 filers, keep general + pending) ----
     wb=openpyxl.load_workbook(io.BytesIO(fetch(XLSX_URL)), read_only=True, data_only=True)
@@ -157,7 +166,7 @@ def build():
             "Party":c["Party"],"Status":c["Status"],"Incumbent":"FALSE","Active":"TRUE","Order":"1"})
         if match:
             used.add(id(match)); row["Incumbent"]="TRUE"; row["Name"]=match["Name"]
-            for f in ["PhotoURL","Bio","Website","Email","Phone","Facebook","Instagram","X"]: row[f]=match.get(f,"")
+            for f in ["PhotoURL","Bio","Website","OfficialURL","Email","Phone","Facebook","Instagram","X"]: row[f]=match.get(f,"")
             if dt=="congress": row["Status"]=c["Status"]+" | district per 2026 filing"
         out.append(row)
     for r in inc:

@@ -75,7 +75,8 @@ function shapeCandidate(row) {
     district:     String(row.District || '').trim(),
     photoUrl:     row.PhotoURL || '',
     bio:          row.Bio || '',
-    website:      row.Website || '',
+    website:      row.Website || '',       // campaign site
+    officialUrl:  row.OfficialURL || '',   // official office page (legislature/house.gov)
     email:        row.Email || '',
     phone:        row.Phone || '',
     social: {

@@ -242,6 +242,18 @@
       color: var(--gray-400);
       font-size: .74rem;
     }
+    .ballot-tag {
+      margin-left: auto;   /* pushes to the right edge of the group header */
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      border-radius: 999px;
+      padding: 2px 9px;
+      text-transform: none;
+      white-space: nowrap;
+    }
+    .ballot-tag.on  { background: #d1fae5; color: #065f46; }
+    .ballot-tag.off { background: var(--gray-100); color: var(--gray-600); }
     .cand-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -291,9 +303,10 @@
       transition: opacity .15s var(--ease);
     }
     .candidate-link:hover { opacity: .8; }
-    .clink-site { background: var(--cream); color: var(--navy); }
-    .clink-vol  { background: #d1fae5; color: #065f46; }
-    .clink-don  { background: #fef3c7; color: #92400e; }
+    .clink-site     { background: var(--cream); color: var(--navy); }
+    .clink-official { background: var(--navy); color: #fff; }
+    .clink-vol      { background: #d1fae5; color: #065f46; }
+    .clink-don      { background: #fef3c7; color: #92400e; }
 
     /* Candidate issue tags + social */
     .candidate-issues { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
@@ -391,14 +404,15 @@
       min-height: 0; /* override the existing min-height:420px since parent handles it */
     }
 
-    /* ── Info Sidebar ── */
-    /* Drawer over the map: a dimmed strip of map stays visible on the left so
-       it clearly reads as a menu opening over the map, not a page change.
-       Backdrop click or "Back to Map" closes; the floating pill reopens. */
+    /* ── Results panel ── */
+    /* Centered card over the map — dimmed map visible on every side so it
+       reads as an overlay, symmetric on desktop instead of hugging one edge.
+       Backdrop click or "Back to Map" closes; the floating pill reopens.
+       Full-screen on phones. */
     #sidebar-backdrop {
       position: absolute;
       inset: 0;
-      background: rgba(15,30,51,.45);
+      background: rgba(15,30,51,.5);
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s var(--ease), visibility 0.3s;
@@ -408,23 +422,32 @@
     #sidebar-backdrop.open { opacity: 1; visibility: visible; }
     #info-sidebar {
       position: absolute;
-      top: 0; right: 0; bottom: 0;
-      width: min(760px, 94%);
+      top: 18px; bottom: 18px;
+      left: 50%;
+      width: min(1060px, calc(100% - 36px));
       background: #fff;
       display: flex;
       flex-direction: column;
-      transform: translateX(105%);
+      border-radius: 14px;
+      overflow: hidden;
+      transform: translateX(-50%) translateY(14px);
+      opacity: 0;
       visibility: hidden;
-      transition: transform 0.3s var(--ease), visibility 0.3s;
+      transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), visibility 0.3s;
       z-index: 1100; /* above Leaflet panes and controls */
-      box-shadow: -12px 0 40px rgba(15,30,51,.35);
+      box-shadow: 0 24px 64px rgba(15,30,51,.45);
     }
     #info-sidebar.open {
-      transform: translateX(0);
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
       visibility: visible;
     }
     @media (max-width: 640px) {
-      #info-sidebar { width: 100%; }
+      #info-sidebar {
+        top: 0; bottom: 0;
+        width: 100%;
+        border-radius: 0;
+      }
     }
     #sidebar-reopen {
       display: none;
@@ -484,11 +507,9 @@
     #sidebar-content {
       flex: 1;
       overflow-y: auto;
-      padding: 18px 20px 28px;
+      padding: 18px 24px 28px;
       font-size: .875rem;
-      width: 100%;
-      max-width: 720px;   /* readable column even on a wide screen */
-      margin: 0 auto;
+      width: 100%;   /* the modal itself caps width; grid fills it 2–3 across */
     }
 
     /* Sidebar info rows */
@@ -1569,7 +1590,8 @@ function renderCandidateCard(c, showOffice = true) {
   const socialRow = social ? `<div class="candidate-social">${social}</div>` : '';
 
   const links = [
-    c.website     ? `<a class="candidate-link clink-site" href="${escHtml(normalizeUrl(c.website))}"     target="_blank" rel="noopener">Website</a>`   : '',
+    c.website     ? `<a class="candidate-link clink-site" href="${escHtml(normalizeUrl(c.website))}"     target="_blank" rel="noopener">Campaign Site</a>` : '',
+    c.officialUrl ? `<a class="candidate-link clink-official" href="${escHtml(normalizeUrl(c.officialUrl))}" target="_blank" rel="noopener">Official Page</a>` : '',
     c.volunteerUrl? `<a class="candidate-link clink-vol"  href="${escHtml(normalizeUrl(c.volunteerUrl))}" target="_blank" rel="noopener">Volunteer</a>` : '',
     c.donateUrl   ? `<a class="candidate-link clink-don"  href="${escHtml(normalizeUrl(c.donateUrl))}"   target="_blank" rel="noopener">Donate</a>`    : '',
   ].filter(Boolean).join('');
@@ -1636,8 +1658,18 @@ async function loadCandidatesForDistricts(districtInfo, precinctId) {
       // Within legislative groups the office repeats the heading — only county
       // and school-district groups mix offices worth labeling per card
       const showOffice = g.dt === 'county' || g.dt === 'school_district';
+      // Staggered terms (Senate, school board): label whether this seat is on
+      // the 2026 ballot. A group with only INCUMBENT-status rows isn't up.
+      // County groups mix multiple offices, so a group-level tag would mislead.
+      let ballotTag = '';
+      if (g.dt !== 'county') {
+        const onBallot = g.cands.some(c => !String(c.status || '').toUpperCase().startsWith('INCUMBENT'));
+        ballotTag = onBallot
+          ? `<span class="ballot-tag on">On the Nov 2026 ballot</span>`
+          : `<span class="ballot-tag off">Not up in 2026</span>`;
+      }
       return `<div class="cand-group">
-        <div class="cand-group-title">${escHtml(label)}${sub ? `<span class="cand-group-district">${escHtml(sub)}</span>` : ''}</div>
+        <div class="cand-group-title">${escHtml(label)}${sub ? `<span class="cand-group-district">${escHtml(sub)}</span>` : ''}${ballotTag}</div>
         <div class="cand-grid">${g.cands.map(c => renderCandidateCard(c, showOffice)).join('')}</div>
       </div>`;
     }).join('');

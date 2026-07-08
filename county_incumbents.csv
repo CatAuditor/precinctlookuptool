@@ -1,37 +1,37 @@
-Name,Office,DistrictType,District,Party,Incumbent,Status,PhotoURL,Bio,Website,Email,Phone,Facebook,Instagram,X,VolunteerURL,DonateURL,TopIssues,Active,Order
-Jenny Wilson,County Mayor,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Sim Gill,County District Attorney,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Rosie Rivera,County Sheriff,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Lannie Chapman,County Clerk,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Chris Stavros,County Assessor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Chris Harding,County Auditor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Bradley Park,County Surveyor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Skyler Beltran,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Amelia Powers Gardner,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Brandon Gordon,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Rodney W. Mann,County Auditor,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Burt Garfield,County Assessor,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Jeffrey S. Gray,County Attorney,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Aaron R. Davidson,County Clerk,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Andrea Allen,County Recorder,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Mike Smith,County Sheriff,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Anthony Canto,County Surveyor,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Kim Jackson,County Treasurer,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Gage Froerer,County Commissioner,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Sharon Bolos,County Commissioner,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-James H. Harvey,County Commissioner,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Chris F. Allred,County Attorney,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Ricky Hatch,County Clerk/Auditor,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Ryan Arbon,County Sheriff,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Jared L. Preisler,County Assessor,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Adam Snow,County Commissioner,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Ryan Sullivan,County Clerk/Auditor,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Jerry Jaeger,County Attorney,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Nate Brooksby,County Sheriff,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Tom Durrant,County Assessor,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Lorene Miner Kamalu,County Commissioner,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Bob J Stevenson,County Commissioner,county,Davis,Republican,TRUE,INCUMBENT — county officeholder (term ends Dec 2026; running for State House 16),,,,,,,,,,,,TRUE,1
-John Crofts,County Commissioner,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Brian McKenzie,County Clerk,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Troy Rawlings,County Attorney,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
-Scott Parke,County Controller,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,TRUE,1
+Name,Office,DistrictType,District,Party,Incumbent,Status,PhotoURL,Bio,Website,OfficialURL,Email,Phone,Facebook,Instagram,X,VolunteerURL,DonateURL,TopIssues,Active,Order
+Jenny Wilson,County Mayor,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Sim Gill,County District Attorney,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Rosie Rivera,County Sheriff,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Lannie Chapman,County Clerk,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Chris Stavros,County Assessor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Chris Harding,County Auditor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Bradley Park,County Surveyor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Skyler Beltran,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Amelia Powers Gardner,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Brandon Gordon,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Rodney W. Mann,County Auditor,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Burt Garfield,County Assessor,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Jeffrey S. Gray,County Attorney,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Aaron R. Davidson,County Clerk,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Andrea Allen,County Recorder,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Mike Smith,County Sheriff,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Anthony Canto,County Surveyor,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Kim Jackson,County Treasurer,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Gage Froerer,County Commissioner,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Sharon Bolos,County Commissioner,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+James H. Harvey,County Commissioner,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Chris F. Allred,County Attorney,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Ricky Hatch,County Clerk/Auditor,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Ryan Arbon,County Sheriff,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Jared L. Preisler,County Assessor,county,Weber,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Adam Snow,County Commissioner,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Ryan Sullivan,County Clerk/Auditor,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Jerry Jaeger,County Attorney,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Nate Brooksby,County Sheriff,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Tom Durrant,County Assessor,county,Washington,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Lorene Miner Kamalu,County Commissioner,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Bob J Stevenson,County Commissioner,county,Davis,Republican,TRUE,INCUMBENT — county officeholder (term ends Dec 2026; running for State House 16),,,,,,,,,,,,,TRUE,1
+John Crofts,County Commissioner,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Brian McKenzie,County Clerk,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Troy Rawlings,County Attorney,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Scott Parke,County Controller,county,Davis,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
