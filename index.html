@@ -224,7 +224,12 @@
     .candidate-body { flex: 1; min-width: 0; }
     .candidate-name { font-weight: 700; font-size: .9rem; color: var(--gray-900); }
     .candidate-office { font-size: .75rem; color: var(--gray-400); margin-top: 1px; }
-    .candidate-bio { font-size: .78rem; color: var(--gray-600); margin-top: 4px; line-height: 1.5; }
+    .candidate-bio {
+      font-size: .78rem; color: var(--gray-600); margin-top: 4px; line-height: 1.5;
+      /* Bios vary wildly by source (legislator feed vs none) — clamp so every
+         card reads the same height regardless of how much text we have */
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
     .candidate-links { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
     .candidate-link {
       display: inline-block;
@@ -336,19 +341,41 @@
     }
 
     /* ── Info Sidebar ── */
+    /* Full overlay over the map area: slides in from the right and covers the
+       whole map. Reopen via the floating "Area Info" pill after closing. */
     #info-sidebar {
-      width: 0;
-      overflow: hidden;
+      position: absolute;
+      inset: 0;
       background: #fff;
-      border-left: 1px solid var(--gray-200);
       display: flex;
       flex-direction: column;
-      transition: width 0.25s var(--ease);
-      flex-shrink: 0;
+      transform: translateX(100%);
+      visibility: hidden;
+      transition: transform 0.25s var(--ease), visibility 0.25s;
+      z-index: 1100; /* above Leaflet panes and controls */
     }
     #info-sidebar.open {
-      width: 300px;
+      transform: translateX(0);
+      visibility: visible;
     }
+    #sidebar-reopen {
+      display: none;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 1000;
+      background: var(--navy-dark);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: .85rem;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    }
+    #sidebar-reopen:hover { filter: brightness(1.15); }
     #sidebar-header {
       background: var(--navy-dark);
       color: #fff;
@@ -379,8 +406,11 @@
     #sidebar-content {
       flex: 1;
       overflow-y: auto;
-      padding: 18px 16px;
+      padding: 18px 20px 28px;
       font-size: .875rem;
+      width: 100%;
+      max-width: 720px;   /* readable column even on a wide screen */
+      margin: 0 auto;
     }
 
     /* Sidebar info rows */
@@ -446,8 +476,7 @@
     /* Mobile: sidebar goes below map */
     @media (max-width: 640px) {
       #map-area { flex-direction: column; }
-      #info-sidebar { width: 100% !important; max-height: 0; border-left: none; border-top: 1px solid var(--gray-200); transition: max-height 0.25s var(--ease); }
-      #info-sidebar.open { max-height: 340px; }
+      /* overlay sidebar behaves the same on mobile — no docked variant needed */
     }
 
     /* ── Layer panel (custom Leaflet control) ── */
@@ -575,6 +604,7 @@
 <div id="result-banner"></div>
 <div id="map-area">
   <div id="map"></div>
+  <button id="sidebar-reopen" onclick="reopenSidebar()">ⓘ Area Info</button>
   <div id="info-sidebar">
     <div id="sidebar-header">
       <span id="sidebar-title">Area Info</span>
@@ -1162,7 +1192,8 @@ async function findPrecinct() {
 
     const precFeature    = precJson.features[0];
     const props          = precFeature.properties;
-    const precinctName   = props.AliasName || props.PrecinctID || 'Unknown Precinct';
+    const cName          = countyName(props.CountyID);
+    const precinctName   = friendlyPrecinctName(props) || (cName ? `${cName} County Precinct` : 'Your Precinct');
     const countyID       = props.CountyID || '';
     const houseDistrict    = houseJson.features?.[0]?.properties?.DIST ?? null;
     const senateDistrict   = senateJson.features?.[0]?.properties?.DIST ?? null;
@@ -1209,7 +1240,7 @@ async function findPrecinct() {
     const senateTag   = senateDistrict   != null ? `<span class="badge badge-senate">Senate ${senateDistrict}</span>` : '';
     showBanner(
       `📍 <strong>${precinctName}</strong>` +
-      (countyID ? `&nbsp;·&nbsp;${countyID} County&nbsp;&nbsp;` : '&nbsp;&nbsp;') +
+      (cName ? `&nbsp;·&nbsp;${cName} County&nbsp;&nbsp;` : '&nbsp;&nbsp;') +
       congressTag + '&nbsp;' + houseTag + '&nbsp;' + senateTag +
       `<br><span style="font-size:.85rem;color:#4B5563">Matched: ${matchedAddress}</span>`
     );
@@ -1219,7 +1250,7 @@ async function findPrecinct() {
       house:    houseDistrict,
       senate:   senateDistrict,
       congress: congressDistrict,
-      county:   COUNTIES[countyID] || null,   // county name → matches sheet's county rows
+      county:   countyName(countyID),   // county name → matches sheet's county rows
       schoolBoard:    null,   // filled in below
       schoolDistrict: null,
     };
@@ -1255,15 +1286,39 @@ const COUNTIES = {
   24:'Uintah',25:'Utah',26:'Wasatch',27:'Washington',28:'Wayne',29:'Weber'
 };
 
+// County lookup that tolerates string / zero-padded IDs ("01", "18", 18)
+function countyName(id) {
+  return COUNTIES[parseInt(id, 10)] || null;
+}
+
+// Precinct AliasName is often just a code like "CTY01" rather than a human
+// name. Only treat it as a display name if it looks like one.
+function friendlyPrecinctName(props) {
+  const alias = String(props?.AliasName || '').trim();
+  if (alias && alias !== props.PrecinctID && !/^[A-Z0-9 :._-]+$/.test(alias)) return alias;
+  if (alias && /[a-z]/.test(alias)) return alias;
+  return null;
+}
+
 // ── Sidebar helpers ───────────────────────────────────────────────────────────
 function showSidebar(title, html) {
   document.getElementById('sidebar-title').textContent = title;
   document.getElementById('sidebar-content').innerHTML = html;
   document.getElementById('info-sidebar').classList.add('open');
+  document.getElementById('sidebar-reopen').style.display = 'none';
 }
 
 function closeSidebar() {
   document.getElementById('info-sidebar').classList.remove('open');
+  // Leave a way back in: if there's content, show the floating reopen pill
+  if (document.getElementById('sidebar-content').innerHTML.trim()) {
+    document.getElementById('sidebar-reopen').style.display = 'block';
+  }
+}
+
+function reopenSidebar() {
+  document.getElementById('info-sidebar').classList.add('open');
+  document.getElementById('sidebar-reopen').style.display = 'none';
 }
 
 function infoRow(label, value) {
@@ -1339,8 +1394,8 @@ async function queryDistrictInfo(lng, lat) {
 
 // ── Sidebar content builders ──────────────────────────────────────────────────
 function buildPrecinctSidebar(props, latlng, districtInfo, candidatesHtml) {
-  const name     = props.AliasName || props.PrecinctID || 'Unknown';
-  const county   = COUNTIES[props.CountyID] || (props.CountyID ? `County ${props.CountyID}` : '—');
+  const name     = friendlyPrecinctName(props);
+  const county   = countyName(props.CountyID);
   const house           = districtInfo?.house           ?? null;
   const senate          = districtInfo?.senate          ?? null;
   const congress        = districtInfo?.congress        ?? null;
@@ -1363,10 +1418,9 @@ function buildPrecinctSidebar(props, latlng, districtInfo, candidatesHtml) {
     <span class="info-type-badge badge-precinct-bg">Precinct</span>
     <div class="info-section">
       <div class="info-section-title">Precinct Info</div>
-      ${infoRow('Name', name)}
-      ${infoRow('Precinct ID', props.PrecinctID || '—')}
-      ${props.VistaID ? infoRow('Vista ID', props.VistaID) : ''}
-      ${infoRow('County', county)}
+      ${name ? infoRow('Name', name) : ''}
+      ${county ? infoRow('County', county) : ''}
+      ${!name && !county ? infoRow('Precinct', props.PrecinctID || '—') : ''}
     </div>
     <div class="info-section">
       <div class="info-section-title">Legislative Districts</div>
@@ -1624,7 +1678,7 @@ async function submitFunnel() {
         newsletter:       !!news,
         precinctName:     props.AliasName  || null,
         precinctId:       props.PrecinctID || null,
-        county:           COUNTIES[props.CountyID] || null,
+        county:           countyName(props.CountyID),
         houseDistrict:    d.house          != null ? String(d.house)          : null,
         senateDistrict:   d.senate         != null ? String(d.senate)         : null,
         congressDistrict: d.congress       != null ? String(d.congress)       : null,
@@ -1743,14 +1797,15 @@ function attachPrecinctClick(layer) {
     L.DomEvent.stopPropagation(e);
     const props  = e.target.feature?.properties || {};
     const latlng = e.latlng;
-    const name   = props.AliasName || props.PrecinctID || 'Precinct';
+    const cNm    = countyName(props.CountyID);
+    const name   = friendlyPrecinctName(props) || (cNm ? `${cNm} County Precinct` : 'Precinct');
 
     // Show immediately with loading states for districts + candidates
     showSidebar(name, buildPrecinctSidebar(props, latlng, null, undefined));
 
     // Query districts and candidates in parallel
     const info = await queryDistrictInfo(latlng.lng, latlng.lat);
-    info.county = COUNTIES[props.CountyID] || null;   // county name for candidate match
+    info.county = countyName(props.CountyID);   // county name for candidate match
     // Re-render with districts filled in but candidates still loading
     showSidebar(name, buildPrecinctSidebar(props, latlng, info, undefined));
 
