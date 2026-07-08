@@ -1,74 +1,76 @@
-DistrictType,District,NameKey,Website,Source
-congress,1,owen,https://www.utahriley.com/,verified via search + news corroboration 2026-07-07
-congress,1,mcadams,https://benmcadamsutah.com/,verified via search 2026-07-07
-congress,2,moore,https://www.electmoore.com/,campaign site (house.gov excluded) 2026-07-07
-congress,2,crosby,https://petercrosbyforcongress.org/,verified via search 2026-07-07
-congress,2,bowen,https://bowenforcongress.com/,verified via search 2026-07-07
-congress,3,maloy,https://www.celesteforutah.com/,verified via search 2026-07-07
-congress,3,udell,https://www.kentudell.com/,verified via search 2026-07-07
-congress,3,easley,https://cassieforcongress.com/,verified via search 2026-07-07
-congress,3,hooslyn,https://www.hooslynforhouse.com/,verified via search 2026-07-07
-congress,3,scott,https://www.aydenscott4congress.com/,verified via search 2026-07-07
-congress,3,stoddard,https://2amike4congress.org/,verified via direct fetch 2026-07-07
-congress,4,kennedy,https://mikekennedyforutah.com/,verified via search 2026-07-07
-congress,4,burt,https://stevenburt.com/,verified via search 2026-07-07
-congress,4,larsen,https://jonnyutah4congress.com/,verified via search 2026-07-07
-congress,4,wright,https://wrightforutah.com/,verified via search 2026-07-07
-house,16,stevenson,https://www.electbobstevenson.com/,verified via search 2026-07-07
-house,51,nielsen,https://www.brettforutah.com/,verified via search 2026-07-07
-house,8,james,https://www.kimjamesforutah.org/,verified via search 2026-07-07
-senate,6,smith,https://www.electjoshsmith.com/,verified via direct fetch (Forward, SD6) 2026-07-07
-congress,1,west,https://www.jessewest2026.com/,libertarianutah.org slate 2026-07-07
-house,45,moser,https://www.utahgrit.com/,slcountydems.com slate 2026-07-07
-house,50,gricius,https://votestephanie.org/,ucrp.org slate 2026-07-07
-house,52,maloy,https://corymaloy.com/,ucrp.org slate 2026-07-07
-house,61,shepherd,https://lisa61.com/,ucrp.org slate 2026-07-07
-house,62,whyte,https://votestephenwhyte.com/,ucrp.org slate 2026-07-07
-house,62,johnson,https://jonahforutah.com/,ucrp.org slate 2026-07-07
-house,64,larson,https://electjackielarson.com/,ucrp.org slate 2026-07-07
-house,64,durrant,https://votemattdurrant.wixsite.com/votemattdurrant,ucrp.org slate 2026-07-07
-senate,11,knotwell,https://johnknotwell.com/,ucrp.org slate 2026-07-07
-senate,11,benson,https://brooksbenson4utah.com/,ucrp.org slate 2026-07-07
-senate,11,sloan,https://sloanforsenate.com/,ucrp.org slate 2026-07-07
-senate,18,fiefia,https://dougfiefia.com/,ucrp.org slate 2026-07-07
-senate,21,smith,https://kellyforutah.com/,ucrp.org slate (primary-pending) 2026-07-07
-senate,21,brammer,https://votebrammer.com/,ucrp.org slate (primary-pending) 2026-07-07
-school_board,11,hutchinson,https://hutchforschool.org/,ucrp.org slate 2026-07-07
-school_board,14,hanks,https://linda4stateschoolboard.com/,ucrp.org slate (primary-pending) 2026-07-07
-school_board,14,isom,https://nicholeisom.com/,ucrp.org slate (primary-pending) 2026-07-07
-county,Utah,davidson,https://davidsonclerk.com/,ucrp.org slate 2026-07-07
-house,5,penry,https://kendraforutah.com/,wdcutah.org endorsements 2026-07-07
-house,7,mittendorf,https://electbianca.com/,wdcutah.org endorsements 2026-07-07
-house,11,calder,https://votedavecalder.com/,wdcutah.org endorsements 2026-07-07
-house,12,graff,https://electannagraff.com/,wdcutah.org endorsements 2026-07-07
-house,14,taylor,https://johntaylor4utah.com/,davisgop.org (primary-pending) 2026-07-07
-house,15,berbert,https://voteanneberbert.com/,wdcutah.org endorsements 2026-07-07
-house,17,bitner,https://votebitner.com/,davisgop.org (primary-pending) 2026-07-07
-house,26,finch,https://votefinch.com/,wdcutah.org endorsements 2026-07-07
-house,27,oates,https://lizforutah.com/,wdcutah.org endorsements 2026-07-07
-house,29,snow,https://saraforutah.com/,wdcutah.org endorsements 2026-07-07
-house,31,mauga,https://voteverona.com/,wdcutah.org endorsements 2026-07-07
-house,33,owens,https://dougowensutah.com/,wdcutah.org endorsements 2026-07-07
-house,34,jackson,https://juliejacksonforutah.com/,wdcutah.org (primary-pending) 2026-07-07
-house,39,howells,https://howells4utah.com/,wdcutah.org endorsements 2026-07-07
-house,41,arthur,https://votejohnarthur.com/,wdcutah.org endorsements 2026-07-07
-house,42,williams,https://electivawilliams.com/,wdcutah.org endorsements 2026-07-07
-house,54,robinson,https://campaignkristina.com/,wdcutah.org endorsements 2026-07-07
-house,56,grossman,https://natassjagrossman.com/,wdcutah.org endorsements 2026-07-07
-house,59,johnson,https://celestejohnsonforutah.com/,wdcutah.org endorsements 2026-07-07
-house,61,jimenez,https://alanforutah.com/,wdcutah.org endorsements 2026-07-07
-house,69,tso,https://tracieforutah.com/,wdcutah.org endorsements 2026-07-07
-senate,5,hernandez,https://cjforsenate.com/,wdcutah.org (primary-pending) 2026-07-07
-senate,9,plumb,https://jenplumb.com/,wdcutah.org endorsements 2026-07-07
-senate,13,catten,https://silviacatten.com/,wdcutah.org (primary-pending) 2026-07-07
-senate,14,pitcher,https://electstephanie.com/,wdcutah.org (primary-pending) 2026-07-07
-senate,19,anderson,https://andersonforutah.com/,wdcutah.org endorsements 2026-07-07
-county,Salt Lake,rivera,https://rosieforsheriff.com/,wdcutah.org endorsements 2026-07-07
-county,Salt Lake,chapman,https://lannieforclerk.com/,wdcutah.org endorsements 2026-07-07
-county,Salt Lake,gill,https://votesim.com/,wdcutah.org endorsements 2026-07-07
-county,Salt Lake,cimmers,https://saraforsaltlakecounty.org/,wdcutah.org (banked: challenger row pending) 2026-07-07
-county,Salt Lake,robinson,https://zachforcouncil.com/,wdcutah.org (banked: challenger row pending) 2026-07-07
-county,Salt Lake,maynes,https://lukeforcountycouncil.com/,wdcutah.org (banked: challenger row pending) 2026-07-07
-county,Salt Lake,cloward,https://aliforauditor.com/,wdcutah.org (banked: challenger row pending) 2026-07-07
-county,Davis,atkin,https://atkin4sheriff.com/,davisgop.org (banked: challenger row pending) 2026-07-07
-county,Davis,lee,https://votesusanlee.com/,davisgop.org (banked: challenger row pending) 2026-07-07
+DistrictType,District,NameKey,Website,PhotoURL,Source
+congress,1,owen,https://www.utahriley.com/,,verified via search + news corroboration 2026-07-07
+congress,1,mcadams,https://benmcadamsutah.com/,,verified via search 2026-07-07
+congress,2,moore,https://www.electmoore.com/,,campaign site (house.gov excluded) 2026-07-07
+congress,2,crosby,https://petercrosbyforcongress.org/,,verified via search 2026-07-07
+congress,2,bowen,https://bowenforcongress.com/,,verified via search 2026-07-07
+congress,3,maloy,https://www.celesteforutah.com/,,verified via search 2026-07-07
+congress,3,udell,https://www.kentudell.com/,,verified via search 2026-07-07
+congress,3,easley,https://cassieforcongress.com/,,verified via search 2026-07-07
+congress,3,hooslyn,https://www.hooslynforhouse.com/,,verified via search 2026-07-07
+congress,3,scott,https://www.aydenscott4congress.com/,,verified via search 2026-07-07
+congress,3,stoddard,https://2amike4congress.org/,,verified via direct fetch 2026-07-07
+congress,4,kennedy,https://mikekennedyforutah.com/,,verified via search 2026-07-07
+congress,4,burt,https://stevenburt.com/,,verified via search 2026-07-07
+congress,4,larsen,https://jonnyutah4congress.com/,,verified via search 2026-07-07
+congress,4,wright,https://wrightforutah.com/,,verified via search 2026-07-07
+house,16,stevenson,https://www.electbobstevenson.com/,,verified via search 2026-07-07
+house,51,nielsen,https://www.brettforutah.com/,,verified via search 2026-07-07
+house,8,james,https://www.kimjamesforutah.org/,,verified via search 2026-07-07
+senate,6,smith,https://www.electjoshsmith.com/,,verified via direct fetch (Forward, SD6) 2026-07-07
+congress,1,west,https://www.jessewest2026.com/,,libertarianutah.org slate 2026-07-07
+house,45,moser,https://www.utahgrit.com/,,slcountydems.com slate 2026-07-07
+house,50,gricius,https://votestephanie.org/,,ucrp.org slate 2026-07-07
+house,52,maloy,https://corymaloy.com/,,ucrp.org slate 2026-07-07
+house,61,shepherd,https://lisa61.com/,,ucrp.org slate 2026-07-07
+house,62,whyte,https://votestephenwhyte.com/,,ucrp.org slate 2026-07-07
+house,62,johnson,https://jonahforutah.com/,,ucrp.org slate 2026-07-07
+house,64,larson,https://electjackielarson.com/,,ucrp.org slate 2026-07-07
+house,64,durrant,https://votemattdurrant.wixsite.com/votemattdurrant,,ucrp.org slate 2026-07-07
+senate,11,knotwell,https://johnknotwell.com/,,ucrp.org slate 2026-07-07
+senate,11,benson,https://brooksbenson4utah.com/,,ucrp.org slate 2026-07-07
+senate,11,sloan,https://sloanforsenate.com/,,ucrp.org slate 2026-07-07
+senate,18,fiefia,https://dougfiefia.com/,,ucrp.org slate 2026-07-07
+senate,21,smith,https://kellyforutah.com/,,ucrp.org slate (primary-pending) 2026-07-07
+senate,21,brammer,https://votebrammer.com/,,ucrp.org slate (primary-pending) 2026-07-07
+school_board,11,hutchinson,https://hutchforschool.org/,,ucrp.org slate 2026-07-07
+school_board,14,hanks,https://linda4stateschoolboard.com/,,ucrp.org slate (primary-pending) 2026-07-07
+school_board,14,isom,https://nicholeisom.com/,,ucrp.org slate (primary-pending) 2026-07-07
+county,Utah,davidson,https://davidsonclerk.com/,,ucrp.org slate 2026-07-07
+house,5,penry,https://kendraforutah.com/,,wdcutah.org endorsements 2026-07-07
+house,7,mittendorf,https://electbianca.com/,,wdcutah.org endorsements 2026-07-07
+house,11,calder,https://votedavecalder.com/,,wdcutah.org endorsements 2026-07-07
+house,12,graff,https://electannagraff.com/,,wdcutah.org endorsements 2026-07-07
+house,14,taylor,https://johntaylor4utah.com/,,davisgop.org (primary-pending) 2026-07-07
+house,15,berbert,https://voteanneberbert.com/,,wdcutah.org endorsements 2026-07-07
+house,17,bitner,https://votebitner.com/,,davisgop.org (primary-pending) 2026-07-07
+house,26,finch,https://votefinch.com/,,wdcutah.org endorsements 2026-07-07
+house,27,oates,https://lizforutah.com/,,wdcutah.org endorsements 2026-07-07
+house,29,snow,https://saraforutah.com/,,wdcutah.org endorsements 2026-07-07
+house,31,mauga,https://voteverona.com/,,wdcutah.org endorsements 2026-07-07
+house,33,owens,https://dougowensutah.com/,,wdcutah.org endorsements 2026-07-07
+house,34,jackson,https://juliejacksonforutah.com/,,wdcutah.org (primary-pending) 2026-07-07
+house,39,howells,https://howells4utah.com/,,wdcutah.org endorsements 2026-07-07
+house,41,arthur,https://votejohnarthur.com/,,wdcutah.org endorsements 2026-07-07
+house,42,williams,https://electivawilliams.com/,,wdcutah.org endorsements 2026-07-07
+house,54,robinson,https://campaignkristina.com/,,wdcutah.org endorsements 2026-07-07
+house,56,grossman,https://natassjagrossman.com/,,wdcutah.org endorsements 2026-07-07
+house,59,johnson,https://celestejohnsonforutah.com/,,wdcutah.org endorsements 2026-07-07
+house,61,jimenez,https://alanforutah.com/,,wdcutah.org endorsements 2026-07-07
+house,69,tso,https://tracieforutah.com/,,wdcutah.org endorsements 2026-07-07
+senate,5,hernandez,https://cjforsenate.com/,,wdcutah.org (primary-pending) 2026-07-07
+senate,9,plumb,https://jenplumb.com/,,wdcutah.org endorsements 2026-07-07
+senate,13,catten,https://silviacatten.com/,,wdcutah.org (primary-pending) 2026-07-07
+senate,14,pitcher,https://electstephanie.com/,,wdcutah.org (primary-pending) 2026-07-07
+senate,19,anderson,https://andersonforutah.com/,,wdcutah.org endorsements 2026-07-07
+county,Salt Lake,rivera,https://rosieforsheriff.com/,,wdcutah.org endorsements 2026-07-07
+county,Salt Lake,chapman,https://lannieforclerk.com/,,wdcutah.org endorsements 2026-07-07
+county,Salt Lake,gill,https://votesim.com/,,wdcutah.org endorsements 2026-07-07
+county,Salt Lake,cimmers,https://saraforsaltlakecounty.org/,,wdcutah.org (banked: challenger row pending) 2026-07-07
+county,Salt Lake,robinson,https://zachforcouncil.com/,,wdcutah.org (banked: challenger row pending) 2026-07-07
+county,Salt Lake,maynes,https://lukeforcountycouncil.com/,,wdcutah.org (banked: challenger row pending) 2026-07-07
+county,Salt Lake,cloward,https://aliforauditor.com/,,wdcutah.org (banked: challenger row pending) 2026-07-07
+county,Davis,atkin,https://atkin4sheriff.com/,,davisgop.org (banked: challenger row pending) 2026-07-07
+county,Davis,lee,https://votesusanlee.com/,,davisgop.org (banked: challenger row pending) 2026-07-07
+county,Salt Lake,bird,https://www.electmikebird.com/,,candidate site (Bird SLCo Council D3) 2026-07-08
+county,Salt Lake,manwaring,https://www.shane4sheriff.com/,,search-confirmed official campaign site 2026-07-08

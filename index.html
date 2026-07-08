@@ -254,6 +254,21 @@
     }
     .ballot-tag.on  { background: #d1fae5; color: #065f46; }
     .ballot-tag.off { background: var(--gray-100); color: var(--gray-600); }
+
+    /* Per-race sub-sections inside a county group (Sheriff, Clerk, Council
+       District N, …) — tighter than a full cand-group so many races stay
+       scannable in one place. */
+    .cand-race { margin: 0 0 12px; }
+    .cand-race:last-child { margin-bottom: 0; }
+    .cand-race-title {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: .76rem;
+      font-weight: 700;
+      color: var(--gray-600);
+      margin-bottom: 6px;
+    }
     .cand-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -1653,23 +1668,43 @@ async function loadCandidatesForDistricts(districtInfo, precinctId) {
       if (!g || g.key !== key) { g = { key, dt: c.districtType, district: c.district, cands: [] }; groups.push(g); }
       g.cands.push(c);
     }
+    const ballotTagFor = cands => {
+      const onBallot = cands.some(c => !String(c.status || '').toUpperCase().startsWith('INCUMBENT'));
+      return onBallot
+        ? `<span class="ballot-tag on">On the Nov 2026 ballot</span>`
+        : `<span class="ballot-tag off">Not up in 2026</span>`;
+    };
+
     return groups.map(g => {
       const { label, sub } = candGroupHeading(g.dt, g.district);
-      // Within legislative groups the office repeats the heading — only county
-      // and school-district groups mix offices worth labeling per card
-      const showOffice = g.dt === 'county' || g.dt === 'school_district';
-      // Staggered terms (Senate, school board): label whether this seat is on
-      // the 2026 ballot. A group with only INCUMBENT-status rows isn't up.
-      // County groups mix multiple offices, so a group-level tag would mislead.
-      let ballotTag = '';
-      if (g.dt !== 'county') {
-        const onBallot = g.cands.some(c => !String(c.status || '').toUpperCase().startsWith('INCUMBENT'));
-        ballotTag = onBallot
-          ? `<span class="ballot-tag on">On the Nov 2026 ballot</span>`
-          : `<span class="ballot-tag off">Not up in 2026</span>`;
+
+      // County groups mix many unrelated offices (Sheriff, Clerk, Council
+      // District N, …) under one district — split into a tight sub-section
+      // per office ("race") so e.g. Council District 3 candidates sit
+      // together with their own ballot-status tag, instead of one flat grid.
+      if (g.dt === 'county') {
+        const byOffice = [];
+        for (const c of g.cands) {
+          let o = byOffice[byOffice.length - 1];
+          if (!o || o.office !== c.office) { o = { office: c.office, cands: [] }; byOffice.push(o); }
+          o.cands.push(c);
+        }
+        const races = byOffice.map(o => `
+          <div class="cand-race">
+            <div class="cand-race-title">${escHtml(o.office)}${ballotTagFor(o.cands)}</div>
+            <div class="cand-grid">${o.cands.map(c => renderCandidateCard(c, false)).join('')}</div>
+          </div>`).join('');
+        return `<div class="cand-group">
+          <div class="cand-group-title">${escHtml(label)}</div>
+          ${races}
+        </div>`;
       }
+
+      // Within legislative groups the office repeats the heading — only
+      // school-district groups mix offices worth labeling per card
+      const showOffice = g.dt === 'school_district';
       return `<div class="cand-group">
-        <div class="cand-group-title">${escHtml(label)}${sub ? `<span class="cand-group-district">${escHtml(sub)}</span>` : ''}${ballotTag}</div>
+        <div class="cand-group-title">${escHtml(label)}${sub ? `<span class="cand-group-district">${escHtml(sub)}</span>` : ''}${ballotTagFor(g.cands)}</div>
         <div class="cand-grid">${g.cands.map(c => renderCandidateCard(c, showOffice)).join('')}</div>
       </div>`;
     }).join('');

@@ -1,11 +1,20 @@
 Name,Office,DistrictType,District,Party,Incumbent,Status,PhotoURL,Bio,Website,OfficialURL,Email,Phone,Facebook,Instagram,X,VolunteerURL,DonateURL,TopIssues,Active,Order
-Jenny Wilson,County Mayor,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
-Sim Gill,County District Attorney,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
-Rosie Rivera,County Sheriff,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
-Lannie Chapman,County Clerk,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
-Chris Stavros,County Assessor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
-Chris Harding,County Auditor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
-Bradley Park,County Surveyor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Jenny Wilson,County Mayor,county,Salt Lake,Democratic,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Sim Gill,County District Attorney,county,Salt Lake,Democratic,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
+Rosie Rivera,County Sheriff,county,Salt Lake,Democratic,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
+Lannie Chapman,County Clerk,county,Salt Lake,Democratic,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
+Chris Stavros,County Assessor,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Chris Harding,County Auditor,county,Salt Lake,Republican,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
+Bradley Park,County Surveyor,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Jiro Johnson,County Council District 1,county,Salt Lake,Democratic,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
+Laurie Stringham,County Council At-Large A,county,Salt Lake,Republican,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Carlos A. Moreno,County Council District 2,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Aimee Winder Newton,County Council District 3,county,Salt Lake,Republican,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Ross Romero,County Council District 4,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Sheldon Stewart,County Council District 5,county,Salt Lake,Republican,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Dea Theodore,County Council District 6,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Suzanne Harrison,County Council At-Large B,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Natalie Pinkney,County Council At-Large C,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
 Skyler Beltran,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
 Amelia Powers Gardner,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
 Brandon Gordon,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1

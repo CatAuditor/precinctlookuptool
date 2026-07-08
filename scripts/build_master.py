@@ -9,9 +9,11 @@ Sources (each must share the Candidates schema; missing files are skipped):
   county_challengers.csv      — COUNTY challengers (optional, grows over time)
 
 After concatenation, enrichments.csv (if present) overlays hand-verified field
-values — currently Website — onto matching rows, keyed by (DistrictType,
+values (Website, PhotoURL) onto matching rows, keyed by (DistrictType,
 District, candidate surname). This keeps enrichment data out of the generated
-state file so a pipeline rerun never wipes it.
+state file so a pipeline rerun never wipes it. County rows don't need this —
+county_incumbents.csv / county_challengers.csv are hand-maintained already, so
+just edit PhotoURL/Website directly in those files.
 
 County rows (DistrictType=county) never collide with state rows, so this is a
 clean concat; exact-duplicate rows are dropped defensively.
@@ -42,9 +44,10 @@ def apply_enrichments(rows):
             if len(matches) != 1:
                 print(f"  ! enrichment skipped ({len(matches)} matches): {e['DistrictType']} D{e['District']} {e['NameKey']}")
                 continue
-            if e.get("Website"):
-                matches[0]["Website"] = e["Website"].strip()
-                applied += 1
+            for field in ("Website", "PhotoURL"):
+                if e.get(field):
+                    matches[0][field] = e[field].strip()
+                    applied += 1
     return applied
 
 def main():

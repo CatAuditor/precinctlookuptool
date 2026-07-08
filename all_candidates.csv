@@ -283,13 +283,22 @@ Cole Kelley,State School Board District 12,school_board,12,,TRUE,INCUMBENT — n
 Randy Boothe,State School Board District 13,school_board,13,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
 Emily Green,State School Board District 14,school_board,14,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
 Joann Brinton,State School Board District 15,school_board,15,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
-Jenny Wilson,County Mayor,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
-Sim Gill,County District Attorney,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,https://votesim.com/,,,,,,,,,,TRUE,1
-Rosie Rivera,County Sheriff,county,Salt Lake,Democratic,TRUE,INCUMBENT — county officeholder,,,https://rosieforsheriff.com/,,,,,,,,,,TRUE,1
-Lannie Chapman,County Clerk,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,https://lannieforclerk.com/,,,,,,,,,,TRUE,1
-Chris Stavros,County Assessor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
-Chris Harding,County Auditor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
-Bradley Park,County Surveyor,county,Salt Lake,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Jenny Wilson,County Mayor,county,Salt Lake,Democratic,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Sim Gill,County District Attorney,county,Salt Lake,Democratic,TRUE,GENERAL,,,https://votesim.com/,,,,,,,,,,TRUE,1
+Rosie Rivera,County Sheriff,county,Salt Lake,Democratic,TRUE,GENERAL,,,https://rosieforsheriff.com/,,,,,,,,,,TRUE,1
+Lannie Chapman,County Clerk,county,Salt Lake,Democratic,TRUE,GENERAL,,,https://lannieforclerk.com/,,,,,,,,,,TRUE,1
+Chris Stavros,County Assessor,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Chris Harding,County Auditor,county,Salt Lake,Republican,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
+Bradley Park,County Surveyor,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Jiro Johnson,County Council District 1,county,Salt Lake,Democratic,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
+Laurie Stringham,County Council At-Large A,county,Salt Lake,Republican,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Carlos A. Moreno,County Council District 2,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Aimee Winder Newton,County Council District 3,county,Salt Lake,Republican,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Ross Romero,County Council District 4,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Sheldon Stewart,County Council District 5,county,Salt Lake,Republican,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Dea Theodore,County Council District 6,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Suzanne Harrison,County Council At-Large B,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
+Natalie Pinkney,County Council At-Large C,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
 Skyler Beltran,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
 Amelia Powers Gardner,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
 Brandon Gordon,County Commissioner,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
@@ -327,6 +336,11 @@ Sara Cimmers,County Council District 5,county,Salt Lake,Democratic,FALSE,GENERAL
 Chris Null,County Council District 5,county,Salt Lake,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,,TRUE,1
 Traci Crockett,County Council District 5,county,Salt Lake,Republican,FALSE,PRIMARY-PENDING,,,,,,,,,,,,,TRUE,1
 Ali Cloward,County Auditor,county,Salt Lake,Democratic,FALSE,GENERAL,,,https://aliforauditor.com/,,,,,,,,,,TRUE,1
+Mike Bird,County Council District 3,county,Salt Lake,Republican,FALSE,GENERAL,,,https://www.electmikebird.com/,,,,,,,,,,TRUE,1
+Kathleen Anderson,County Council At-Large A,county,Salt Lake,Republican,FALSE,GENERAL,,,,,,,,,,,,,TRUE,1
+Gregory Beglarian,County Council At-Large A,county,Salt Lake,Constitution,FALSE,GENERAL,,,,,,,,,,,,,TRUE,1
+Shane Manwaring,County Sheriff,county,Salt Lake,Republican,FALSE,GENERAL,,,https://www.shane4sheriff.com/,,,,,,,,,,TRUE,1
+Kent Davis,County District Attorney,county,Salt Lake,Republican,FALSE,GENERAL,,,,,,,,,,,,,TRUE,1
 Michelle Kaufusi,County Commission Seat A,county,Utah,Republican,FALSE,GENERAL,,,,,,,,,,,,,TRUE,1
 David Spencer,County Commission Seat B,county,Utah,Republican,FALSE,GENERAL,,,,,,,,,,,,,TRUE,1
 Fred J. Allen,County Commission Seat B,county,Utah,Democratic,FALSE,GENERAL,,,,,,,,,,,,,TRUE,1
