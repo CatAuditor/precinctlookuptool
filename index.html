@@ -197,14 +197,44 @@
     .badge-school-district{ background: #be185d; }
 
     /* ── Candidates section ── */
+    /* Grouped by office (Congress / State Senate / …); cards sit side-by-side
+       in a grid on wide screens, single column on phones. */
+    .cand-group { margin-bottom: 18px; }
+    .cand-group:last-child { margin-bottom: 0; }
+    .cand-group-title {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--navy);
+      border-bottom: 2px solid var(--cream);
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+    .cand-group-title .cand-group-district {
+      font-weight: 600;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--gray-400);
+      font-size: .74rem;
+    }
+    .cand-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 10px;
+    }
     .candidate-card {
       display: flex;
       gap: 12px;
       align-items: flex-start;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--gray-100);
+      padding: 12px;
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius);
+      background: #fff;
     }
-    .candidate-card:last-child { border-bottom: none; }
     .candidate-avatar {
       width: 40px; height: 40px;
       border-radius: 50%;
@@ -341,22 +371,39 @@
     }
 
     /* ── Info Sidebar ── */
-    /* Full overlay over the map area: slides in from the right and covers the
-       whole map. Reopen via the floating "Area Info" pill after closing. */
-    #info-sidebar {
+    /* Drawer over the map: a dimmed strip of map stays visible on the left so
+       it clearly reads as a menu opening over the map, not a page change.
+       Backdrop click or "Back to Map" closes; the floating pill reopens. */
+    #sidebar-backdrop {
       position: absolute;
       inset: 0;
+      background: rgba(15,30,51,.45);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s var(--ease), visibility 0.3s;
+      z-index: 1090;
+      cursor: pointer;
+    }
+    #sidebar-backdrop.open { opacity: 1; visibility: visible; }
+    #info-sidebar {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: min(760px, 94%);
       background: #fff;
       display: flex;
       flex-direction: column;
-      transform: translateX(100%);
+      transform: translateX(105%);
       visibility: hidden;
-      transition: transform 0.25s var(--ease), visibility 0.25s;
+      transition: transform 0.3s var(--ease), visibility 0.3s;
       z-index: 1100; /* above Leaflet panes and controls */
+      box-shadow: -12px 0 40px rgba(15,30,51,.35);
     }
     #info-sidebar.open {
       transform: translateX(0);
       visibility: visible;
+    }
+    @media (max-width: 640px) {
+      #info-sidebar { width: 100%; }
     }
     #sidebar-reopen {
       display: none;
@@ -376,6 +423,9 @@
       box-shadow: 0 4px 16px rgba(0,0,0,.25);
     }
     #sidebar-reopen:hover { filter: brightness(1.15); }
+    @media (max-width: 640px) {
+      #sidebar-reopen { font-size: .78rem; padding: 9px 14px; max-width: calc(100% - 24px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    }
     #sidebar-header {
       background: var(--navy-dark);
       color: #fff;
@@ -390,19 +440,26 @@
       font-size: .95rem;
       white-space: nowrap;
       letter-spacing: -.01em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      margin-right: 10px;
     }
     #sidebar-close {
-      background: none;
-      border: none;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
       color: #fff;
-      font-size: 1.1rem;
+      font-size: .78rem;
+      font-weight: 600;
+      font-family: var(--font-sans);
       cursor: pointer;
-      padding: 0 4px;
-      opacity: .7;
+      padding: 7px 14px;
       line-height: 1;
-      transition: opacity .15s var(--ease);
+      white-space: nowrap;
+      transition: background .15s var(--ease);
     }
-    #sidebar-close:hover { opacity: 1; }
+    #sidebar-close:hover { background: rgba(255,255,255,.25); }
     #sidebar-content {
       flex: 1;
       overflow-y: auto;
@@ -604,11 +661,12 @@
 <div id="result-banner"></div>
 <div id="map-area">
   <div id="map"></div>
-  <button id="sidebar-reopen" onclick="reopenSidebar()">ⓘ Area Info</button>
+  <button id="sidebar-reopen" onclick="reopenSidebar()">🗳 Your Representatives &amp; Candidates</button>
+  <div id="sidebar-backdrop" onclick="closeSidebar()"></div>
   <div id="info-sidebar">
     <div id="sidebar-header">
       <span id="sidebar-title">Area Info</span>
-      <button id="sidebar-close" onclick="closeSidebar()">✕</button>
+      <button id="sidebar-close" onclick="closeSidebar()">← Back to Map</button>
     </div>
     <div id="sidebar-content"></div>
   </div>
@@ -1305,11 +1363,13 @@ function showSidebar(title, html) {
   document.getElementById('sidebar-title').textContent = title;
   document.getElementById('sidebar-content').innerHTML = html;
   document.getElementById('info-sidebar').classList.add('open');
+  document.getElementById('sidebar-backdrop').classList.add('open');
   document.getElementById('sidebar-reopen').style.display = 'none';
 }
 
 function closeSidebar() {
   document.getElementById('info-sidebar').classList.remove('open');
+  document.getElementById('sidebar-backdrop').classList.remove('open');
   // Leave a way back in: if there's content, show the floating reopen pill
   if (document.getElementById('sidebar-content').innerHTML.trim()) {
     document.getElementById('sidebar-reopen').style.display = 'block';
@@ -1318,6 +1378,7 @@ function closeSidebar() {
 
 function reopenSidebar() {
   document.getElementById('info-sidebar').classList.add('open');
+  document.getElementById('sidebar-backdrop').classList.add('open');
   document.getElementById('sidebar-reopen').style.display = 'none';
 }
 
@@ -1405,7 +1466,7 @@ function buildPrecinctSidebar(props, latlng, districtInfo, candidatesHtml) {
 
   const candSection = candidatesHtml !== undefined
     ? `<div class="info-section">
-        <div class="info-section-title">Your Candidates</div>
+        <div class="info-section-title">Your Representatives &amp; Candidates</div>
         ${candidatesHtml || '<span class="info-loading">Loading…</span>'}
        </div>`
     : '';
@@ -1453,7 +1514,7 @@ function socialLink(url, label) {
   return `<a class="social-link" href="${escHtml(href)}" target="_blank" rel="noopener" title="${label}">${label}</a>`;
 }
 
-function renderCandidateCard(c) {
+function renderCandidateCard(c, showOffice = true) {
   const name     = c.name || 'Candidate';
   const initials = name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
   const avatar   = c.photoUrl
@@ -1497,14 +1558,31 @@ function renderCandidateCard(c) {
     <div class="candidate-card">
       ${avatar}
       <div class="candidate-body">
-        <div class="candidate-name">${escHtml(name)}${incBadge}${statusBadge}</div>
-        ${c.office ? `<div class="candidate-office">${escHtml(c.office)}${partyPill}</div>` : (partyPill ? `<div class="candidate-office">${partyPill}</div>` : '')}
+        <div class="candidate-name">${escHtml(name)}${partyPill}${incBadge}${statusBadge}</div>
+        ${showOffice && c.office ? `<div class="candidate-office">${escHtml(c.office)}</div>` : ''}
         ${bio}
         ${issues}
         ${socialRow}
         ${links ? `<div class="candidate-links">${links}</div>` : ''}
       </div>
     </div>`;
+}
+
+// Human labels for each office category, in the order the API returns them
+const TYPE_LABELS = {
+  congress:        'U.S. Congress',
+  senate:          'State Senate',
+  house:           'State House',
+  school_board:    'State School Board',
+  school_district: 'Local School District',
+  county:          'County',
+  precinct:        'Precinct',
+};
+
+function candGroupHeading(dt, district) {
+  if (dt === 'county')          return { label: `${district} County`,   sub: '' };
+  if (dt === 'school_district') return { label: TYPE_LABELS[dt],        sub: district };
+  return { label: TYPE_LABELS[dt] || dt, sub: `District ${district}` };
 }
 
 async function loadCandidatesForDistricts(districtInfo, precinctId) {
@@ -1523,7 +1601,26 @@ async function loadCandidatesForDistricts(districtInfo, precinctId) {
     const res  = await fetch(`/api/candidates?${params}`);
     const data = await res.json();
     if (!data.candidates?.length) return '<span style="color:#9CA3AF;font-size:.8rem">No candidates on file yet.</span>';
-    return data.candidates.map(renderCandidateCard).join('');
+
+    // Group into sections by office category (the API is already sorted
+    // federal → local, so consecutive rows share a group)
+    const groups = [];
+    for (const c of data.candidates) {
+      const key = c.districtType + '|' + c.district;
+      let g = groups[groups.length - 1];
+      if (!g || g.key !== key) { g = { key, dt: c.districtType, district: c.district, cands: [] }; groups.push(g); }
+      g.cands.push(c);
+    }
+    return groups.map(g => {
+      const { label, sub } = candGroupHeading(g.dt, g.district);
+      // Within legislative groups the office repeats the heading — only county
+      // and school-district groups mix offices worth labeling per card
+      const showOffice = g.dt === 'county' || g.dt === 'school_district';
+      return `<div class="cand-group">
+        <div class="cand-group-title">${escHtml(label)}${sub ? `<span class="cand-group-district">${escHtml(sub)}</span>` : ''}</div>
+        <div class="cand-grid">${g.cands.map(c => renderCandidateCard(c, showOffice)).join('')}</div>
+      </div>`;
+    }).join('');
   } catch {
     return '<span style="color:#9CA3AF;font-size:.8rem">Could not load candidates.</span>';
   }
