@@ -1,12 +1,12 @@
 Name,Office,DistrictType,District,Party,Incumbent,Status,PhotoURL,Bio,Website,OfficialURL,Email,Phone,Facebook,Instagram,X,VolunteerURL,DonateURL,TopIssues,Active,Order
 Jenny Wilson,County Mayor,county,Salt Lake,Democratic,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
-Sim Gill,County District Attorney,county,Salt Lake,Democratic,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
-Rosie Rivera,County Sheriff,county,Salt Lake,Democratic,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
-Lannie Chapman,County Clerk,county,Salt Lake,Democratic,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
+Sim Gill,County District Attorney,county,Salt Lake,Democratic,TRUE,GENERAL,,,https://votesim.com,,sgill@votesim.com,(435)602-2944,,,,,,,TRUE,1
+Rosie Rivera,County Sheriff,county,Salt Lake,Democratic,TRUE,GENERAL,,,https://rosieforsheriff.com,,riverarosie18@icloud.com,,,,,,,,TRUE,1
+Lannie Chapman,County Clerk,county,Salt Lake,Democratic,TRUE,GENERAL,,,https://lannieforclerk.com,,lannieforclerk@gmail.com,,,,,,,,TRUE,1
 Chris Stavros,County Assessor,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
-Chris Harding,County Auditor,county,Salt Lake,Republican,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
+Chris Harding,County Auditor,county,Salt Lake,Republican,TRUE,GENERAL,,,https://chris4auditor.com,,chris4auditor@gmail.com,(385)695-0501,,,,,,,TRUE,1
 Bradley Park,County Surveyor,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
-Jiro Johnson,County Council District 1,county,Salt Lake,Democratic,TRUE,GENERAL,,,,,,,,,,,,,TRUE,1
+Jiro Johnson,County Council District 1,county,Salt Lake,Democratic,TRUE,GENERAL,,,https://jiroforsaltlake.com,,campaign@jiroforsaltlake.com,(385)355-1262,,,,,,,TRUE,1
 Laurie Stringham,County Council At-Large A,county,Salt Lake,Republican,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
 Carlos A. Moreno,County Council District 2,county,Salt Lake,,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
 Aimee Winder Newton,County Council District 3,county,Salt Lake,Republican,TRUE,INCUMBENT — not on 2026 ballot,,,,,,,,,,,,,TRUE,1
@@ -21,7 +21,7 @@ Brandon Gordon,County Commissioner,county,Utah,,TRUE,INCUMBENT — county office
 Rodney W. Mann,County Auditor,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
 Burt Garfield,County Assessor,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
 Jeffrey S. Gray,County Attorney,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
-Aaron R. Davidson,County Clerk,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
+Aaron R. Davidson,County Clerk,county,Utah,Republican,TRUE,INCUMBENT — lost 2026 primary,,,https://davidsonclerk.com/,,,,,,,,,,TRUE,1
 Andrea Allen,County Recorder,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
 Mike Smith,County Sheriff,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
 Anthony Canto,County Surveyor,county,Utah,,TRUE,INCUMBENT — county officeholder,,,,,,,,,,,,,TRUE,1
