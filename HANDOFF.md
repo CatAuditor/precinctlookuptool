@@ -350,3 +350,17 @@ No code changes required. Keep it that way — resist hardcoding client specific
   write-only into the client's own sheet. The app is intentionally iframe-able;
   there is no admin surface to protect (organizers use Google's own auth on the
   sheets).
+
+## 14. Candidate photo hosting
+
+Photos referenced by `PhotoURL` must be **stable, non-expiring URLs**. Some
+county filing systems (e.g. Davis's "candidateinsight" API) serve photos via
+Azure Blob SAS-signed URLs that expire same-day — those cannot be used
+directly.
+
+**Convention:** download the image, commit it to `candidate-photos/` in this
+repo (Vercel serves the whole repo root statically per `vercel.json`), named
+`<county-slug>-<candidate-slug>.jpg`, then set `PhotoURL` to
+`https://precinctlookuptool-cradcli4-7333s-projects.vercel.app/candidate-photos/<file>`.
+Only commit photos for candidates actually present in the candidate data —
+don't carry primary-losers' photos as dead weight.
