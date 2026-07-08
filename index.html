@@ -64,39 +64,30 @@
     header {
       background: var(--navy-dark);
       color: #fff;
-      padding: 18px 28px;
+      padding: 12px 28px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       box-shadow: 0 1px 3px rgba(0,0,0,.2);
       z-index: 10;
     }
-    header .star { font-size: 1.9rem; line-height: 1; color: var(--red); }
-    header h1 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
-    header p  { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-top: 4px; }
+    header .star { font-size: 1.5rem; line-height: 1; color: var(--red); }
+    header h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+    header p  { font-size: .64rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.55); margin-top: 3px; }
 
-    /* ── Search panel ── */
+    /* ── Search panel — one slim row ── */
     .search-panel {
       background: var(--white);
       border-bottom: 1px solid var(--gray-200);
-      padding: 22px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      padding: 10px 28px;
       z-index: 10;
       box-shadow: 0 1px 3px rgba(0,0,0,.07);
     }
-    .search-panel label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--red);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
     .input-row {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
+      max-width: 640px;
     }
 
     /* ── Autocomplete ── */
@@ -106,10 +97,10 @@
     }
     .autocomplete-wrap input {
       width: 100%;
-      padding: 12px 16px;
+      padding: 9px 14px;
       border: 1.5px solid var(--gray-200);
       border-radius: var(--radius);
-      font-size: 15px;
+      font-size: 14px;
       font-family: var(--font-sans);
       color: var(--gray-900);
       outline: none;
@@ -146,12 +137,12 @@
     .suggestion-loading, .suggestion-empty { padding: 11px 16px; font-size: .88rem; color: var(--gray-400); }
 
     .input-row button {
-      padding: 12px 26px;
+      padding: 9px 18px;
       background: var(--red);
       color: #fff;
       border: 2px solid var(--red);
       border-radius: var(--radius);
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
@@ -165,13 +156,13 @@
 
     .hint { font-size: .78rem; color: var(--gray-400); }
 
-    /* ── Result banner ── */
+    /* ── Result banner (errors only — success goes straight to the drawer) ── */
     #result-banner {
       display: none;
       background: var(--cream);
       border-left: 4px solid var(--red);
-      padding: 16px 22px;
-      font-size: 1rem;
+      padding: 10px 22px;
+      font-size: .9rem;
       color: var(--gray-900);
     }
     #result-banner.error { background: #FDECEA; border-left-color: var(--red); color: #8f2018; }
@@ -195,6 +186,32 @@
     .badge-senate         { background: #0891b2; }
     .badge-school-board   { background: #059669; }
     .badge-school-district{ background: #be185d; }
+
+    /* ── District chips (compact summary at the top of the drawer) ── */
+    .district-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .dchip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--cream);
+      border: 1px solid var(--gray-200);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: .74rem;
+      font-weight: 600;
+      color: var(--gray-900);
+      white-space: nowrap;
+    }
+    .dchip .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
 
     /* ── Candidates section ── */
     /* Grouped by office (Congress / State Senate / …); cards sit side-by-side
@@ -639,13 +656,13 @@
 </header>
 
 <div class="search-panel">
-  <label for="address-input">ENTER YOUR ADDRESS</label>
   <div class="input-row">
     <div class="autocomplete-wrap">
       <input
         id="address-input"
         type="text"
-        placeholder="e.g. 350 N State St, Salt Lake City"
+        placeholder="Enter your %%CLIENT_STATE%% address — e.g. 350 N State St, Salt Lake City"
+        aria-label="Enter your address"
         autocomplete="off"
         spellcheck="false"
         aria-autocomplete="list"
@@ -655,7 +672,6 @@
     </div>
     <button id="search-btn" onclick="findPrecinct()">Find My Precinct</button>
   </div>
-  <div class="hint">Start typing your %%CLIENT_STATE%% address — suggestions will appear. Abbreviations and partial addresses are fine.</div>
 </div>
 
 <div id="result-banner"></div>
@@ -1174,6 +1190,10 @@ function showBanner(html, isError = false) {
   el.style.display = 'block';
 }
 
+function hideBanner() {
+  document.getElementById('result-banner').style.display = 'none';
+}
+
 function setBtnLoading(loading) {
   const btn = document.getElementById('search-btn');
   if (loading) {
@@ -1292,16 +1312,9 @@ async function findPrecinct() {
     // Fit to precinct bounds
     map.fitBounds(pLayer.getBounds(), { padding: [40, 40] });
 
-    // Banner
-    const congressTag = congressDistrict != null ? `<span class="badge badge-congress">Congress ${congressDistrict}</span>` : '';
-    const houseTag    = houseDistrict    != null ? `<span class="badge badge-house">House ${houseDistrict}</span>` : '';
-    const senateTag   = senateDistrict   != null ? `<span class="badge badge-senate">Senate ${senateDistrict}</span>` : '';
-    showBanner(
-      `📍 <strong>${precinctName}</strong>` +
-      (cName ? `&nbsp;·&nbsp;${cName} County&nbsp;&nbsp;` : '&nbsp;&nbsp;') +
-      congressTag + '&nbsp;' + houseTag + '&nbsp;' + senateTag +
-      `<br><span style="font-size:.85rem;color:#4B5563">Matched: ${matchedAddress}</span>`
-    );
+    // No success banner — the drawer itself is the result. (showBanner is
+    // still used for errors.)
+    hideBanner();
 
     // 4. Show sidebar with precinct info + load candidates async
     const districtInfo = {
@@ -1475,22 +1488,25 @@ function buildPrecinctSidebar(props, latlng, districtInfo, candidatesHtml) {
     ? buildVolunteerSection(props, districtInfo)
     : '';
 
+  // One compact chip row replaces the old Precinct Info + Districts tables
+  const chip = (text, color) => text
+    ? `<span class="dchip"><span class="dot" style="background:${color}"></span>${escHtml(String(text))}</span>`
+    : '';
+  const chips = [
+    name   ? chip(name, 'var(--navy)') : '',
+    county ? chip(`${county} County`, 'var(--navy)') : '',
+    chip(congress       != null ? `Congress ${congress}`     : null, '#d97706'),
+    chip(house          != null ? `House ${house}`           : null, '#7c3aed'),
+    chip(senate         != null ? `Senate ${senate}`         : null, '#0891b2'),
+    chip(schoolBoard    != null ? `School Board ${schoolBoard}` : null, '#059669'),
+    chip(schoolDistrict != null ? `${schoolDistrict} School District` : null, '#be185d'),
+  ].filter(Boolean).join('');
+  const chipsRow = chips
+    ? `<div class="district-chips">${chips}</div>`
+    : `<div class="district-chips">${loading}</div>`;
+
   return `
-    <span class="info-type-badge badge-precinct-bg">Precinct</span>
-    <div class="info-section">
-      <div class="info-section-title">Precinct Info</div>
-      ${name ? infoRow('Name', name) : ''}
-      ${county ? infoRow('County', county) : ''}
-      ${!name && !county ? infoRow('Precinct', props.PrecinctID || '—') : ''}
-    </div>
-    <div class="info-section">
-      <div class="info-section-title">Legislative Districts</div>
-      ${congress    != null ? infoRow('Congressional', `District ${congress}`) : infoRow('Congressional', loading)}
-      ${house       != null ? infoRow('State House',   house)                  : infoRow('State House',   loading)}
-      ${senate      != null ? infoRow('State Senate',  senate)                 : infoRow('State Senate',  loading)}
-      ${schoolBoard    != null ? infoRow('School Board',    schoolBoard)    : infoRow('School Board',    loading)}
-      ${schoolDistrict != null ? infoRow('School District', schoolDistrict) : infoRow('School District', loading)}
-    </div>
+    ${chipsRow}
     ${candSection}
     ${volSection}
     ${congress != null ? leLink('congress', congress) : ''}
